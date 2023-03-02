@@ -20,4 +20,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//Superadmin Pages
+Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => ['role:superadmin', 'auth']], function () {
+
+});
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
