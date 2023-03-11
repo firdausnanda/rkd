@@ -14,6 +14,10 @@ body {
 h1, h2, h3, h4, h5, h6 {
   color: #3b3f5c; }
 
+.fs-14 {
+  font-size: 14px;
+}
+
 :focus {
   outline: none; }
 
@@ -486,10 +490,12 @@ select.form-control.form-custom {
     font-size: 12px;
     font-weight: 700;
     color: #888ea8;
-    padding: 11px 8px; }
-    .btn-group .dropdown-menu a.dropdown-item:hover {
+    padding: 11px 8px;
+    background-color: red; 
+  }
+  .btn-group .dropdown-menu a.dropdown-item:hover {
       background-color: #f1f2f3; }
-    .btn-group .dropdown-menu a.dropdown-item svg {
+  .btn-group .dropdown-menu a.dropdown-item svg {
       cursor: pointer;
       color: #888ea8;
       margin-right: 6px;
@@ -497,8 +503,15 @@ select.form-control.form-custom {
       width: 20px;
       height: 20px;
       fill: rgba(0, 23, 55, 0.08); }
-    .btn-group .dropdown-menu a.dropdown-item:hover svg {
+  .btn-group .dropdown-menu a.dropdown-item:hover svg {
       color: #1b55e2; }
+    
+      .btn-group .dropdown-menu button.dropdown-item {
+        border-radius: 5px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #888ea8;
+        padding: 11px 8px; }
 
 .dropdown:not(.custom-dropdown-icon) .dropdown-menu {
   border: none;

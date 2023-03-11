@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('nidn')->unique();
             $table->string('nama');
-            $table->string('prodi')->nullable();
+            $table->string('id_prodi')->nullable();
             $table->string('jabatan_fungsional')->nullable();
             $table->string('status')->nullable();
             $table->string('keterangan')->nullable();

@@ -21,7 +21,9 @@ class DatabaseSeeder extends Seeder
 
         // Run an array of specific seeders...
         $this->call([
-            RoleSeeder::class
+            RoleSeeder::class,
+            UserSeeder::class,
+            ProdiSeeder::class,
         ]);
     }
 }

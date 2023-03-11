@@ -42,17 +42,9 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-        switch (Auth::user()->role) {
+        switch (Auth::user()->roles[0]->name) {
             case 'superadmin':
               $this->redirectTo = '/superadmin';
-              return $this->redirectTo;
-              break;
-            case 'admin':
-                $this->redirectTo = '/admin';
-                return $this->redirectTo;
-                break;
-            case 'user':
-              $this->redirectTo = '/user';
               return $this->redirectTo;
               break;
             default:
