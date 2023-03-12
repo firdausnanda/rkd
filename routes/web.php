@@ -34,6 +34,9 @@ Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => [
   // Dosen
   Route::group(['prefix' => 'dosen', 'as' => 'dosen.'], function () {
 		Route::get('', [DosenController::class, 'index'])->name('index');
+		Route::post('', [DosenController::class, 'store'])->name('store');
+		Route::put('', [DosenController::class, 'update'])->name('update');
+		Route::put('/aktif', [DosenController::class, 'aktif'])->name('aktif');
 	});
 
   // Matakuliah

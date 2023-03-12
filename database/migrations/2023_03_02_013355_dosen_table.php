@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('jabatan_fungsional')->nullable();
             $table->string('status')->nullable();
             $table->string('keterangan')->nullable();
+            $table->boolean('is_active')->default(1);
             $table->timestamps();
         });
     }

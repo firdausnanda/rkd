@@ -92,12 +92,16 @@ class AkunController extends Controller
     public function aktif(Request $request)
     {
       try {
-        
-        $aktif = 1;
+        if ($request->aktif == 1) {
+          $aktif = 0;
+        }else {
+          $aktif = 1;
+        }
 
         $update = User::where('id', $request->id)->update([
           'is_active' => $aktif 
         ]);
+        
         return ResponseFormatter::success($update, 'Data Berhasil diupdate!');
       } catch (\Exception $e) {
         return ResponseFormatter::error($e, 'Server Error!');

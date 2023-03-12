@@ -25,8 +25,8 @@
             </li>
 
             <li class="menu">
-                <a href="/dosen" data-active="{{ request()->is('dosen') ? 'true' : '' }}"
-                    aria-expanded="{{ request()->is('/dosen') ? 'true' : 'false' }}" class="dropdown-toggle"
+                <a href="{{ route('superadmin.dosen.index') }}" data-active="{{ request()->routeIs('superadmin.dosen.*') ? 'true' : '' }}"
+                    aria-expanded="{{ request()->routeIs('superadmin.dosen.*') ? 'true' : 'false' }}" class="dropdown-toggle"
                     style="text-decoration: none;">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"

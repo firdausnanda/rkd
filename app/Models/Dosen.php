@@ -12,11 +12,16 @@ class Dosen extends Model
     protected $fillable = [
         'nidn',
         'nama',
-        'prodi',
+        'id_prodi',
         'jabatan_fungsional',
         'status',
         'keterangan'
     ];
 
     protected $table = 'm_dosen';
+
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class, 'id_prodi', 'id');
+    }
 }
