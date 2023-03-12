@@ -5,6 +5,7 @@ use App\Http\Controllers\Superadmin\DashboardController;
 use App\Http\Controllers\Superadmin\DosenController;
 use App\Http\Controllers\Superadmin\MatakuliahController;
 use App\Http\Controllers\Superadmin\ProdiController;
+use App\Http\Controllers\Superadmin\TahunAkademikController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -53,6 +54,13 @@ Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => [
 		Route::post('', [ProdiController::class, 'store'])->name('store');
 		Route::put('', [ProdiController::class, 'update'])->name('update');
 		Route::delete('', [ProdiController::class, 'delete'])->name('delete');
+	});
+	
+	// Tahun Akademik
+  Route::group(['prefix' => 'ta', 'as' => 'ta.'], function () {
+		Route::get('', [TahunAkademikController::class, 'index'])->name('index');
+		Route::post('', [TahunAkademikController::class, 'store'])->name('store');
+		Route::put('', [TahunAkademikController::class, 'update'])->name('update');
 	});
 
   // Akun
