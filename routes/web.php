@@ -42,6 +42,9 @@ Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => [
   // Matakuliah
   Route::group(['prefix' => 'matakuliah', 'as' => 'matakuliah.'], function () {
 		Route::get('', [MatakuliahController::class, 'index'])->name('index');
+		Route::post('', [MatakuliahController::class, 'store'])->name('store');
+		Route::put('', [MatakuliahController::class, 'update'])->name('update');
+		Route::delete('', [MatakuliahController::class, 'delete'])->name('delete');
 	});
 
 	// Prodi

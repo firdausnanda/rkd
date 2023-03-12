@@ -13,7 +13,7 @@
                     </div>
 
                     <div class="table-responsive mb-4 mt-4">
-                        <table id="table-dosen" class="table     " style="width:100%">
+                        <table id="table-dosen" class="table" style="width:100%">
                             <thead>
                                 <tr align="center">
                                     <th>No</th>
@@ -119,7 +119,8 @@
                         </div>
                         <div class="form-group mb-4">
                             <label for="password">Prodi</label>
-                            <select class="selectpicker form-control" data-live-search="true" name="prodi" id="prodi">
+                            <select class="selectpicker form-control" data-live-search="true" name="prodi"
+                                id="prodi">
                                 <option value="-">-</option>
                                 @foreach ($prodi as $p)
                                     <option value="{{ $p->id }}">{{ $p->nama_prodi }}</option>
@@ -128,7 +129,8 @@
                         </div>
                         <div class="form-group mb-4">
                             <label for="jabfung">Jabatan Fungsional</label><br>
-                            <select class="selectpicker form-control" data-live-search="true" name="jabfung" id="jabfung">
+                            <select class="selectpicker form-control" data-live-search="true" name="jabfung"
+                                id="jabfung">
                                 <option value="-">-</option>
                                 <option value="Asisten Ahli">Asisten Ahli</option>
                                 <option value="Lektor">Lektor</option>
@@ -138,7 +140,8 @@
                         </div>
                         <div class="form-group mb-4">
                             <label for="status">Status</label><br>
-                            <select class="selectpicker form-control" data-live-search="true" name="status" id="status">
+                            <select class="selectpicker form-control" data-live-search="true" name="status"
+                                id="status">
                                 <option value="-">-</option>
                                 <option value="Tetap">Tetap</option>
                                 <option value="Tidak Tetap">Tidak Tetap</option>
@@ -339,9 +342,19 @@
                     url: "{{ route('superadmin.dosen.store') }}",
                     data: $(this).serialize(),
                     dataType: "JSON",
+                    beforeSend: function() {
+                        Swal.showLoading()
+                    },
                     success: function(response) {
+                        Swal.hideLoading()
                         $('#tambah-dosen').modal('hide')
                         table.ajax.reload()
+                        $('#form-store')[0].reset()
+                        Swal.fire('Sukses!', 'Data diupdate', 'success')
+                    },
+                    error: function(response) {
+                        Swal.hideLoading()
+                        Swal.fire('Error!', 'Server Error', 'error')
                     }
                 });
 

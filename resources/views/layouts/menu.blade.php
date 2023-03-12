@@ -41,8 +41,8 @@
             </li>
 
             <li class="menu">
-                <a href="/matkul" data-active="{{ request()->is('matkul') ? 'true' : '' }}"
-                    aria-expanded="{{ request()->is('matkul') ? 'true' : 'false' }}" class="dropdown-toggle"
+                <a href="{{ route('superadmin.matakuliah.index') }}" data-active="{{ request()->routeIs('superadmin.matakuliah.*') ? 'true' : '' }}"
+                    aria-expanded="{{ request()->routeIs('superadmin.matakuliah.*') ? 'true' : 'false' }}" class="dropdown-toggle"
                     style="text-decoration: none;">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"

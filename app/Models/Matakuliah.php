@@ -21,4 +21,9 @@ class Matakuliah extends Model
     ];
 
     protected $table = 'm_matakuliah';
+
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class, 'kode_prodi', 'kode_prodi');
+    }
 }
