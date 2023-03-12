@@ -34,6 +34,8 @@
     <link href="{{ asset('plugins/flatpickr/flatpickr.css') }}" rel="stylesheet" type="text/css">
     <!-- END THEME GLOBAL STYLES -->
 
+    @yield('css')
+
 </head>
 
 <body>

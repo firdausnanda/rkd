@@ -5,8 +5,8 @@
         <ul class="list-unstyled menu-categories" id="accordionExample">
 
             <li class="menu">
-                <a href="/admin" data-active="{{ request()->is('admin') ? 'true' : '' }}"
-                    aria-expanded="{{ request()->is('admin') ? 'true' : 'false' }}" class="dropdown-toggle"
+                <a href="{{ route('superadmin.index') }}" data-active="{{ request()->routeIs('superadmin.index') ? 'true' : '' }}"
+                    aria-expanded="{{ request()->routeIs('superadmin.index') ? 'true' : 'false' }}" class="dropdown-toggle"
                     style="text-decoration: none;">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
