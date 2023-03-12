@@ -20,6 +20,7 @@
                                     <th>USERNAME</th>
                                     <th>EMAIL/NIDN</th>
                                     <th>ROLE</th>
+                                    <th>PRODI</th>
                                     <th>STATUS</th>
                                     <th class="no-content"></th>
                                 </tr>
@@ -63,16 +64,15 @@
                             <select class="selectpicker form-control" data-live-search="true" id="role_s" name="role"
                                 required>
                                 @foreach ($role as $r)
-                                <option value="{{ $r->name }}">{{ $r->name }}</option>
+                                    <option value="{{ $r->name }}">{{ $r->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div id="prodi_store" class="form-group mb-4 d-none">
                             <label for="prodi">Prodi</label><br>
-                            <select class="selectpicker form-control" data-live-search="true" id="prodi_s"
-                                name="prodi">
+                            <select class="selectpicker form-control" data-live-search="true" id="prodi_s" name="prodi">
                                 @foreach ($prodi as $p)
-                                <option value="{{ $p->kode_prodi }}">{{ $p->nama_prodi }}</option>
+                                    <option value="{{ $p->kode_prodi }}">{{ $p->nama_prodi }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -111,7 +111,7 @@
                             <select class="selectpicker form-control" data-live-search="true" id="role"
                                 name="role">
                                 @foreach ($role as $r)
-                                <option value="{{ $r->name }}">{{ $r->name }}</option>
+                                    <option value="{{ $r->name }}">{{ $r->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -120,7 +120,7 @@
                             <select class="selectpicker form-control" data-live-search="true" id="prodi"
                                 name="prodi">
                                 @foreach ($prodi as $p)
-                                <option value="{{ $p->kode_prodi }}">{{ $p->nama_prodi }}</option>
+                                    <option value="{{ $p->kode_prodi }}">{{ $p->nama_prodi }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -128,6 +128,31 @@
                     <div class="modal-footer">
                         <input type="submit" class="btn btn-primary" value="Edit">
                         <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Reset Password -->
+    <div class="modal fade" id="ResetPassword" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+        role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleId">Reset Password</h5>
+                </div>
+                <form id="form-reset">
+                    <div class="modal-body">
+                        <input type="hidden" id="id">
+                        <div class="form-group mb-4">
+                            <label for="password-new"></label>
+                            <input type="password" class="form-control" id="password-old" name="password-old">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </form>
             </div>
@@ -181,13 +206,13 @@
                     },
                     {
                         targets: 2,
-                        width: '20%',
+                        width: '10%',
                         className: 'text-center align-middle fs-14',
                         data: 'email'
                     },
                     {
                         targets: 3,
-                        width: '20%',
+                        width: '15%',
                         className: 'text-center align-middle fs-14',
                         render: function(data, type, row, meta) {
                             return `${row.roles[0].name}`
@@ -196,6 +221,18 @@
                     {
                         targets: 4,
                         width: '20%',
+                        className: 'text-center align-middle fs-14',
+                        data: 'kode_prodi',
+                        render: function(data, type, row, meta) {
+                            if (data == '' || data == null) {
+                                return `-`
+                            }
+                            return `${row.prodi.nama_prodi}`
+                        }
+                    },
+                    {
+                        targets: 5,
+                        width: '15%',
                         className: 'text-center align-middle fs-14',
                         data: 'is_active',
                         render: function(data, type, row, meta) {
@@ -206,10 +243,18 @@
                         }
                     },
                     {
-                        targets: 5,
+                        targets: 6,
                         width: '15%',
                         className: 'text-center align-middle',
+                        data: 'is_active',
                         render: function(data, type, row, meta) {
+
+                            if (data == 1) {
+                                var aktif = 'Non - Aktifkan'
+                            } else {
+                                var aktif = 'Aktifkan'
+                            }
+
                             return `<div class="btn-group" role="group">
                                         <button id="btnGroupDrop1" type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Aksi <i class="fa-solid fa-chevron-down ml-2"></i>
@@ -217,7 +262,7 @@
                                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                         <a class="dropdown-item btn-update" href="#">Update Profile</a>
                                         <a class="dropdown-item btn-reset" href="#">Reset Password</a>
-                                        <a class="dropdown-item btn-aktif" href="#">Non - Aktifkan</a>
+                                        <a class="dropdown-item btn-aktif" href="#">${aktif}</a>
                                         </div>
                                     </div>`
                         }
@@ -244,28 +289,75 @@
                 $('#EditDataAkun').modal('show')
             });
 
+            // Reset Password
+            $('#table-akun tbody').on('click', '.btn-reset', function() {
+                var data = table.row($(this).parents('tr')).data();
+
+                $('#id').val(data.id)
+                $('#ResetPassword').modal('show')
+            });
+
+            // Aktif Non Aktif Akun
+            $('#table-akun tbody').on('click', '.btn-aktif', function() {
+                var data = table.row($(this).parents('tr')).data();
+
+                Swal.fire({
+                    title: 'Apakah anda yakin?',
+                    text: "Akun akan dinonaktifkan/aktifkan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, Lanjutkan!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: "PUT",
+                            url: "{{ route('superadmin.akun.aktif') }}",
+                            data: {
+                                id: data.id,
+                                aktif: data.is_active
+                            },
+                            dataType: "JSON",
+                            beforeSend: function() {
+                                Swal.showLoading()
+                            },
+                            success: function(response) {
+                                Swal.hideLoading()
+                                table.ajax.reload()
+                                Swal.fire('Sukses!', 'Data diupdate', 'success')
+                            },
+                            error: function(response) {
+                                Swal.hideLoading()
+                                Swal.fire('Error!', 'Server Error', 'error')
+                            }
+                        });
+                    }
+                })
+            });
+
             // Change Role Update
-            $('#EditDataAkun #role').change(function (e) { 
+            $('#EditDataAkun #role').change(function(e) {
                 e.preventDefault();
                 if ($('#EditDataAkun #role').val() == 'admin') {
                     $('#prodi_edit').addClass('d-block')
-                }else{
+                } else {
                     $('#prodi_edit').addClass('d-none').removeClass('d-block')
                 }
             });
-            
+
             // Change Role Store
-            $('#TambahDataAkun #role_s').change(function (e) { 
+            $('#TambahDataAkun #role_s').change(function(e) {
                 e.preventDefault();
                 if ($('#TambahDataAkun #role_s').val() == 'admin') {
                     $('#prodi_store').addClass('d-block')
-                }else{
+                } else {
                     $('#prodi_store').addClass('d-none').removeClass('d-block')
                 }
             });
 
             // Submit Store
-            $('#form-store').submit(function (e) { 
+            $('#form-store').submit(function(e) {
                 e.preventDefault();
 
                 $.ajax({
@@ -273,16 +365,16 @@
                     url: "{{ route('superadmin.akun.store') }}",
                     data: $(this).serialize(),
                     dataType: "JSON",
-                    success: function (response) {
+                    success: function(response) {
                         $('#TambahDataAkun').modal('hide')
                         table.ajax.reload()
                     }
                 });
-                
+
             });
 
             // Submit Update
-            $('#form-update').submit(function (e) { 
+            $('#form-update').submit(function(e) {
                 e.preventDefault();
 
                 $.ajax({
@@ -290,12 +382,49 @@
                     type: "PUT",
                     data: $(this).serialize(),
                     dataType: "JSON",
-                    success: function (response) {
+                    beforeSend: function() {
+                        Swal.showLoading()
+                    },
+                    success: function(response) {
+                        Swal.hideLoading()
                         $('#EditDataAkun').modal('hide')
                         table.ajax.reload()
+                        $('#form-update')[0].reset()
+                        Swal.fire('Sukses!', 'Data diupdate', 'success')
+                    },
+                    error: function(response) {
+                        Swal.hideLoading()
+                        Swal.fire('Error!', 'Server Error', 'error')
                     }
                 });
             });
+
+            // Submit Reset Password
+            $('#form-reset').submit(function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    type: "PUT",
+                    url: "{{ route('superadmin.akun.reset') }}",
+                    data: $(this).serialize(),
+                    dataType: "JSON",
+                    beforeSend: function() {
+                        Swal.showLoading()
+                    },
+                    success: function(response) {
+                        Swal.hideLoading()
+                        $('#ResetPassword').modal('hide')
+                        table.ajax.reload()
+                        $('#form-reset')[0].reset()
+                        Swal.fire('Sukses!', 'Data diupdate', 'success')
+                    },
+                    error: function(response) {
+                        Swal.hideLoading()
+                        Swal.fire('Error!', 'Server Error', 'error')
+                    }
+                });
+            });
+
         });
     </script>
 @endsection

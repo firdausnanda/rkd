@@ -29,6 +29,8 @@ Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => [
 		Route::get('', [AkunController::class, 'index'])->name('index');
 		Route::post('', [AkunController::class, 'store'])->name('store');
 		Route::put('', [AkunController::class, 'update'])->name('update');
+		Route::put('/reset', [AkunController::class, 'reset'])->name('reset');
+		Route::put('/aktif', [AkunController::class, 'aktif'])->name('aktif');
 	});
 });
 
