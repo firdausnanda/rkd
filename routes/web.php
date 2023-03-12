@@ -50,6 +50,9 @@ Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => [
 	// Prodi
   Route::group(['prefix' => 'prodi', 'as' => 'prodi.'], function () {
 		Route::get('', [ProdiController::class, 'index'])->name('index');
+		Route::post('', [ProdiController::class, 'store'])->name('store');
+		Route::put('', [ProdiController::class, 'update'])->name('update');
+		Route::delete('', [ProdiController::class, 'delete'])->name('delete');
 	});
 
   // Akun

@@ -60,8 +60,8 @@
             </li>
 
             <li class="menu">
-                <a href="/prodii" data-active="{{ request()->is('prodii') ? 'true' : '' }}"
-                    aria-expanded="{{ request()->is('prodii') ? 'true' : 'false' }}" class="dropdown-toggle"
+                <a href="{{ route('superadmin.prodi.index') }}" data-active="{{ request()->routeIs('superadmin.prodi.*') ? 'true' : '' }}"
+                    aria-expanded="{{ request()->routeIs('superadmin.prodi.*') ? 'true' : 'false' }}" class="dropdown-toggle"
                     style="text-decoration: none">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
