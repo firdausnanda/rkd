@@ -491,7 +491,6 @@ select.form-control.form-custom {
     font-weight: 700;
     color: #888ea8;
     padding: 11px 8px;
-    background-color: red; 
   }
   .btn-group .dropdown-menu a.dropdown-item:hover {
       background-color: #f1f2f3; }

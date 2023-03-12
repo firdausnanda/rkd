@@ -132,8 +132,7 @@
     <!-- END PAGE LEVEL SCRIPTS -->
 
     <!-- BEGIN THEME GLOBAL STYLE -->
-    <script src="{{ asset('plugins/sweetalerts/sweetalert2.min.js') }}"></script>
-    <script src="{{ asset('plugins/sweetalerts/custom-sweetalert.js') }}"></script>
+    <script src="{{ asset('plugins/sweetalert/sweetalert.all.js') }}"></script>
     <!-- END THEME GLOBAL STYLE -->
 
     {{-- DATETIMEPICKER --}}
