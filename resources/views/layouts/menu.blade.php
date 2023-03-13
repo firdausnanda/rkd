@@ -5,9 +5,10 @@
         <ul class="list-unstyled menu-categories" id="accordionExample">
 
             <li class="menu">
-                <a href="{{ route('superadmin.index') }}" data-active="{{ request()->routeIs('superadmin.index') ? 'true' : '' }}"
-                    aria-expanded="{{ request()->routeIs('superadmin.index') ? 'true' : 'false' }}" class="dropdown-toggle"
-                    style="text-decoration: none;">
+                <a href="{{ route('superadmin.index') }}"
+                    data-active="{{ request()->routeIs('superadmin.index') ? 'true' : '' }}"
+                    aria-expanded="{{ request()->routeIs('superadmin.index') ? 'true' : 'false' }}"
+                    class="dropdown-toggle" style="text-decoration: none;">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -25,9 +26,10 @@
             </li>
 
             <li class="menu">
-                <a href="{{ route('superadmin.dosen.index') }}" data-active="{{ request()->routeIs('superadmin.dosen.*') ? 'true' : '' }}"
-                    aria-expanded="{{ request()->routeIs('superadmin.dosen.*') ? 'true' : 'false' }}" class="dropdown-toggle"
-                    style="text-decoration: none;">
+                <a href="{{ route('superadmin.dosen.index') }}"
+                    data-active="{{ request()->routeIs('superadmin.dosen.*') ? 'true' : '' }}"
+                    aria-expanded="{{ request()->routeIs('superadmin.dosen.*') ? 'true' : 'false' }}"
+                    class="dropdown-toggle" style="text-decoration: none;">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -41,9 +43,10 @@
             </li>
 
             <li class="menu">
-                <a href="{{ route('superadmin.matakuliah.index') }}" data-active="{{ request()->routeIs('superadmin.matakuliah.*') ? 'true' : '' }}"
-                    aria-expanded="{{ request()->routeIs('superadmin.matakuliah.*') ? 'true' : 'false' }}" class="dropdown-toggle"
-                    style="text-decoration: none;">
+                <a href="{{ route('superadmin.matakuliah.index') }}"
+                    data-active="{{ request()->routeIs('superadmin.matakuliah.*') ? 'true' : '' }}"
+                    aria-expanded="{{ request()->routeIs('superadmin.matakuliah.*') ? 'true' : 'false' }}"
+                    class="dropdown-toggle" style="text-decoration: none;">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -60,9 +63,10 @@
             </li>
 
             <li class="menu">
-                <a href="{{ route('superadmin.prodi.index') }}" data-active="{{ request()->routeIs('superadmin.prodi.*') ? 'true' : '' }}"
-                    aria-expanded="{{ request()->routeIs('superadmin.prodi.*') ? 'true' : 'false' }}" class="dropdown-toggle"
-                    style="text-decoration: none">
+                <a href="{{ route('superadmin.prodi.index') }}"
+                    data-active="{{ request()->routeIs('superadmin.prodi.*') ? 'true' : '' }}"
+                    aria-expanded="{{ request()->routeIs('superadmin.prodi.*') ? 'true' : 'false' }}"
+                    class="dropdown-toggle" style="text-decoration: none">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -82,9 +86,10 @@
             </li>
 
             <li class="menu">
-                <a href="{{ route('superadmin.ta.index') }}" data-active="{{ request()->routeIs('superadmin.ta.*') ? 'true' : '' }}"
-                    aria-expanded="{{ request()->routeIs('superadmin.ta.*') ? 'true' : 'false' }}" class="dropdown-toggle"
-                    style="text-decoration: none">
+                <a href="{{ route('superadmin.ta.index') }}"
+                    data-active="{{ request()->routeIs('superadmin.ta.*') ? 'true' : '' }}"
+                    aria-expanded="{{ request()->routeIs('superadmin.ta.*') ? 'true' : 'false' }}"
+                    class="dropdown-toggle" style="text-decoration: none">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -102,8 +107,8 @@
             </li>
 
             <li class="menu">
-                <a href="/sgas" data-active="{{ request()->is('sgas') ? 'true' : '' }}"
-                    aria-expanded="{{ request()->is('sgas') ? 'true' : 'false' }}" class="dropdown-toggle"
+                <a href="{{ route('superadmin.pengajaran.index') }}" data-active="{{ request()->routeIs('superadmin.pengajaran.*') ? 'true' : '' }}"
+                    aria-expanded="{{ request()->routeIs('superadmin.pengajaran.*') ? 'true' : 'false' }}" class="dropdown-toggle"
                     style="text-decoration: none;">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -121,7 +126,23 @@
                             <line x1="1" y1="9" x2="4" y2="9"></line>
                             <line x1="1" y1="14" x2="4" y2="14"></line>
                         </svg>
-                        <span>Input SGAS</span>
+                        <span>Input Pengajaran</span>
+                    </div>
+                </a>
+            </li>
+
+            <li class="menu">
+                <a href="/sgas" data-active="{{ request()->is('sgas') ? 'true' : '' }}"
+                    aria-expanded="{{ request()->is('sgas') ? 'true' : 'false' }}" class="dropdown-toggle"
+                    style="text-decoration: none;">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="feather feather-check-circle">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        <span>Validasi Data</span>
                     </div>
                 </a>
             </li>
@@ -199,9 +220,10 @@
             </li>
 
             <li class="menu">
-                <a href="{{ route('superadmin.akun.index') }}" data-active="{{ request()->routeIs('superadmin.akun.*') ? 'true' : '' }}"
-                    aria-expanded="{{ request()->routeIs('superadmin.akun.*') ? 'true' : 'false' }}" class="dropdown-toggle"
-                    style="text-decoration: none">
+                <a href="{{ route('superadmin.akun.index') }}"
+                    data-active="{{ request()->routeIs('superadmin.akun.*') ? 'true' : '' }}"
+                    aria-expanded="{{ request()->routeIs('superadmin.akun.*') ? 'true' : 'false' }}"
+                    class="dropdown-toggle" style="text-decoration: none">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"

@@ -23,4 +23,19 @@ class SgasPengajaran extends Model
     ];
 
     protected $table = 'sgas_pengajaran';
+
+    public function sgas()
+    {
+        return $this->belongsTo(Sgas::class, 'id_sgas', 'id');
+    }
+    
+    public function matakuliah()
+    {
+        return $this->belongsTo(Matakuliah::class, 'id_matakuliah', 'id');
+    }
+    
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class, 'id_prodi', 'id');
+    }
 }

@@ -340,7 +340,7 @@
             $('#EditDataAkun #role').change(function(e) {
                 e.preventDefault();
                 if ($('#EditDataAkun #role').val() == 'admin') {
-                    $('#prodi_edit').addClass('d-block')
+                    $('#prodi_edit').addClass('d-block').removeClass('d-none')
                 } else {
                     $('#prodi_edit').addClass('d-none').removeClass('d-block')
                 }

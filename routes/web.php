@@ -4,6 +4,7 @@ use App\Http\Controllers\Superadmin\AkunController;
 use App\Http\Controllers\Superadmin\DashboardController;
 use App\Http\Controllers\Superadmin\DosenController;
 use App\Http\Controllers\Superadmin\MatakuliahController;
+use App\Http\Controllers\Superadmin\PengajaranController;
 use App\Http\Controllers\Superadmin\ProdiController;
 use App\Http\Controllers\Superadmin\TahunAkademikController;
 use Illuminate\Support\Facades\Auth;
@@ -61,6 +62,15 @@ Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => [
 		Route::get('', [TahunAkademikController::class, 'index'])->name('index');
 		Route::post('', [TahunAkademikController::class, 'store'])->name('store');
 		Route::put('', [TahunAkademikController::class, 'update'])->name('update');
+	});
+
+	// Pengajaran
+  Route::group(['prefix' => 'pengajaran', 'as' => 'pengajaran.'], function () {
+		Route::get('', [PengajaranController::class, 'index'])->name('index');
+		Route::get('/kurikulum', [PengajaranController::class, 'kurikulum'])->name('kurikulum');
+		Route::post('', [PengajaranController::class, 'store'])->name('store');
+		Route::post('/sgas', [PengajaranController::class, 'sgas'])->name('sgas');
+		Route::put('', [PengajaranController::class, 'update'])->name('update');
 	});
 
   // Akun
