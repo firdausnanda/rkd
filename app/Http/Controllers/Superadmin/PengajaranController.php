@@ -40,7 +40,7 @@ class PengajaranController extends Controller
                                 })
                                 ->count();
 
-                $p->total = $totalDosen;            
+                // $p->total = $totalDosen;            
             }
 
             return ResponseFormatter::success($pengajaran, 'Data berhasil diambil!');

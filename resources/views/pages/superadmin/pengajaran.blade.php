@@ -46,29 +46,29 @@
 
                     {{-- Konten --}}
                     <div id="konten" class="d-none">
-                        <div class="container mt-4">
+                        <div class="ml-2 mt-4">
                             <div class="row justify-content-md-center">
                                 <div class="col-6 col-md-4"><label>Nama yang diberi tugas</label></div>
                                 <div class="col-12 col-md-8">
-                                    <input type="text" readonly class="form-control-plaintext font-weight-bold text-dark" id="nama_dosen">
+                                    <input type="text" readonly class="form-control-plaintext bg-white font-weight-bold text-dark" id="nama_dosen">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-6 col-md-4"><label>Prodi</label></div>
                                 <div class="col-12 col-md-8">
-                                    <input type="text" readonly class="form-control-plaintext" id="prodi_dosen">
+                                    <input type="text" readonly class="form-control-plaintext bg-white" id="prodi_dosen">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-6 col-md-4"><label>Jabatan Fungsional</label></div>
                                 <div class="col-12 col-md-8">
-                                    <input type="text" readonly class="form-control-plaintext" id="jabfung_dosen">
+                                    <input type="text" readonly class="form-control-plaintext bg-white" id="jabfung_dosen">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-6 col-md-4"><label>NIP/NIDN/NIDK</label></div>
                                 <div class="col-12 col-md-8">
-                                    <input type="text" readonly class="form-control-plaintext" id="nidn_dosen">
+                                    <input type="text" readonly class="form-control-plaintext bg-white" id="nidn_dosen">
                                 </div>
                             </div>
                         </div>
