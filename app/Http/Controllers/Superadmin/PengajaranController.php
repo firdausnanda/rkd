@@ -82,7 +82,13 @@ class PengajaranController extends Controller
 
     public function kurikulum(Request $request)
     {
-        $kurikulum = Matakuliah::where('kode_prodi', $request->prodi)->groupBy('kurikulum')->get();
+        $kurikulum = Matakuliah::where('kode_prodi', $request->prodi)->orderBy('id', 'desc')->groupBy('kurikulum')->get();
         return ResponseFormatter::success($kurikulum, 'Data Berhasil diambil');
+    }
+   
+    public function matakuliah(Request $request)
+    {
+        $matakuliah = Matakuliah::where('kode_prodi', $request->prodi)->where('kurikulum', $request->kurikulum)->orderBy('id', 'desc')->get();
+        return ResponseFormatter::success($matakuliah, 'Data Berhasil diambil');
     }
 }

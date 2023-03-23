@@ -32,7 +32,7 @@
                         <div class="col-lg-3 mb-3">
                             <label for="dosen">Nama Dosen</label>
                             <select class="selectpicker form-control" data-live-search="true" id="dosen-select">
-                                <option value="-">-</option>
+                                <option value="-" selected disabled>-</option>
                                 @foreach ($dosen as $d)
                                     <option value="{{ $d->id }}">{{ $d->nama }}</option>
                                 @endforeach
@@ -50,7 +50,8 @@
                             <div class="row justify-content-md-center">
                                 <div class="col-6 col-md-4"><label>Nama yang diberi tugas</label></div>
                                 <div class="col-12 col-md-8">
-                                    <input type="text" readonly class="form-control-plaintext bg-white font-weight-bold text-dark" id="nama_dosen">
+                                    <input type="text" readonly
+                                        class="form-control-plaintext bg-white font-weight-bold text-dark" id="nama_dosen">
                                 </div>
                             </div>
                             <div class="row">
@@ -62,7 +63,8 @@
                             <div class="row">
                                 <div class="col-6 col-md-4"><label>Jabatan Fungsional</label></div>
                                 <div class="col-12 col-md-8">
-                                    <input type="text" readonly class="form-control-plaintext bg-white" id="jabfung_dosen">
+                                    <input type="text" readonly class="form-control-plaintext bg-white"
+                                        id="jabfung_dosen">
                                 </div>
                             </div>
                             <div class="row">
@@ -102,8 +104,8 @@
     </div>
 
     {{-- Modal Tambah Data --}}
-    <div class="modal fade fadeinUp" id="tambah-pengajaran" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade fadeinUp" id="tambah-pengajaran" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -115,7 +117,7 @@
                         <div class="form-group mb-4">
                             <label for="prodi">Prodi</label>
                             <select class="selectpicker form-control" data-live-search="true" name="prodi" id="prodi_s">
-                                <option value="-">-</option>
+                                <option value="-" selected disabled>-</option>
                                 @foreach ($prodi as $p)
                                     <option value="{{ $p->kode_prodi }}">{{ $p->nama_prodi }}</option>
                                 @endforeach
@@ -124,7 +126,19 @@
                         <div class="form-group mb-4">
                             <label for="kurikulum">Kurikulum</label>
                             <select class="selectpicker form-control" data-live-search="true" name="kurikulum" id="kurikulum_s">
-                                <option value="-">-</option>
+                                <option value="-" selected disabled>-- Pilih Kurikulum --</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="matkul">Matakuliah</label>
+                            <select class="selectpicker form-control" data-live-search="true" name="matkul" id="matkul_s">
+                                <option value="-" selected disabled>-- Pilih Matakuliah --</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="semester">Semester</label>
+                            <select class="selectpicker form-control" data-live-search="true" name="semester" id="semester_s">
+                                <option value="-" selected disabled>-- Pilih Semester --</option>
                             </select>
                         </div>
                     </div>
@@ -138,8 +152,8 @@
     </div>
 
     {{-- Modal Edit Data --}}
-    <div class="modal fade fadeinUp" id="edit-pengajaran" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade fadeinUp" id="edit-pengajaran" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -309,7 +323,7 @@
                         beforeSend: function() {
                             Swal.showLoading()
                         },
-                        success: function(response) {                            
+                        success: function(response) {
                             Swal.hideLoading()
                             table.ajax.reload()
 
@@ -318,7 +332,7 @@
                             $('#jabfung_dosen').val(response.data.jabatan_fungsional);
                             $('#nidn_dosen').val(response.data.nidn);
                             $('#konten').addClass('d-block').removeClass('d-none')
-                            
+
                             Swal.fire('Sukses!', '', 'success')
                         },
                         error: function(response) {
@@ -326,15 +340,30 @@
                             Swal.fire('Error!', 'Server Error', 'error')
                         }
                     });
+
+                    // Semester Value
+                    if ($('#semester-select').val() == 'ganjil') {
+                        $("#semester_s").append(`<option value="I">I</option>`);
+                        $("#semester_s").append(`<option value="III">III</option>`);
+                        $("#semester_s").append(`<option value="V">V</option>`);
+                        $("#semester_s").append(`<option value="VII">VII</option>`);
+                        $("#semester_s").selectpicker('refresh');
+                    }else{
+                        $("#semester_s").append(`<option value="II">II</option>`);
+                        $("#semester_s").append(`<option value="IV">IV</option>`);
+                        $("#semester_s").append(`<option value="VI">VI</option>`);
+                        $("#semester_s").append(`<option value="VIII">VIII</option>`);
+                        $("#semester_s").selectpicker('refresh');
+                    }
                 }
 
 
             });
 
             // Kurikulum Filter
-            $('#prodi_s').change(function (e) { 
+            $('#prodi_s').change(function(e) {
                 e.preventDefault();
-                
+
                 $.ajax({
                     type: "GET",
                     url: "{{ route('superadmin.pengajaran.kurikulum') }}",
@@ -342,14 +371,48 @@
                         prodi: $('#prodi_s').val()
                     },
                     dataType: "JSON",
-                    success: function (response) {
-                        $("#kurikulum_s").appendTo('<option value=1>My option</option>');
+                    beforeSend: function () { 
+                        $("#kurikulum_s").empty().append('<option value="" selected disabled>- Pilih Kurikulum -</option>');
+                        $("#kurikulum_s").selectpicker('refresh');
+                        $("#matkul_s").empty().append('<option value="" selected disabled>- Pilih Matakuliah -</option>');
+                        $("#matkul_s").selectpicker('refresh');
+                    },
+                    success: function(response) {
+                        $.each(response.data, function (indexInArray, valueOfElement) { 
+                            $("#kurikulum_s").append(`<option value="${valueOfElement.kurikulum}">${valueOfElement.kurikulum}</option>`);
+                            $("#kurikulum_s").selectpicker('refresh');
+                        });
+                    }
+                });
+            });
+            
+            // Matakuliah Filter
+            $('#kurikulum_s').change(function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    type: "GET",
+                    url: "{{ route('superadmin.pengajaran.matakuliah') }}",
+                    data: {
+                        prodi: $('#prodi_s').val(),
+                        kurikulum: $('#kurikulum_s').val()
+                    },
+                    dataType: "JSON",
+                    beforeSend: function () { 
+                        $("#matkul_s").empty().append('<option value="" selected disabled>- Pilih Matakuliah -</option>');
+                        $("#matkul_s").selectpicker('refresh');
+                    },
+                    success: function(response) {
+                        $.each(response.data, function (indexInArray, valueOfElement) { 
+                            $("#matkul_s").append(`<option value="${valueOfElement.id}">${valueOfElement.kode_matakuliah} - ${valueOfElement.nama_matakuliah}</option>`);
+                            $("#matkul_s").selectpicker('refresh');
+                        });
                     }
                 });
             });
 
             // Update
-            $('#table-prodi tbody').on('click', '.btn-update', function() {
+            $('#table-pengajaran tbody').on('click', '.btn-update', function() {
                 var data = table.row($(this).parents('tr')).data();
 
                 $('#id_prodi').val(data.id)

@@ -91,7 +91,7 @@
                         <div class="form-group mb-4">
                             <label for="prodi">Prodi</label>
                             <select class="selectpicker form-control" data-live-search="true" name="prodi">
-                                <option value="-">-</option>
+                                <option value="">-</option>
                                 @foreach ($prodi as $p)
                                     <option value="{{ $p->kode_prodi }}">{{ $p->nama_prodi }}</option>
                                 @endforeach
@@ -151,7 +151,7 @@
                             <label for="prodi">Prodi</label>
                             <select class="selectpicker form-control" data-live-search="true" name="prodi"
                                 id="prodi">
-                                <option value="-">-</option>
+                                <option value="">-</option>
                                 @foreach ($prodi as $p)
                                     <option value="{{ $p->kode_prodi }}">{{ $p->nama_prodi }}</option>
                                 @endforeach
