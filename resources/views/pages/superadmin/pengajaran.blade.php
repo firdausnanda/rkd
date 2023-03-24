@@ -141,6 +141,38 @@
                                 <option value="-" selected disabled>-- Pilih Semester --</option>
                             </select>
                         </div>
+                        <div class="form-group mb-4">
+                            <label for="kelas">Jumlah Kelas</label>
+                            <input type="text" class="form-control" name="kelas" id="kelas_s">
+                            <input type="hidden" name="sgas" id="sgas_s">
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="teori">Teori <div style="font-size:12px;"><i>SKS</i></div></label>
+                            <input type="number" name="teori" id="teori" class="form-control">
+                            <div id="teori_text" class="d-none">
+                                <small class="form-text text-danger">* Jumlah Maksimal SKS Teori adalah :
+                                    <span class="text-danger font-weight-bold text-center"></span>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="praktek">Praktek <div style="font-size:12px;"><i>SKS</i></div></label>
+                            <input type="number" name="praktek" id="praktek" class="form-control">
+                            <div id="praktek_text" class="d-none">
+                                <small class="form-text text-danger">* Jumlah Maksimal SKS Praktek adalah :
+                                    <span class="text-danger font-weight-bold text-center"></span>
+                                </small>                                
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="klinik">Klinik <div style="font-size:12px;"><i>SKS</i></div></label>
+                            <input type="number" name="klinik" id="klinik" class="form-control">
+                            <div id="klinik_text" class="d-none">
+                                <small class="form-text text-danger">* Jumlah Maksimal SKS Klinik adalah :
+                                    <span class="text-danger font-weight-bold text-center"></span>
+                                </small>                                
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <input type="submit" class="btn btn-primary" value="Save">
@@ -203,7 +235,13 @@
                 lengthChange: false,
                 ajax: {
                     url: "{{ route('superadmin.pengajaran.index') }}",
-                    type: "GET"
+                    type: "GET",
+                    data: function (d) { 
+                        d.dosen = $('#dosen-select').val()
+                        d.ta = $('#ta-select').val()
+                        d.semester = $('#semester-select').val()
+
+                    }
                 },
                 buttons: [{
                         text: '<i class="fa-solid fa-plus mr-2"></i> Tambah Data',
@@ -326,11 +364,12 @@
                         success: function(response) {
                             Swal.hideLoading()
                             table.ajax.reload()
-
-                            $('#nama_dosen').val(response.data.nama);
-                            $('#prodi_dosen').val(response.data.prodi.nama_prodi);
-                            $('#jabfung_dosen').val(response.data.jabatan_fungsional);
-                            $('#nidn_dosen').val(response.data.nidn);
+                            console.log(response);
+                            $('#nama_dosen').val(response.data[0].nama);
+                            $('#prodi_dosen').val(response.data[0].prodi.nama_prodi);
+                            $('#jabfung_dosen').val(response.data[0].jabatan_fungsional);
+                            $('#nidn_dosen').val(response.data[0].nidn);
+                            $('#sgas_s').val(response.data[1].id);
                             $('#konten').addClass('d-block').removeClass('d-none')
 
                             Swal.fire('Sukses!', '', 'success')
@@ -360,7 +399,7 @@
 
             });
 
-            // Kurikulum Filter
+            // Prodi Change -> Kurikulum
             $('#prodi_s').change(function(e) {
                 e.preventDefault();
 
@@ -386,7 +425,7 @@
                 });
             });
             
-            // Matakuliah Filter
+            // Kurikulum Change -> Matakuliah
             $('#kurikulum_s').change(function(e) {
                 e.preventDefault();
 
@@ -407,6 +446,30 @@
                             $("#matkul_s").append(`<option value="${valueOfElement.id}">${valueOfElement.kode_matakuliah} - ${valueOfElement.nama_matakuliah}</option>`);
                             $("#matkul_s").selectpicker('refresh');
                         });
+                    }
+                });
+            });
+
+            // Matakuliah Change -> SKS
+            $('#matkul_s').change(function (e) { 
+                e.preventDefault();
+                
+                $.ajax({
+                    type: "GET",
+                    url: "{{ route('superadmin.pengajaran.sks') }}",
+                    data: {
+                        matakuliah: $('#matkul_s').val()
+                    },
+                    dataType: "JSON",
+                    success: function (response) {
+                        console.log(response);
+                        $('#teori_text').removeClass('d-none').addClass('d-block')
+                        $('#praktek_text').removeClass('d-none').addClass('d-block')
+                        $('#klinik_text').removeClass('d-none').addClass('d-block')
+
+                        $('#teori_text span').text(response.data.t)
+                        $('#praktek_text span').text(response.data.p)
+                        $('#klinik_text span').text(response.data.k)
                     }
                 });
             });

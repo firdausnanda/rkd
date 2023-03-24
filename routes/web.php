@@ -67,11 +67,12 @@ Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => [
 	// Pengajaran
   Route::group(['prefix' => 'pengajaran', 'as' => 'pengajaran.'], function () {
 		Route::get('', [PengajaranController::class, 'index'])->name('index');
+		Route::post('', [PengajaranController::class, 'store'])->name('store');
+		Route::put('', [PengajaranController::class, 'update'])->name('update');
 		Route::get('/kurikulum', [PengajaranController::class, 'kurikulum'])->name('kurikulum');
 		Route::get('/matakuliah', [PengajaranController::class, 'matakuliah'])->name('matakuliah');
-		Route::post('', [PengajaranController::class, 'store'])->name('store');
+		Route::get('/matakuliah-sks', [PengajaranController::class, 'sks'])->name('sks');
 		Route::post('/sgas', [PengajaranController::class, 'sgas'])->name('sgas');
-		Route::put('', [PengajaranController::class, 'update'])->name('update');
 	});
 
   // Akun

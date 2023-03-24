@@ -39,9 +39,10 @@ class PengajaranController extends Controller
                                     $query->where('id_tahun_akademik', $p->id_tahun_akademik)->where('semester', $p->semester);
                                 })
                                 ->count();
-
                 // $p->total = $totalDosen;            
+                $data = $p->push('total_dosen', $totalDosen);
             }
+            dd($pengajaran);
 
             return ResponseFormatter::success($pengajaran, 'Data berhasil diambil!');
         }
@@ -62,7 +63,7 @@ class PengajaranController extends Controller
             }          
 
             // Update or Create Sgas
-            Sgas::updateOrCreate([
+            $sgas = Sgas::updateOrCreate([
                 'id_dosen' => $request->dosen,
                 'id_tahun_akademik' => $request->ta,
                 'semester' => $request->semester
@@ -74,7 +75,7 @@ class PengajaranController extends Controller
             // Dosen
             $dosen = Dosen::with('prodi')->where('id', $request->dosen)->first();
 
-            return ResponseFormatter::success($dosen, 'Data berhasil diambil!');
+            return ResponseFormatter::success([$dosen, $sgas], 'Data berhasil diambil!');
         } catch (\Exception $e) {
             return ResponseFormatter::error($e, 'Server Error!');
         }
@@ -90,5 +91,36 @@ class PengajaranController extends Controller
     {
         $matakuliah = Matakuliah::where('kode_prodi', $request->prodi)->where('kurikulum', $request->kurikulum)->orderBy('id', 'desc')->get();
         return ResponseFormatter::success($matakuliah, 'Data Berhasil diambil');
+    }
+    
+    public function sks(Request $request)
+    {
+        $matakuliah = Matakuliah::where('id', $request->matakuliah)->first();
+        return ResponseFormatter::success($matakuliah, 'Data Berhasil diambil');
+    }
+    
+    public function store(Request $request)
+    {
+        try {
+            $prodi = Prodi::where('kode_prodi', $request->prodi)->first();
+            $total_sks = $request->teori + $request->praktek + $request->klinik;
+            $total = $total_sks * $request->kelas;
+            $pengajaran = SgasPengajaran::create([
+                'id_sgas' => $request->sgas,
+                'id_matakuliah' => $request->matkul,
+                'id_prodi' => $prodi->id,
+                'semester' => $request->semester,
+                'kelas' => $request->kelas,
+                't_sks' => $request->teori,
+                'p_sks' => $request->praktek,
+                'k_sks' => $request->klinik,
+                'total_sks' => $total_sks,
+                'total' => $total
+            ]);
+            return ResponseFormatter::success($pengajaran, 'Data Berhasil diambil');
+            
+        } catch (\Throwable $th) {
+            return ResponseFormatter::error($th, 'Server Error!');
+        }
     }
 }
