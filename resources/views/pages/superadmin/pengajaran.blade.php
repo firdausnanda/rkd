@@ -125,19 +125,22 @@
                         </div>
                         <div class="form-group mb-4">
                             <label for="kurikulum">Kurikulum</label>
-                            <select class="selectpicker form-control" data-live-search="true" name="kurikulum" id="kurikulum_s">
+                            <select class="selectpicker form-control" data-live-search="true" name="kurikulum"
+                                id="kurikulum_s">
                                 <option value="-" selected disabled>-- Pilih Kurikulum --</option>
                             </select>
                         </div>
                         <div class="form-group mb-4">
                             <label for="matkul">Matakuliah</label>
-                            <select class="selectpicker form-control" data-live-search="true" name="matkul" id="matkul_s">
+                            <select class="selectpicker form-control" data-live-search="true" name="matkul"
+                                id="matkul_s">
                                 <option value="-" selected disabled>-- Pilih Matakuliah --</option>
                             </select>
                         </div>
                         <div class="form-group mb-4">
                             <label for="semester">Semester</label>
-                            <select class="selectpicker form-control" data-live-search="true" name="semester" id="semester_s">
+                            <select class="selectpicker form-control" data-live-search="true" name="semester"
+                                id="semester_s">
                                 <option value="-" selected disabled>-- Pilih Semester --</option>
                             </select>
                         </div>
@@ -145,6 +148,7 @@
                             <label for="kelas">Jumlah Kelas</label>
                             <input type="text" class="form-control" name="kelas" id="kelas_s">
                             <input type="hidden" name="sgas" id="sgas_s">
+                            <input type="hidden" name="ta" id="ta_s">
                         </div>
                         <div class="form-group mb-4">
                             <label for="teori">Teori <div style="font-size:12px;"><i>SKS</i></div></label>
@@ -161,7 +165,7 @@
                             <div id="praktek_text" class="d-none">
                                 <small class="form-text text-danger">* Jumlah Maksimal SKS Praktek adalah :
                                     <span class="text-danger font-weight-bold text-center"></span>
-                                </small>                                
+                                </small>
                             </div>
                         </div>
                         <div class="form-group mb-4">
@@ -170,7 +174,7 @@
                             <div id="klinik_text" class="d-none">
                                 <small class="form-text text-danger">* Jumlah Maksimal SKS Klinik adalah :
                                     <span class="text-danger font-weight-bold text-center"></span>
-                                </small>                                
+                                </small>
                             </div>
                         </div>
                     </div>
@@ -186,22 +190,80 @@
     {{-- Modal Edit Data --}}
     <div class="modal fade fadeinUp" id="edit-pengajaran" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Edit Data Prodi</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Edit Data Pengajaran</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
                 </div>
                 <form id="form-update">
                     <div class="modal-body">
-                        <input type="hidden" class="form-control" id="id_prodi" name="id_prodi">
                         <div class="form-group mb-4">
-                            <label for="kode">Kode Prodi</label>
-                            <input type="text" class="form-control" name="kode" id="kode" required>
+                            <label for="prodi">Prodi</label>
+                            <select class="selectpicker form-control" data-live-search="true" name="prodi"
+                                id="prodi_e">
+                                <option value="-" selected disabled>-</option>
+                                @foreach ($prodi as $p)
+                                    <option value="{{ $p->kode_prodi }}">{{ $p->nama_prodi }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="nama">Nama Prodi</label>
-                            <input type="text" class="form-control" name="nama" id="nama">
+                            <label for="kurikulum">Kurikulum</label>
+                            <select class="selectpicker form-control" data-live-search="true" name="kurikulum"
+                                id="kurikulum_e">
+                                <option value="-" selected disabled>-- Pilih Kurikulum --</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="matkul">Matakuliah</label>
+                            <select class="selectpicker form-control" data-live-search="true" name="matkul"
+                                id="matkul_e">
+                                <option value="-" selected disabled>-- Pilih Matakuliah --</option>
+                                @foreach ($matakuliah as $m)
+                                <option value="{{ $m->id }}">{{ $m->kode_matakuliah . ' - ' . $m->nama_matakuliah }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="semester">Semester</label>
+                            <select class="selectpicker form-control" data-live-search="true" name="semester"
+                                id="semester_e">
+                                <option value="-" selected disabled>-- Pilih Semester --</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="kelas">Jumlah Kelas</label>
+                            <input type="text" class="form-control" name="kelas" id="kelas_e">
+                            <input type="hidden" name="id_pengajaran" id="id_pengajaran">
+                            <input type="hidden" name="ta" id="ta_e">
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="teori">Teori <div style="font-size:12px;"><i>SKS</i></div></label>
+                            <input type="number" name="teori" id="teori_e" class="form-control">
+                            <div id="teori_text" class="d-none">
+                                <small class="form-text text-danger">* Jumlah Maksimal SKS Teori adalah :
+                                    <span class="text-danger font-weight-bold text-center"></span>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="praktek">Praktek <div style="font-size:12px;"><i>SKS</i></div></label>
+                            <input type="number" name="praktek" id="praktek_e" class="form-control">
+                            <div id="praktek_text" class="d-none">
+                                <small class="form-text text-danger">* Jumlah Maksimal SKS Praktek adalah :
+                                    <span class="text-danger font-weight-bold text-center"></span>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="klinik">Klinik <div style="font-size:12px;"><i>SKS</i></div></label>
+                            <input type="number" name="klinik" id="klinik_e" class="form-control">
+                            <div id="klinik_text" class="d-none">
+                                <small class="form-text text-danger">* Jumlah Maksimal SKS Klinik adalah :
+                                    <span class="text-danger font-weight-bold text-center"></span>
+                                </small>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -236,7 +298,7 @@
                 ajax: {
                     url: "{{ route('superadmin.pengajaran.index') }}",
                     type: "GET",
-                    data: function (d) { 
+                    data: function(d) {
                         d.dosen = $('#dosen-select').val()
                         d.ta = $('#ta-select').val()
                         d.semester = $('#semester-select').val()
@@ -300,7 +362,7 @@
                         targets: 6,
                         width: '10%',
                         className: 'text-center align-middle fs-14',
-                        data: 'kelas'
+                        data: 'total_dosen'
                     },
                     {
                         targets: 7,
@@ -312,10 +374,7 @@
                         targets: 8,
                         width: '5%',
                         className: 'text-center align-middle fs-14',
-                        render: function(data, type, row, meta) {
-                            console.log(row);
-                            return row.kelas
-                        }
+                        data: 'total'
                     },
                     {
                         targets: 9,
@@ -364,12 +423,12 @@
                         success: function(response) {
                             Swal.hideLoading()
                             table.ajax.reload()
-                            console.log(response);
                             $('#nama_dosen').val(response.data[0].nama);
                             $('#prodi_dosen').val(response.data[0].prodi.nama_prodi);
                             $('#jabfung_dosen').val(response.data[0].jabatan_fungsional);
                             $('#nidn_dosen').val(response.data[0].nidn);
                             $('#sgas_s').val(response.data[1].id);
+                            $('#ta_s').val(response.data[1].id_tahun_akademik);
                             $('#konten').addClass('d-block').removeClass('d-none')
 
                             Swal.fire('Sukses!', '', 'success')
@@ -387,12 +446,22 @@
                         $("#semester_s").append(`<option value="V">V</option>`);
                         $("#semester_s").append(`<option value="VII">VII</option>`);
                         $("#semester_s").selectpicker('refresh');
-                    }else{
+                        $("#semester_e").append(`<option value="I">I</option>`);
+                        $("#semester_e").append(`<option value="III">III</option>`);
+                        $("#semester_e").append(`<option value="V">V</option>`);
+                        $("#semester_e").append(`<option value="VII">VII</option>`);
+                        $("#semester_e").selectpicker('refresh');
+                    } else {
                         $("#semester_s").append(`<option value="II">II</option>`);
                         $("#semester_s").append(`<option value="IV">IV</option>`);
                         $("#semester_s").append(`<option value="VI">VI</option>`);
                         $("#semester_s").append(`<option value="VIII">VIII</option>`);
                         $("#semester_s").selectpicker('refresh');
+                        $("#semester_e").append(`<option value="II">II</option>`);
+                        $("#semester_e").append(`<option value="IV">IV</option>`);
+                        $("#semester_e").append(`<option value="VI">VI</option>`);
+                        $("#semester_e").append(`<option value="VIII">VIII</option>`);
+                        $("#semester_e").selectpicker('refresh');
                     }
                 }
 
@@ -410,21 +479,55 @@
                         prodi: $('#prodi_s').val()
                     },
                     dataType: "JSON",
-                    beforeSend: function () { 
-                        $("#kurikulum_s").empty().append('<option value="" selected disabled>- Pilih Kurikulum -</option>');
+                    beforeSend: function() {
+                        $("#kurikulum_s").empty().append(
+                            '<option value="" selected disabled>- Pilih Kurikulum -</option>'
+                            );
                         $("#kurikulum_s").selectpicker('refresh');
-                        $("#matkul_s").empty().append('<option value="" selected disabled>- Pilih Matakuliah -</option>');
+                        $("#matkul_s").empty().append(
+                            '<option value="" selected disabled>- Pilih Matakuliah -</option>'
+                            );
                         $("#matkul_s").selectpicker('refresh');
                     },
                     success: function(response) {
-                        $.each(response.data, function (indexInArray, valueOfElement) { 
-                            $("#kurikulum_s").append(`<option value="${valueOfElement.kurikulum}">${valueOfElement.kurikulum}</option>`);
+                        $.each(response.data, function(indexInArray, valueOfElement) {
+                            $("#kurikulum_s").append(
+                                `<option value="${valueOfElement.kurikulum}">${valueOfElement.kurikulum}</option>`
+                                );
                             $("#kurikulum_s").selectpicker('refresh');
                         });
                     }
                 });
             });
-            
+
+            $('#prodi_e').change(function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    type: "GET",
+                    url: "{{ route('superadmin.pengajaran.kurikulum') }}",
+                    data: {
+                        prodi: $('#prodi_e').val()
+                    },
+                    dataType: "JSON",
+                    beforeSend: function() {
+                        $("#kurikulum_e").empty().append(
+                            '<option value="" selected disabled>- Pilih Kurikulum -</option>'
+                            );
+                        $("#kurikulum_e").selectpicker('refresh');
+                    },
+                    success: function(response) {
+                        $.each(response.data, function(indexInArray, valueOfElement) {
+                            $("#kurikulum_e").append(
+                                `<option value="${valueOfElement.kurikulum}">${valueOfElement.kurikulum}</option>`
+                                );
+                            $("#kurikulum_e").selectpicker('refresh');
+                        });
+
+                    }
+                });
+            });
+
             // Kurikulum Change -> Matakuliah
             $('#kurikulum_s').change(function(e) {
                 e.preventDefault();
@@ -437,23 +540,55 @@
                         kurikulum: $('#kurikulum_s').val()
                     },
                     dataType: "JSON",
-                    beforeSend: function () { 
-                        $("#matkul_s").empty().append('<option value="" selected disabled>- Pilih Matakuliah -</option>');
+                    beforeSend: function() {
+                        $("#matkul_s").empty().append(
+                            '<option value="" selected disabled>- Pilih Matakuliah -</option>'
+                            );
                         $("#matkul_s").selectpicker('refresh');
                     },
                     success: function(response) {
-                        $.each(response.data, function (indexInArray, valueOfElement) { 
-                            $("#matkul_s").append(`<option value="${valueOfElement.id}">${valueOfElement.kode_matakuliah} - ${valueOfElement.nama_matakuliah}</option>`);
+                        $.each(response.data, function(indexInArray, valueOfElement) {
+                            $("#matkul_s").append(
+                                `<option value="${valueOfElement.id}">${valueOfElement.kode_matakuliah} - ${valueOfElement.nama_matakuliah}</option>`
+                                );
                             $("#matkul_s").selectpicker('refresh');
                         });
                     }
                 });
             });
 
+            // $('#kurikulum_e').change(function(e) {
+            //     e.preventDefault();
+
+            //     $.ajax({
+            //         type: "GET",
+            //         url: "{{ route('superadmin.pengajaran.matakuliah') }}",
+            //         data: {
+            //             prodi: $('#prodi_e').val(),
+            //             kurikulum: $('#kurikulum_e').val()
+            //         },
+            //         dataType: "JSON",
+            //         beforeSend: function() {
+            //             $("#matkul_e").empty().append(
+            //                 '<option value="" selected disabled>- Pilih Matakuliah -</option>'
+            //                 );
+            //             $("#matkul_e").selectpicker('refresh');
+            //         },
+            //         success: function(response) {
+            //             $.each(response.data, function(indexInArray, valueOfElement) {
+            //                 $("#matkul_e").append(
+            //                     `<option value="${valueOfElement.id}">${valueOfElement.kode_matakuliah} - ${valueOfElement.nama_matakuliah}</option>`
+            //                     );
+            //                 $("#matkul_e").selectpicker('refresh');
+            //             });
+            //         }
+            //     });
+            // });
+
             // Matakuliah Change -> SKS
-            $('#matkul_s').change(function (e) { 
+            $('#matkul_s').change(function(e) {
                 e.preventDefault();
-                
+
                 $.ajax({
                     type: "GET",
                     url: "{{ route('superadmin.pengajaran.sks') }}",
@@ -461,8 +596,7 @@
                         matakuliah: $('#matkul_s').val()
                     },
                     dataType: "JSON",
-                    success: function (response) {
-                        console.log(response);
+                    success: function(response) {
                         $('#teori_text').removeClass('d-none').addClass('d-block')
                         $('#praktek_text').removeClass('d-none').addClass('d-block')
                         $('#klinik_text').removeClass('d-none').addClass('d-block')
@@ -477,11 +611,18 @@
             // Update
             $('#table-pengajaran tbody').on('click', '.btn-update', function() {
                 var data = table.row($(this).parents('tr')).data();
-
-                $('#id_prodi').val(data.id)
-                $('#kode').val(data.kode_prodi)
-                $('#nama').val(data.nama_prodi)
-                $('#edit-prodi').modal('show')
+                console.log(data);
+                $('#prodi_e').val(data.prodi.kode_prodi).change()
+                $('#kurikulum_e').val(data.matakuliah.kurikulum).change()
+                $('#matkul_e').val(data.matakuliah.id).change()
+                $('#semester_e').val(data.semester).change()
+                $('#kelas_e').val(data.kelas)
+                $('#teori_e').val(data.t_sks)
+                $('#praktek_e').val(data.p_sks)
+                $('#klinik_e').val(data.k_sks)
+                $('#id_pengajaran').val(data.id)
+                $('#ta_e').val(data.sgas.id_tahun_akademik)
+                $('#edit-pengajaran').modal('show')
             });
 
             // Hapus
@@ -554,7 +695,7 @@
                 e.preventDefault();
 
                 $.ajax({
-                    url: "{{ route('superadmin.prodi.update') }}",
+                    url: "{{ route('superadmin.pengajaran.update') }}",
                     type: "PUT",
                     data: $(this).serialize(),
                     dataType: "JSON",
@@ -563,9 +704,8 @@
                     },
                     success: function(response) {
                         Swal.hideLoading()
-                        $('#edit-prodi').modal('hide')
+                        $('#edit-pengajaran').modal('hide')
                         table.ajax.reload()
-                        $('#form-update')[0].reset()
                         Swal.fire('Sukses!', 'Data diupdate', 'success')
                     },
                     error: function(response) {

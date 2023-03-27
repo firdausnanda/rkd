@@ -19,6 +19,7 @@ class PengajaranController extends Controller
     {
         $dosen = Dosen::all();
         $prodi = Prodi::all();
+        $matakuliah = Matakuliah::get();
         $ta = TahunAkademik::orderBy('tahun_akademik', 'desc')->get();
 
         if ($request->ajax()) {
@@ -29,25 +30,25 @@ class PengajaranController extends Controller
                                 ->where('semester', $request->semester);
                             })->get();
 
-            foreach ($pengajaran as $p) {
+            foreach ($pengajaran as $key => $p) {
             
                 $totalDosen = SgasPengajaran::with('matakuliah', 'sgas')
                                 ->whereHas('matakuliah', function (Builder $query) use ($p) {
-                                    $query->where('id', $p->sgas->id_matakuliah);
+                                    $query->where('id', $p->id_matakuliah);
                                 })
                                 ->whereHas('sgas', function (Builder $query) use ($p) {
-                                    $query->where('id_tahun_akademik', $p->id_tahun_akademik)->where('semester', $p->semester);
+                                    $query->where('id_tahun_akademik', $p->sgas->id_tahun_akademik);
                                 })
+                                ->where('semester', $p->semester)
                                 ->count();
-                // $p->total = $totalDosen;            
-                $data = $p->push('total_dosen', $totalDosen);
+
+                $pengajaran[$key]->total_dosen = $totalDosen;                
             }
-            dd($pengajaran);
 
             return ResponseFormatter::success($pengajaran, 'Data berhasil diambil!');
         }
 
-        return view('pages.superadmin.pengajaran', compact('dosen', 'ta', 'prodi'));
+        return view('pages.superadmin.pengajaran', compact('dosen', 'ta', 'prodi', 'matakuliah'));
     }
 
     public function sgas(Request $request)
@@ -103,8 +104,21 @@ class PengajaranController extends Controller
     {
         try {
             $prodi = Prodi::where('kode_prodi', $request->prodi)->first();
+            // Hitung Total SKS
             $total_sks = $request->teori + $request->praktek + $request->klinik;
-            $total = $total_sks * $request->kelas;
+
+            // Hitung SKS Total (total sks * kelas / jumlah dosen)
+            $totalDosen = SgasPengajaran::with('matakuliah', 'sgas')
+                                ->whereHas('matakuliah', function (Builder $query) use ($request) {
+                                    $query->where('id', $request->matkul);
+                                })
+                                ->whereHas('sgas', function (Builder $query) use ($request) {
+                                    $query->where('id_tahun_akademik', $request->ta);
+                                })
+                                ->where('semester', $request->semester)
+                                ->count();
+            $total = $total_sks * $request->kelas / $totalDosen;
+
             $pengajaran = SgasPengajaran::create([
                 'id_sgas' => $request->sgas,
                 'id_matakuliah' => $request->matkul,
@@ -117,7 +131,44 @@ class PengajaranController extends Controller
                 'total_sks' => $total_sks,
                 'total' => $total
             ]);
-            return ResponseFormatter::success($pengajaran, 'Data Berhasil diambil');
+            return ResponseFormatter::success($pengajaran, 'Data Berhasil disimpan');
+            
+        } catch (\Throwable $th) {
+            return ResponseFormatter::error($th, 'Server Error!');
+        }
+    }
+    
+    public function update(Request $request)
+    {
+        try {
+            $prodi = Prodi::where('kode_prodi', $request->prodi)->first();
+            // Hitung Total SKS
+            $total_sks = $request->teori + $request->praktek + $request->klinik;
+
+            // Hitung SKS Total (total sks * kelas / jumlah dosen)
+            $totalDosen = SgasPengajaran::with('matakuliah', 'sgas')
+                                ->whereHas('matakuliah', function (Builder $query) use ($request) {
+                                    $query->where('id', $request->matkul);
+                                })
+                                ->whereHas('sgas', function (Builder $query) use ($request) {
+                                    $query->where('id_tahun_akademik', $request->ta);
+                                })
+                                ->where('semester', $request->semester)
+                                ->count();
+            $total = $total_sks * $request->kelas / $totalDosen;
+
+            $pengajaran = SgasPengajaran::where('id', $request->id_pengajaran)->update([
+                'id_matakuliah' => $request->matkul,
+                'id_prodi' => $prodi->id,
+                'semester' => $request->semester,
+                'kelas' => $request->kelas,
+                't_sks' => $request->teori,
+                'p_sks' => $request->praktek,
+                'k_sks' => $request->klinik,
+                'total_sks' => $total_sks,
+                'total' => $total
+            ]);
+            return ResponseFormatter::success($pengajaran, 'Data Berhasil diupdate');
             
         } catch (\Throwable $th) {
             return ResponseFormatter::error($th, 'Server Error!');
