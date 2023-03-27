@@ -628,7 +628,7 @@
             // Hapus
             $('#table-pengajaran tbody').on('click', '.btn-hapus', function() {
                 var data = table.row($(this).parents('tr')).data();
-console.log(data);
+
                 Swal.fire({
                     title: 'Apakah anda yakin?',
                     text: "Data akan dihapus!",
