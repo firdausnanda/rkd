@@ -69,6 +69,7 @@ Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => [
 		Route::get('', [PengajaranController::class, 'index'])->name('index');
 		Route::post('', [PengajaranController::class, 'store'])->name('store');
 		Route::put('', [PengajaranController::class, 'update'])->name('update');
+		Route::delete('', [PengajaranController::class, 'delete'])->name('delete');
 		Route::get('/kurikulum', [PengajaranController::class, 'kurikulum'])->name('kurikulum');
 		Route::get('/matakuliah', [PengajaranController::class, 'matakuliah'])->name('matakuliah');
 		Route::get('/matakuliah-sks', [PengajaranController::class, 'sks'])->name('sks');

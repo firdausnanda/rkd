@@ -626,9 +626,9 @@
             });
 
             // Hapus
-            $('#table-prodi tbody').on('click', '.btn-hapus', function() {
+            $('#table-pengajaran tbody').on('click', '.btn-hapus', function() {
                 var data = table.row($(this).parents('tr')).data();
-
+console.log(data);
                 Swal.fire({
                     title: 'Apakah anda yakin?',
                     text: "Data akan dihapus!",
@@ -641,7 +641,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "DELETE",
-                            url: "{{ route('superadmin.prodi.delete') }}",
+                            url: "{{ route('superadmin.pengajaran.delete') }}",
                             data: {
                                 id: data.id
                             },

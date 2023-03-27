@@ -174,4 +174,14 @@ class PengajaranController extends Controller
             return ResponseFormatter::error($th, 'Server Error!');
         }
     }
+
+    public function delete(Request $request)
+    {
+        try {
+            $pengajaran = SgasPengajaran::where('id', $request->id)->delete();
+            return ResponseFormatter::success($pengajaran, 'Data Berhasil Dihapus!');
+        } catch (\Exception $e) {
+            return ResponseFormatter::error($e, 'Server Error!');
+        }
+    }
 }
