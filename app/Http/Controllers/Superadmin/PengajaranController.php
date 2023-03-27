@@ -117,6 +117,10 @@ class PengajaranController extends Controller
                                 })
                                 ->where('semester', $request->semester)
                                 ->count();
+
+            if ($totalDosen == 0) {
+                $totalDosen = 1;
+            }
             $total = $total_sks * $request->kelas / $totalDosen;
 
             $pengajaran = SgasPengajaran::create([
@@ -155,6 +159,10 @@ class PengajaranController extends Controller
                                 })
                                 ->where('semester', $request->semester)
                                 ->count();
+            
+            if ($totalDosen == 0) {
+                $totalDosen = 1;
+            }
             $total = $total_sks * $request->kelas / $totalDosen;
 
             $pengajaran = SgasPengajaran::where('id', $request->id_pengajaran)->update([
