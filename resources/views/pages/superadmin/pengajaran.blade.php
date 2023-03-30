@@ -274,6 +274,25 @@
             </div>
         </div>
     </div>
+
+    {{-- Modal Print --}}
+    <div class="modal fade" id="print-pengajaran" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleId">Print</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <button type="button" class="btn btn-success btn-print"><i class="fa-solid fa-print mr-2"></i>Print</button>
+                    <button type="button" class="btn btn-success btn-print-ttd"><i class="fa-solid fa-print mr-2"></i>Print + TTD</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('script')
@@ -316,7 +335,7 @@
                         text: '<i class="fa-solid fa-print mr-2"></i> Print',
                         className: 'btn btn-success btn-tambah me-2',
                         action: function(e, dt, node, config) {
-                            alert('print')
+                            $('#print-pengajaran').modal('show')
                         }
                     }
                 ],
@@ -374,7 +393,11 @@
                         targets: 8,
                         width: '5%',
                         className: 'text-center align-middle fs-14',
-                        data: 'total'
+                        data: 'total',
+                        render: function (data, type, row, meta) { 
+                            var total = row.total_sks * row.kelas / row.total_dosen
+                            return total
+                        }
                     },
                     {
                         targets: 9,
@@ -713,6 +736,40 @@
                         Swal.fire('Error!', 'Server Error', 'error')
                     }
                 });
+            });
+
+            // Print
+            $('.btn-print').click(function (e) { 
+                e.preventDefault();
+
+                $.ajax({
+                    type: "GET",
+                    url:  "{{ route('superadmin.pengajaran.print') }}",
+                    data: {
+                        id: 1
+                    },
+                    cache: false,
+                    xhrFields: {
+                        responseType: 'blob'
+                    },
+                    beforeSend: function() {
+                        Swal.showLoading()
+                    },
+                    success: function(response) {
+                        Swal.hideLoading()
+                        var blob = new Blob([response], {
+                            type: 'application/pdf'
+                        });
+                        var url = URL.createObjectURL(blob);
+                        window.open(url, '_blank');
+                    },
+                    error: function(response) {
+                        Swal.hideLoading()
+                        Swal.fire('Data Tidak Ditemukan!', 'Periksa kembali data anda.',
+                            'error');
+                    },
+                });
+                
             });
         });
     </script>

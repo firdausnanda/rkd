@@ -74,6 +74,8 @@ Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => [
 		Route::get('/matakuliah', [PengajaranController::class, 'matakuliah'])->name('matakuliah');
 		Route::get('/matakuliah-sks', [PengajaranController::class, 'sks'])->name('sks');
 		Route::post('/sgas', [PengajaranController::class, 'sgas'])->name('sgas');
+		Route::get('/print', [PengajaranController::class, 'print'])->name('print');
+		Route::get('/print-ttd', [PengajaranController::class, 'print_ttd'])->name('print_ttd');
 	});
 
   // Akun

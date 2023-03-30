@@ -18,4 +18,19 @@ class Sgas extends Model
     ];
 
     protected $table = 'sgas';
+
+    public function pengajaran()
+    {
+        return $this->hasMany(SgasPengajaran::class, 'id_sgas', 'id');
+    }
+   
+    public function tahun_akademik()
+    {
+        return $this->belongsTo(TahunAkademik::class, 'id_tahun_akademik', 'id');
+    }
+    
+    public function dosen()
+    {
+        return $this->belongsTo(Dosen::class, 'id_dosen', 'id');
+    }
 }

@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "codedge/laravel-fpdf": "^1.11",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
@@ -29,7 +30,9 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/Helpers/ResponseFormatter.php"
+            "app/Helpers/ResponseFormatter.php",
+            "app/Helpers/Pdf.php",
+            "app/Helpers/Bilangan.php"
         ]
     },
     "autoload-dev": {
