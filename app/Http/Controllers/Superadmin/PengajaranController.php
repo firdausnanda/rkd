@@ -60,11 +60,12 @@ class PengajaranController extends Controller
         try {
             // Get Nomor Plot
             $no = Sgas::select('no_plot')->where('id_tahun_akademik', $request->ta)->get();
-            
-            if ($no) {
-                $no = 1;
+            $hitung = $no->count();
+
+            if ($hitung = 0) {
+                $nomor = 1;
             }else{
-                $no->max();
+                $nomor = $no->count() + 1;
             }          
 
             // Update or Create Sgas
@@ -73,7 +74,7 @@ class PengajaranController extends Controller
                 'id_tahun_akademik' => $request->ta,
                 'semester' => $request->semester
             ],[
-                'no_plot' => $no
+                'no_plot' => $nomor
             ]);
 
             // Dosen

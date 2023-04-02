@@ -7,6 +7,7 @@ use App\Http\Controllers\Superadmin\MatakuliahController;
 use App\Http\Controllers\Superadmin\PengajaranController;
 use App\Http\Controllers\Superadmin\ProdiController;
 use App\Http\Controllers\Superadmin\TahunAkademikController;
+use App\Http\Controllers\Superadmin\ValidasiController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -76,6 +77,12 @@ Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => [
 		Route::post('/sgas', [PengajaranController::class, 'sgas'])->name('sgas');
 		Route::get('/print', [PengajaranController::class, 'print'])->name('print');
 		Route::get('/print-ttd', [PengajaranController::class, 'print_ttd'])->name('print_ttd');
+	});
+
+	// Validasi
+  Route::group(['prefix' => 'validasi', 'as' => 'validasi.'], function () {
+		Route::get('', [ValidasiController::class, 'index'])->name('index');
+		Route::put('', [ValidasiController::class, 'update'])->name('update');
 	});
 
   // Akun

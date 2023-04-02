@@ -132,8 +132,8 @@
             </li>
 
             <li class="menu">
-                <a href="/sgas" data-active="{{ request()->is('sgas') ? 'true' : '' }}"
-                    aria-expanded="{{ request()->is('sgas') ? 'true' : 'false' }}" class="dropdown-toggle"
+                <a href="{{ route('superadmin.validasi.index') }}" data-active="{{ request()->routeIs('superadmin.validasi.*') ? 'true' : '' }}"
+                    aria-expanded="{{ request()->routeIs('superadmin.validasi.*') ? 'true' : '' }}" class="dropdown-toggle"
                     style="text-decoration: none;">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
