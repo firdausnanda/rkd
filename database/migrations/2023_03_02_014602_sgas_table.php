@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('id_dosen')->constrained('m_dosen');
             $table->foreignId('id_tahun_akademik')->constrained('m_tahun_akademik');
             $table->enum('semester', ['genap', 'ganjil']);
-            $table->boolean('validasi');
+            $table->boolean('validasi')->default(0);
             $table->integer('no_plot');
             $table->timestamps();
         });

@@ -73,6 +73,13 @@
                                     <input type="text" readonly class="form-control-plaintext bg-white" id="nidn_dosen">
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-6 col-md-4"><label>Status</label></div>
+                                <div class="col-12 col-md-8">
+                                    <h3><span class="badge" id="status"></span></h3>
+                                    {{-- <input type="text" readonly class="form-control-plaintext bg-white" id="status"> --}}
+                                </div>
+                            </div>
                         </div>
 
                         <div class="table-responsive mb-4 mt-4">
@@ -221,7 +228,8 @@
                                 id="matkul_e">
                                 <option value="-" selected disabled>-- Pilih Matakuliah --</option>
                                 @foreach ($matakuliah as $m)
-                                <option value="{{ $m->id }}">{{ $m->kode_matakuliah . ' - ' . $m->nama_matakuliah }}</option>
+                                    <option value="{{ $m->id }}">
+                                        {{ $m->kode_matakuliah . ' - ' . $m->nama_matakuliah }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -276,16 +284,19 @@
     </div>
 
     {{-- Modal Print --}}
-    <div class="modal fade" id="print-pengajaran" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+    <div class="modal fade" id="print-pengajaran" tabindex="-1" data-backdrop="static" data-keyboard="false"
+        role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalTitleId">Print</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <button type="button" class="btn btn-success btn-print"><i class="fa-solid fa-print mr-2"></i>Print</button>
-                    <button type="button" class="btn btn-success btn-print-ttd"><i class="fa-solid fa-print mr-2"></i>Print + TTD</button>
+                    <button type="button" class="btn btn-success btn-print"><i
+                            class="fa-solid fa-print mr-2"></i>Print</button>
+                    <button type="button" class="btn btn-success btn-print-ttd"><i
+                            class="fa-solid fa-print mr-2"></i>Print + TTD</button>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -335,7 +346,11 @@
                         text: '<i class="fa-solid fa-print mr-2"></i> Print',
                         className: 'btn btn-success btn-tambah me-2',
                         action: function(e, dt, node, config) {
-                            $('#print-pengajaran').modal('show')
+                            if ($('#status').text() == 'Pending') {
+                                Swal.fire('Gagal!', 'Silakan hubungi admin', 'error')
+                            }else{
+                                $('#print-pengajaran').modal('show')
+                            }
                         }
                     }
                 ],
@@ -394,9 +409,9 @@
                         width: '5%',
                         className: 'text-center align-middle fs-14',
                         data: 'total',
-                        render: function (data, type, row, meta) { 
+                        render: function(data, type, row, meta) {
                             var total = row.total_sks * row.kelas / row.total_dosen
-                            return total
+                            return total.toFixed(2)
                         }
                     },
                     {
@@ -424,7 +439,7 @@
                 }
             });
 
-            // Filter
+            // Cari
             $('.btn-filter').click(function(e) {
                 e.preventDefault();
 
@@ -446,10 +461,15 @@
                         success: function(response) {
                             Swal.hideLoading()
                             table.ajax.reload()
+                            
                             $('#nama_dosen').val(response.data[0].nama);
                             $('#prodi_dosen').val(response.data[0].prodi.nama_prodi);
                             $('#jabfung_dosen').val(response.data[0].jabatan_fungsional);
                             $('#nidn_dosen').val(response.data[0].nidn);
+
+                            response.data[1].validasi == 0  ? $('#status').text('Pending') : $('#status').text('Approved');
+                            response.data[1].validasi == 0  ? $('#status').removeClass('bg-success').addClass('bg-danger') : $('#status').removeClass('bg-danger').addClass('bg-success');
+
                             $('#sgas_s').val(response.data[1].id);
                             $('#ta_s').val(response.data[1].id_tahun_akademik);
                             $('#konten').addClass('d-block').removeClass('d-none')
@@ -505,18 +525,18 @@
                     beforeSend: function() {
                         $("#kurikulum_s").empty().append(
                             '<option value="" selected disabled>- Pilih Kurikulum -</option>'
-                            );
+                        );
                         $("#kurikulum_s").selectpicker('refresh');
                         $("#matkul_s").empty().append(
                             '<option value="" selected disabled>- Pilih Matakuliah -</option>'
-                            );
+                        );
                         $("#matkul_s").selectpicker('refresh');
                     },
                     success: function(response) {
                         $.each(response.data, function(indexInArray, valueOfElement) {
                             $("#kurikulum_s").append(
                                 `<option value="${valueOfElement.kurikulum}">${valueOfElement.kurikulum}</option>`
-                                );
+                            );
                             $("#kurikulum_s").selectpicker('refresh');
                         });
                     }
@@ -536,14 +556,14 @@
                     beforeSend: function() {
                         $("#kurikulum_e").empty().append(
                             '<option value="" selected disabled>- Pilih Kurikulum -</option>'
-                            );
+                        );
                         $("#kurikulum_e").selectpicker('refresh');
                     },
                     success: function(response) {
                         $.each(response.data, function(indexInArray, valueOfElement) {
                             $("#kurikulum_e").append(
                                 `<option value="${valueOfElement.kurikulum}">${valueOfElement.kurikulum}</option>`
-                                );
+                            );
                             $("#kurikulum_e").selectpicker('refresh');
                         });
 
@@ -566,47 +586,19 @@
                     beforeSend: function() {
                         $("#matkul_s").empty().append(
                             '<option value="" selected disabled>- Pilih Matakuliah -</option>'
-                            );
+                        );
                         $("#matkul_s").selectpicker('refresh');
                     },
                     success: function(response) {
                         $.each(response.data, function(indexInArray, valueOfElement) {
                             $("#matkul_s").append(
                                 `<option value="${valueOfElement.id}">${valueOfElement.kode_matakuliah} - ${valueOfElement.nama_matakuliah}</option>`
-                                );
+                            );
                             $("#matkul_s").selectpicker('refresh');
                         });
                     }
                 });
             });
-
-            // $('#kurikulum_e').change(function(e) {
-            //     e.preventDefault();
-
-            //     $.ajax({
-            //         type: "GET",
-            //         url: "{{ route('superadmin.pengajaran.matakuliah') }}",
-            //         data: {
-            //             prodi: $('#prodi_e').val(),
-            //             kurikulum: $('#kurikulum_e').val()
-            //         },
-            //         dataType: "JSON",
-            //         beforeSend: function() {
-            //             $("#matkul_e").empty().append(
-            //                 '<option value="" selected disabled>- Pilih Matakuliah -</option>'
-            //                 );
-            //             $("#matkul_e").selectpicker('refresh');
-            //         },
-            //         success: function(response) {
-            //             $.each(response.data, function(indexInArray, valueOfElement) {
-            //                 $("#matkul_e").append(
-            //                     `<option value="${valueOfElement.id}">${valueOfElement.kode_matakuliah} - ${valueOfElement.nama_matakuliah}</option>`
-            //                     );
-            //                 $("#matkul_e").selectpicker('refresh');
-            //             });
-            //         }
-            //     });
-            // });
 
             // Matakuliah Change -> SKS
             $('#matkul_s').change(function(e) {
@@ -634,7 +626,7 @@
             // Update
             $('#table-pengajaran tbody').on('click', '.btn-update', function() {
                 var data = table.row($(this).parents('tr')).data();
-                console.log(data);
+                // console.log(data);
                 $('#prodi_e').val(data.prodi.kode_prodi).change()
                 $('#kurikulum_e').val(data.matakuliah.kurikulum).change()
                 $('#matkul_e').val(data.matakuliah.id).change()
@@ -702,6 +694,7 @@
                         Swal.hideLoading()
                         $('#tambah-pengajaran').modal('hide')
                         table.ajax.reload()
+                        $('#prodi_s').val('-').change()
                         $('#form-store')[0].reset()
                         Swal.fire('Sukses!', 'Data diupdate', 'success')
                     },
@@ -728,6 +721,7 @@
                     success: function(response) {
                         Swal.hideLoading()
                         $('#edit-pengajaran').modal('hide')
+                        $('#prodi_e').val('-').change()
                         table.ajax.reload()
                         Swal.fire('Sukses!', 'Data diupdate', 'success')
                     },
@@ -739,14 +733,14 @@
             });
 
             // Print
-            $('.btn-print').click(function (e) { 
+            $('.btn-print').click(function(e) {
                 e.preventDefault();
 
                 $.ajax({
                     type: "GET",
-                    url:  "{{ route('superadmin.pengajaran.print') }}",
+                    url: "{{ route('superadmin.pengajaran.print') }}",
                     data: {
-                        id: 1
+                        id: $('#sgas_s').val()
                     },
                     cache: false,
                     xhrFields: {
@@ -769,7 +763,41 @@
                             'error');
                     },
                 });
-                
+
+            });
+
+            // Print With TTD
+            $('.btn-print-ttd').click(function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    type: "GET",
+                    url: "{{ route('superadmin.pengajaran.print_ttd') }}",
+                    data: {
+                        id: $('#sgas_s').val()
+                    },
+                    cache: false,
+                    xhrFields: {
+                        responseType: 'blob'
+                    },
+                    beforeSend: function() {
+                        Swal.showLoading()
+                    },
+                    success: function(response) {
+                        Swal.hideLoading()
+                        var blob = new Blob([response], {
+                            type: 'application/pdf'
+                        });
+                        var url = URL.createObjectURL(blob);
+                        window.open(url, '_blank');
+                    },
+                    error: function(response) {
+                        Swal.hideLoading()
+                        Swal.fire('Data Tidak Ditemukan!', 'Periksa kembali data anda.',
+                            'error');
+                    },
+                });
+
             });
         });
     </script>
