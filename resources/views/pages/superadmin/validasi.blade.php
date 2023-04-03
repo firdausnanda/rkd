@@ -228,7 +228,7 @@
                   var buttonText = '<i class="fa-solid fa-circle-check mr-2"></i> Validasi Data'
                   var buttonClass = 'btn btn-primary btn-tambah me-2'
                 }
-                console.log(data);
+                // console.log(data);
 
                 table2 = $('#table-sgas').DataTable({
                     oLanguage: {
@@ -361,97 +361,6 @@
 
                 $('#nama').text(data.dosen.nama)
                 $('#modal-validasi').modal('show')
-            });
-
-            // Hapus
-            $('#table-prodi tbody').on('click', '.btn-hapus', function() {
-                var data = table.row($(this).parents('tr')).data();
-
-                Swal.fire({
-                    title: 'Apakah anda yakin?',
-                    text: "Data akan dihapus!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya, Lanjutkan!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            type: "DELETE",
-                            url: "{{ route('superadmin.prodi.delete') }}",
-                            data: {
-                                id: data.id
-                            },
-                            dataType: "JSON",
-                            beforeSend: function() {
-                                Swal.showLoading()
-                            },
-                            success: function(response) {
-                                Swal.hideLoading()
-                                table.ajax.reload()
-                                Swal.fire('Sukses!', 'Data dihapus', 'success')
-                            },
-                            error: function(response) {
-                                Swal.hideLoading()
-                                Swal.fire('Error!', 'Server Error', 'error')
-                            }
-                        });
-                    }
-                })
-            });
-
-            // Submit Store
-            $('#form-store').submit(function(e) {
-                e.preventDefault();
-
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route('superadmin.prodi.store') }}",
-                    data: $(this).serialize(),
-                    dataType: "JSON",
-                    beforeSend: function() {
-                        Swal.showLoading()
-                    },
-                    success: function(response) {
-                        Swal.hideLoading()
-                        $('#tambah-prodi').modal('hide')
-                        table.ajax.reload()
-                        $('#form-store')[0].reset()
-                        Swal.fire('Sukses!', 'Data diupdate', 'success')
-                    },
-                    error: function(response) {
-                        Swal.hideLoading()
-                        Swal.fire('Error!', 'Server Error', 'error')
-                    }
-                });
-
-            });
-
-            // Submit Update
-            $('#form-update').submit(function(e) {
-                e.preventDefault();
-
-                $.ajax({
-                    url: "{{ route('superadmin.prodi.update') }}",
-                    type: "PUT",
-                    data: $(this).serialize(),
-                    dataType: "JSON",
-                    beforeSend: function() {
-                        Swal.showLoading()
-                    },
-                    success: function(response) {
-                        Swal.hideLoading()
-                        $('#edit-prodi').modal('hide')
-                        table.ajax.reload()
-                        $('#form-update')[0].reset()
-                        Swal.fire('Sukses!', 'Data diupdate', 'success')
-                    },
-                    error: function(response) {
-                        Swal.hideLoading()
-                        Swal.fire('Error!', 'Server Error', 'error')
-                    }
-                });
             });
         });
     </script>
