@@ -94,6 +94,8 @@
                             <tbody>
                             </tbody>
                         </table>
+                        <h5 class="mt-3 text-center"><span class="badge bg-primary" style="font-size: 16px!important">Total
+                                SKS : <span class="font-weight-bold" id="total_sks"></span></span></h5>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -158,7 +160,8 @@
                         width: '15%',
                         className: 'text-center align-middle fs-14',
                         render: function(data, type, row, mete) {
-                            if (row.dosen.id_prodi == null || row.dosen.id_prodi == '' || row.dosen.id_prodi == '-') {
+                            if (row.dosen.id_prodi == null || row.dosen.id_prodi == '' || row.dosen
+                                .id_prodi == '-') {
                                 return '-'
                             }
                             return row.dosen.prodi.nama_prodi
@@ -220,13 +223,13 @@
             // Validasi 
             $('#table-validasi tbody').on('click', '.btn-lihat', function() {
                 var data = table.row($(this).parents('tr')).data();
-                
+
                 if (data.validasi == 1) {
-                  var buttonText = '<i class="fa-solid fa-circle-xmark mr-2"></i> Batalkan Validasi'
-                  var buttonClass = 'btn btn-danger btn-tambah me-2'
-                }else{
-                  var buttonText = '<i class="fa-solid fa-circle-check mr-2"></i> Validasi Data'
-                  var buttonClass = 'btn btn-primary btn-tambah me-2'
+                    var buttonText = '<i class="fa-solid fa-circle-xmark mr-2"></i> Batalkan Validasi'
+                    var buttonClass = 'btn btn-danger btn-tambah me-2'
+                } else {
+                    var buttonText = '<i class="fa-solid fa-circle-check mr-2"></i> Validasi Data'
+                    var buttonClass = 'btn btn-primary btn-tambah me-2'
                 }
                 // console.log(data);
 
@@ -271,7 +274,8 @@
                                         url: "{{ route('superadmin.validasi.update') }}",
                                         data: {
                                             id_sgas: data.id,
-                                            status_validasi: data.validasi
+                                            status_validasi: data
+                                                .validasi
                                         },
                                         dataType: "JSON",
                                         beforeSend: function() {
@@ -356,9 +360,32 @@
                         $('#table-sgas').DataTable().buttons().container().appendTo(
                             '#table-sgas_wrapper .col-md-6:eq(0)');
                         $('.btn-tambah').removeClass("btn-secondary");
-                    }
+                    },
+                    footerCallback: function(row, data, start, end, display) {
+                        var api = this.api();
+
+                        // Remove the formatting to get integer data for summation
+                        var intVal = function(i) {
+                            return typeof i === 'string' ? i.replace(/[\$,]/g, '') * 1 :
+                                typeof i ===
+                                'number' ? i : 0;
+                        };
+
+                        // Total SKS over all pages
+                        total = api
+                            .column(8)
+                            .data()
+                            .reduce(function(a, b) {
+                                return intVal(a) + intVal(b);
+                            }, 0);
+
+                        // Update footer
+                        $('#total_sks').text(total);
+
+                    },
                 });
 
+                $('#total_sks').text()
                 $('#nama').text(data.dosen.nama)
                 $('#modal-validasi').modal('show')
             });
