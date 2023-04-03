@@ -54,7 +54,7 @@ class ValidasiController extends Controller
     public function update(Request $request)
     {
         try {
-            if ($request->status_validasi = 1) {
+            if ($request->status_validasi == 1) {
                 $validasi = 0;
             }else {
                 $validasi = 1;

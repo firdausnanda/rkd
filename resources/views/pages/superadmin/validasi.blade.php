@@ -158,7 +158,7 @@
                         width: '15%',
                         className: 'text-center align-middle fs-14',
                         render: function(data, type, row, mete) {
-                            if (row.dosen.id_prodi == null || row.dosen.id_prodi == '') {
+                            if (row.dosen.id_prodi == null || row.dosen.id_prodi == '' || row.dosen.id_prodi == '-') {
                                 return '-'
                             }
                             return row.dosen.prodi.nama_prodi
@@ -221,7 +221,7 @@
             $('#table-validasi tbody').on('click', '.btn-lihat', function() {
                 var data = table.row($(this).parents('tr')).data();
                 
-                if (data.validasi = 1) {
+                if (data.validasi == 1) {
                   var buttonText = '<i class="fa-solid fa-circle-xmark mr-2"></i> Batalkan Validasi'
                   var buttonClass = 'btn btn-danger btn-tambah me-2'
                 }else{
