@@ -216,7 +216,13 @@
                         targets: 3,
                         width: '15%',
                         className: 'text-center align-middle fs-14',
-                        data: 'prodi.nama_prodi'
+                        data: 'prodi.nama_prodi',
+                        render: function (data, type, row, meta) { 
+                            if (data) {
+                                return data
+                            }
+                            return '-'
+                        }
                     },
                     {
                         targets: 4,

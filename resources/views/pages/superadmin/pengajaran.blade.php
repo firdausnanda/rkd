@@ -463,7 +463,7 @@
                             table.ajax.reload()
                             
                             $('#nama_dosen').val(response.data[0].nama);
-                            $('#prodi_dosen').val(response.data[0].prodi.nama_prodi);
+                            $('#prodi_dosen').val(response.data[0].prodi ? response.data[0].prodi.nama_prodi : '-');
                             $('#jabfung_dosen').val(response.data[0].jabatan_fungsional);
                             $('#nidn_dosen').val(response.data[0].nidn);
 

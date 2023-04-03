@@ -59,23 +59,19 @@ class PengajaranController extends Controller
     {
         try {
             // Get Nomor Plot
-            $no = Sgas::select('no_plot')->where('id_tahun_akademik', $request->ta)->get();
-            $hitung = $no->count();
+            $no = Sgas::select('no_plot')->where('id_tahun_akademik', $request->ta)->where('semester', $request->semester)->get();
 
-            if ($hitung = 0) {
-                $nomor = 1;
-            }else{
-                $nomor = $no->count() + 1;
-            }          
-
-            // Update or Create Sgas
-            $sgas = Sgas::updateOrCreate([
-                'id_dosen' => $request->dosen,
-                'id_tahun_akademik' => $request->ta,
-                'semester' => $request->semester
-            ],[
-                'no_plot' => $nomor
-            ]);
+            // Check if Sgas exist
+            $sgas = Sgas::where('id_dosen', $request->dosen)->where('id_tahun_akademik', $request->ta)->where('semester', $request->semester)->first();
+            if ($sgas == null || $sgas == '') {
+                $sgas = Sgas::create([
+                    'id_dosen' => $request->dosen,
+                    'id_tahun_akademik' => $request->ta,
+                    'semester' => $request->semester,
+                    'validasi' => 0,
+                    'no_plot' => $no->count() + 1
+                ]);
+            }
 
             // Dosen
             $dosen = Dosen::with('prodi')->where('id', $request->dosen)->first();
