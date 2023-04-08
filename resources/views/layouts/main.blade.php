@@ -15,20 +15,14 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
     <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/plugins.css') }}" rel="stylesheet" type="text/css" />
-    <!-- END GLOBAL MANDATORY STYLES -->
 
-    <!-- BEGIN PAGE LEVEL DATATABLE STYLES -->
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/table/datatable/datatables.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/table/datatable/dt-global_style.css') }}">
-    <!-- END PAGE LEVEL STYLES -->
-
-    <!-- BEGIN PAGE LEVEL ICON STYLES -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/table/datatable/select.dataTables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome/css/all.css') }}">
-    <!-- END PAGE LEVEL STYLES -->
 
-    <!-- BEGIN THEME GLOBAL STYLES -->
     <link href="{{ asset('css/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/bootstrap-select/bootstrap-select.min.css') }}">
+    <link href="{{ asset('plugins/bootstrap-select/bootstrap-select.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('plugins/animate/animate.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('plugins/flatpickr/custom-flatpickr.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('plugins/flatpickr/flatpickr.css') }}" rel="stylesheet" type="text/css">
@@ -128,6 +122,7 @@
     <script src="{{ asset('plugins/table/datatable/button-ext/jszip.min.js') }}"></script>
     <script src="{{ asset('plugins/table/datatable/button-ext/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('plugins/table/datatable/button-ext/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('plugins/table/datatable/datatables.select.min.js') }}"></script>
 
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     <script src="{{ asset('js/scrollspyNav.js') }}"></script>

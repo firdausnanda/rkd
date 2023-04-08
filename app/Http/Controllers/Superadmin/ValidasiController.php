@@ -69,4 +69,28 @@ class ValidasiController extends Controller
             return ResponseFormatter::error($th, 'server error');
         }
     }
+
+    public function update_all(Request $request)
+    {
+        try {
+
+            if ($request->validasi == 1) {
+                $validasi = 0;
+            }else {
+                $validasi = 1;
+            }
+                 
+            foreach ($request->dataDosen as $d) {
+                $query = Sgas::find($d['id']); 
+                $query->update([
+                    'validasi' => $validasi
+                ]);
+            }
+
+            return ResponseFormatter::success($query, 'Data Mahasiswa berhasil diupdate', 201);
+          
+        } catch (\Exception $e) {
+            return ResponseFormatter::error($e->getMessage(), 'Server Error', 500);
+        }
+    }
 }

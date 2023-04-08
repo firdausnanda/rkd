@@ -83,6 +83,7 @@ Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => [
   Route::group(['prefix' => 'validasi', 'as' => 'validasi.'], function () {
 		Route::get('', [ValidasiController::class, 'index'])->name('index');
 		Route::put('', [ValidasiController::class, 'update'])->name('update');
+		Route::put('/bulk-update', [ValidasiController::class, 'update_all'])->name('update_all');
 	});
 
   // Akun

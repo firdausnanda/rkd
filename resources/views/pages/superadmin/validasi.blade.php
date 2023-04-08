@@ -18,7 +18,7 @@
                             <label for="ta">Tahun Akademik</label>
                             <select class="selectpicker form-control" data-live-search="true" id="ta-select">
                                 @foreach ($ta as $t)
-                                    <option value="{{ $t->id }}" selected>{{ $t->tahun_akademik }}</option>
+                                    <option value="{{ $t->id }}">{{ $t->tahun_akademik }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -135,13 +135,33 @@
                         d.status = $('#status-select').val()
                     }
                 },
+                buttons: [{
+                    text: '<i class="fa-solid fa-check mr-2"></i> Validasi Data',
+                    attr: {
+                        id: 'validasiButton'
+                    },
+                    className: 'btn mt-2 btn-success btn-tambah me-2',
+                    action: function(e, dt, node, config) {
+                        Swal.fire({
+                            icon: 'question',
+                            title: "Anda akan validasi data ini?",
+                            text: "Pastikan data ini benar untuk divalidasi",
+                            showCancelButton: true,
+                            confirmButtonColor: '#df4759',
+                            confirmButtonText: 'Lanjutkan',
+                            cancelButtonText: "Batalkan",
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                getSelect()
+                            }
+                        });
+                    }
+                }],
                 columnDefs: [{
                         targets: 0,
-                        width: '5%',
-                        className: 'text-center align-middle',
-                        render: function(data, type, row, meta) {
-                            return meta.row + 1;
-                        }
+                        width: '2%',
+                        defaultContent: "",
+                        className: 'text-center align-middle select-checkbox'
                     },
                     {
                         targets: 1,
@@ -206,6 +226,11 @@
                         }
                     }
                 ],
+                select: {
+                    style: 'os',
+                    selector: 'td:first-child',
+                    style: 'multi'
+                },
                 initComplete: function() {
                     $('#table-validasi').DataTable().buttons().container().appendTo(
                         '#table-validasi_wrapper .col-md-6:eq(0)');
@@ -216,7 +241,16 @@
             // Filter
             $('.btn-filter').click(function(e) {
                 e.preventDefault();
-
+                if ($('#status-select').val() == 0) {
+                    $('#validasiButton').text('Validasi Data')
+                    $('#validasiButton').removeClass('btn mt-2 btn-danger btn-tambah me-2')
+                    $('#validasiButton').addClass('btn mt-2 btn-success btn-tambah me-2')
+                }else{
+                    $('#validasiButton').text('Batalkan Validasi')
+                    $('#validasiButton').removeClass('btn mt-2 btn-success btn-tambah me-2')
+                    $('#validasiButton').addClass('btn mt-2 btn-danger btn-tambah me-2')
+                }
+                console.log($('#validasiButton').text());
                 table.ajax.reload()
             });
 
@@ -389,6 +423,55 @@
                 $('#nama').text(data.dosen.nama)
                 $('#modal-validasi').modal('show')
             });
+
+            // Get Selected Row
+            function getSelect() {
+                var data = table.rows({
+                    selected: true
+                }).data();
+
+                var dataDosen = [];
+                for (var i = 0; i < data.length; i++) {
+                    dataDosen.push({
+                        id: data[i].id
+                    });
+                }
+
+                if (data.length > 0) {
+                    $.ajax({
+                        type: "PUT",
+                        url: "{{ route('superadmin.validasi.update_all') }}",
+                        data: {
+                            dataDosen: dataDosen,
+                            validasi: $('#status-select').val()
+                        },
+                        dataType: 'json',
+                        beforeSend: function() {
+                            Swal.showLoading()
+                        },
+                        success: function(response) {
+                            Swal.hideLoading()
+                            table.ajax.reload();
+                            Swal.fire('Sukses!', "Data berhasil disimpan.",
+                                'success');
+                        },
+                        error: function(response) {
+                            Swal.hideLoading()
+                            Swal.fire('Oops!', "Gagal menyimpan data.",
+                                'error');
+                            // console.log(response.responseJSON.message);
+                        },
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Pilih minimal 1 data!',
+                    });
+                }
+
+
+            };
         });
     </script>
 @endsection
