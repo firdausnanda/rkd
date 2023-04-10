@@ -112,7 +112,8 @@
     <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
-    <script src="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+    {{-- <script src="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.5/perfect-scrollbar.min.js"></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
@@ -135,20 +136,6 @@
 
     {{-- DATETIMEPICKER --}}
     <script src="{{ asset('plugins/flatpickr/flatpickr.js') }}"></script>
-    <script>
-        $("#tglgnp").flatpickr({
-            dateFormat: "d-F-Y"
-        });
-        $("#tglgjl").flatpickr({
-            dateFormat: "d-F-Y"
-        });
-        $("#tglgnp2").flatpickr({
-            dateFormat: "d-F-Y"
-        });
-        $("#tglgjl2").flatpickr({
-            dateFormat: "d-F-Y"
-        });
-    </script>
 
     <!-- BEGIN PAGE LEVEL PLUGINS -->
     <script src="{{ asset('plugins/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
@@ -156,6 +143,9 @@
 
     <script>
         $(document).ready(function() {
+
+            // Init App Js
+            App.init();
 
             // Setup Header
             $.ajaxSetup({
