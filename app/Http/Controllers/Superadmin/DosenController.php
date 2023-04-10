@@ -47,11 +47,13 @@ class DosenController extends Controller
                 'keterangan' => $request->keterangan,
             ]);
 
-            User::create([
+            $user = User::create([
                 'name' => $request->nama,
                 'email' => $request->nidn,
                 'password' => Hash::make($request->nidn)
             ]);
+
+            $user->syncRoles('user');
 
             return ResponseFormatter::success($dosen, 'Data Berhasil Disimpan!');
         } catch (\Exception $e) {
