@@ -177,4 +177,67 @@ Route::group(['prefix' => 'prodi', 'as' => 'prodi.', 'middleware' => ['role:prod
 	});
 });
 
+// MWI
+Route::group(['prefix' => 'mwi', 'as' => 'mwi.', 'middleware' => ['role:mwi', 'auth']], function () {
+  
+	// Dashboard
+	Route::get('', [DashboardController::class, 'index'])->name('index');
+
+	// Pengajaran
+  Route::group(['prefix' => 'pengajaran', 'as' => 'pengajaran.'], function () {
+		Route::get('', [PengajaranController::class, 'index'])->name('index');
+		Route::post('', [PengajaranController::class, 'store'])->name('store');
+		Route::put('', [PengajaranController::class, 'update'])->name('update');
+		Route::delete('', [PengajaranController::class, 'delete'])->name('delete');
+		Route::get('/kurikulum', [PengajaranController::class, 'kurikulum'])->name('kurikulum');
+		Route::get('/matakuliah', [PengajaranController::class, 'matakuliah'])->name('matakuliah');
+		Route::get('/matakuliah-sks', [PengajaranController::class, 'sks'])->name('sks');
+		Route::post('/sgas', [PengajaranController::class, 'sgas'])->name('sgas');
+		Route::get('/print', [PengajaranController::class, 'print'])->name('print');
+		Route::get('/print-ttd', [PengajaranController::class, 'print_ttd'])->name('print_ttd');
+	});
+});
+
+// BSDM
+Route::group(['prefix' => 'bsdm', 'as' => 'bsdm.', 'middleware' => ['role:bsdm', 'auth']], function () {
+  
+	// Dashboard
+	Route::get('', [DashboardController::class, 'index'])->name('index');
+
+	// Pengajaran
+  Route::group(['prefix' => 'pengajaran', 'as' => 'pengajaran.'], function () {
+		Route::get('', [PengajaranController::class, 'index'])->name('index');
+		Route::post('', [PengajaranController::class, 'store'])->name('store');
+		Route::put('', [PengajaranController::class, 'update'])->name('update');
+		Route::delete('', [PengajaranController::class, 'delete'])->name('delete');
+		Route::get('/kurikulum', [PengajaranController::class, 'kurikulum'])->name('kurikulum');
+		Route::get('/matakuliah', [PengajaranController::class, 'matakuliah'])->name('matakuliah');
+		Route::get('/matakuliah-sks', [PengajaranController::class, 'sks'])->name('sks');
+		Route::post('/sgas', [PengajaranController::class, 'sgas'])->name('sgas');
+		Route::get('/print', [PengajaranController::class, 'print'])->name('print');
+		Route::get('/print-ttd', [PengajaranController::class, 'print_ttd'])->name('print_ttd');
+	});
+});
+
+// User
+Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['role:user', 'auth']], function () {
+  
+	// Dashboard
+	Route::get('', [DashboardController::class, 'index'])->name('index');
+
+	// Pengajaran
+  Route::group(['prefix' => 'pengajaran', 'as' => 'pengajaran.'], function () {
+		Route::get('', [PengajaranController::class, 'index'])->name('index');
+		Route::post('', [PengajaranController::class, 'store'])->name('store');
+		Route::put('', [PengajaranController::class, 'update'])->name('update');
+		Route::delete('', [PengajaranController::class, 'delete'])->name('delete');
+		Route::get('/kurikulum', [PengajaranController::class, 'kurikulum'])->name('kurikulum');
+		Route::get('/matakuliah', [PengajaranController::class, 'matakuliah'])->name('matakuliah');
+		Route::get('/matakuliah-sks', [PengajaranController::class, 'sks'])->name('sks');
+		Route::post('/sgas', [PengajaranController::class, 'sgas'])->name('sgas');
+		Route::get('/print', [PengajaranController::class, 'print'])->name('print');
+		Route::get('/print-ttd', [PengajaranController::class, 'print_ttd'])->name('print_ttd');
+	});
+});
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

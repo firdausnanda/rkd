@@ -22,7 +22,12 @@ class PengajaranController extends Controller
 {
     public function index(Request $request)
     {
-        $dosen = Dosen::all();
+        
+        if (Auth::user()->roles[0]->name == 'user') {
+            $dosen = Dosen::where('id', Auth::user()->id_dosen)->get();
+        }else{
+            $dosen = Dosen::all();
+        }
 
         if (Auth::user()->roles[0]->name == 'prodi') {
             $prodi = Prodi::where('kode_prodi', Auth::user()->kode_prodi)->get();

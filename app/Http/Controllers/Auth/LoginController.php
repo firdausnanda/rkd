@@ -55,6 +55,18 @@ class LoginController extends Controller
               $this->redirectTo = '/prodi';
               return $this->redirectTo;
               break;
+            case 'mwi':
+              $this->redirectTo = '/mwi';
+              return $this->redirectTo;
+              break;
+            case 'bsdm':
+              $this->redirectTo = '/bsdm';
+              return $this->redirectTo;
+              break;
+            case 'user':
+              $this->redirectTo = '/user';
+              return $this->redirectTo;
+              break;
             default:
               $this->redirectTo = '/login';
               return $this->redirectTo;
