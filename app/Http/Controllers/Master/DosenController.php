@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Superadmin;
+namespace App\Http\Controllers\Master;
 
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
@@ -20,7 +20,7 @@ class DosenController extends Controller
             $dosen = Dosen::with('prodi')->get();
             return ResponseFormatter::success($dosen, 'Data Received Successfully!');
         }
-        return view('pages.superadmin.dosen', compact('prodi'));
+        return view('pages.master.dosen', compact('prodi'));
     }
 
     public function store(Request $request)
@@ -50,10 +50,11 @@ class DosenController extends Controller
             $user = User::create([
                 'name' => $request->nama,
                 'email' => $request->nidn,
+                'id_dosen' => $dosen->id,
                 'password' => Hash::make($request->nidn)
             ]);
 
-            $user->syncRoles('user');
+            $user->syncRoles('user');   
 
             return ResponseFormatter::success($dosen, 'Data Berhasil Disimpan!');
         } catch (\Exception $e) {
@@ -71,6 +72,10 @@ class DosenController extends Controller
                 'jabatan_fungsional' => $request->jabfung,
                 'status' => $request->status,
                 'keterangan' => $request->keterangan,
+            ]);
+
+            $user = User::where('id_dosen', $request->id_dosen)->update([
+                'name' => $request->nama,
             ]);
 
             return ResponseFormatter::success($update, 'Data Berhasil Diupdate');
@@ -92,6 +97,7 @@ class DosenController extends Controller
         $update = Dosen::where('id', $request->id)->update([
           'is_active' => $aktif 
         ]);
+
         return ResponseFormatter::success($update, 'Data Berhasil diupdate!');
       } catch (\Exception $e) {
         return ResponseFormatter::error($e, 'Server Error!');

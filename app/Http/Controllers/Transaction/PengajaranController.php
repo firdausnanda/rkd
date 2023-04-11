@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Superadmin;
+namespace App\Http\Controllers\Transaction;
 
 use App\Helpers\Bilangan;
 use App\Helpers\Pdf;
@@ -52,7 +52,7 @@ class PengajaranController extends Controller
             return ResponseFormatter::success($pengajaran, 'Data berhasil diambil!');
         }
 
-        return view('pages.superadmin.pengajaran', compact('dosen', 'ta', 'prodi', 'matakuliah'));
+        return view('pages.transaction.pengajaran', compact('dosen', 'ta', 'prodi', 'matakuliah'));
     }
 
     public function sgas(Request $request)

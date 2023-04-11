@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('kode_prodi')->nullable();
+            $table->string('id_dosen')->nullable();
             $table->boolean('is_active')->default(1);
             $table->rememberToken();
             $table->timestamps();

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Superadmin;
+namespace App\Http\Controllers\Master;
 
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
@@ -15,7 +15,7 @@ class TahunAkademikController extends Controller
             $ta = TahunAkademik::all();
             return ResponseFormatter::success($ta, 'Data berhasil diambil');
         }
-        return view('pages.superadmin.ta');
+        return view('pages.master.ta');
     }
 
     public function store(Request $request)

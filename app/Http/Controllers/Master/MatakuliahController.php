@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Superadmin;
+namespace App\Http\Controllers\Master;
 
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
@@ -19,7 +19,7 @@ class MatakuliahController extends Controller
             $matakuliah = Matakuliah::with('prodi')->where('kode_prodi', $request->id)->get();
             return ResponseFormatter::success($matakuliah, 'Data Berhasil diambil!');
         }
-        return view('pages.superadmin.matakuliah', compact('prodi'));
+        return view('pages.master.matakuliah', compact('prodi'));
     }
 
     public function store(Request $request)

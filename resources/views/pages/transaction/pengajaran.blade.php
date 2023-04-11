@@ -326,7 +326,7 @@
                 processing: true,
                 lengthChange: false,
                 ajax: {
-                    url: "{{ route('superadmin.pengajaran.index') }}",
+                    url: `/${$('#role').text()}/pengajaran`,
                     type: "GET",
                     data: function(d) {
                         d.dosen = $('#dosen-select').val()
@@ -348,7 +348,7 @@
                         action: function(e, dt, node, config) {
                             if ($('#status').text() == 'Pending') {
                                 Swal.fire('Gagal!', 'Silakan hubungi admin', 'error')
-                            }else{
+                            } else {
                                 $('#print-pengajaran').modal('show')
                             }
                         }
@@ -448,7 +448,7 @@
                 } else {
                     $.ajax({
                         type: "POST",
-                        url: "{{ route('superadmin.pengajaran.sgas') }}",
+                        url: `/${$('#role').text()}/pengajaran/sgas`,
                         data: {
                             ta: $("#ta-select").val(),
                             semester: $("#semester-select").val(),
@@ -461,14 +461,18 @@
                         success: function(response) {
                             Swal.hideLoading()
                             table.ajax.reload()
-                            
+
                             $('#nama_dosen').val(response.data[0].nama);
-                            $('#prodi_dosen').val(response.data[0].prodi ? response.data[0].prodi.nama_prodi : '-');
+                            $('#prodi_dosen').val(response.data[0].prodi ? response.data[0]
+                                .prodi.nama_prodi : '-');
                             $('#jabfung_dosen').val(response.data[0].jabatan_fungsional);
                             $('#nidn_dosen').val(response.data[0].nidn);
 
-                            response.data[1].validasi == 0  ? $('#status').text('Pending') : $('#status').text('Approved');
-                            response.data[1].validasi == 0  ? $('#status').removeClass('bg-success').addClass('bg-danger') : $('#status').removeClass('bg-danger').addClass('bg-success');
+                            response.data[1].validasi == 0 ? $('#status').text('Pending') : $(
+                                '#status').text('Approved');
+                            response.data[1].validasi == 0 ? $('#status').removeClass(
+                                    'bg-success').addClass('bg-danger') : $('#status')
+                                .removeClass('bg-danger').addClass('bg-success');
 
                             $('#sgas_s').val(response.data[1].id);
                             $('#ta_s').val(response.data[1].id_tahun_akademik);
@@ -517,7 +521,7 @@
 
                 $.ajax({
                     type: "GET",
-                    url: "{{ route('superadmin.pengajaran.kurikulum') }}",
+                    url: `/${$('#role').text()}/pengajaran/kurikulum`,
                     data: {
                         prodi: $('#prodi_s').val()
                     },
@@ -548,7 +552,7 @@
 
                 $.ajax({
                     type: "GET",
-                    url: "{{ route('superadmin.pengajaran.kurikulum') }}",
+                    url: `/${$('#role').text()}/pengajaran/kurikulum`,
                     data: {
                         prodi: $('#prodi_e').val()
                     },
@@ -577,7 +581,7 @@
 
                 $.ajax({
                     type: "GET",
-                    url: "{{ route('superadmin.pengajaran.matakuliah') }}",
+                    url: `/${$('#role').text()}/pengajaran/matakuliah`,
                     data: {
                         prodi: $('#prodi_s').val(),
                         kurikulum: $('#kurikulum_s').val()
@@ -606,7 +610,7 @@
 
                 $.ajax({
                     type: "GET",
-                    url: "{{ route('superadmin.pengajaran.sks') }}",
+                    url: `/${$('#role').text()}/pengajaran/matakuliah-sks`,
                     data: {
                         matakuliah: $('#matkul_s').val()
                     },
@@ -656,7 +660,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "DELETE",
-                            url: "{{ route('superadmin.pengajaran.delete') }}",
+                            url: `/${$('#role').text()}/pengajaran`,
                             data: {
                                 id: data.id
                             },
@@ -684,7 +688,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "{{ route('superadmin.pengajaran.store') }}",
+                    url: `/${$('#role').text()}/pengajaran`,
                     data: $(this).serialize(),
                     dataType: "JSON",
                     beforeSend: function() {
@@ -711,7 +715,7 @@
                 e.preventDefault();
 
                 $.ajax({
-                    url: "{{ route('superadmin.pengajaran.update') }}",
+                    url: `/${$('#role').text()}/pengajaran`,
                     type: "PUT",
                     data: $(this).serialize(),
                     dataType: "JSON",
@@ -738,7 +742,7 @@
 
                 $.ajax({
                     type: "GET",
-                    url: "{{ route('superadmin.pengajaran.print') }}",
+                    url: `/${$('#role').text()}/pengajaran/print`,
                     data: {
                         id: $('#sgas_s').val()
                     },
@@ -772,7 +776,7 @@
 
                 $.ajax({
                     type: "GET",
-                    url: "{{ route('superadmin.pengajaran.print_ttd') }}",
+                    url: `/${$('#role').text()}/pengajaran/print-ttd`,
                     data: {
                         id: $('#sgas_s').val()
                     },

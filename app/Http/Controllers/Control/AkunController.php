@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Superadmin;
+namespace App\Http\Controllers\Control;
 
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
@@ -21,7 +21,7 @@ class AkunController extends Controller
             $user = User::with('roles', 'prodi')->get();
             return ResponseFormatter::success($user, 'Data Received Succesfully!');
         }
-        return view('pages.superadmin.akun', compact('role', 'prodi'));
+        return view('pages.control.akun', compact('role', 'prodi'));
     }
 
     public function store(Request $request)

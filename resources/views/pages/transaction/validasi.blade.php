@@ -127,7 +127,7 @@
                 processing: true,
                 lengthChange: false,
                 ajax: {
-                    url: "{{ route('superadmin.validasi.index') }}",
+                    url: `/${$('#role').text()}/validasi`,
                     type: "GET",
                     data: function(d) {
                         d.semester = $('#semester-select').val()
@@ -250,7 +250,6 @@
                     $('#validasiButton').removeClass('btn mt-2 btn-success btn-tambah me-2')
                     $('#validasiButton').addClass('btn mt-2 btn-danger btn-tambah me-2')
                 }
-                console.log($('#validasiButton').text());
                 table.ajax.reload()
             });
 
@@ -283,7 +282,7 @@
                     lengthChange: false,
                     bDestroy: true,
                     ajax: {
-                        url: "{{ route('superadmin.validasi.index') }}",
+                        url: `/${$('#role').text()}/validasi`,
                         type: "GET",
                         data: function(d) {
                             d.id_sgas = data.id
@@ -305,7 +304,7 @@
                                 if (result.isConfirmed) {
                                     $.ajax({
                                         type: "PUT",
-                                        url: "{{ route('superadmin.validasi.update') }}",
+                                        url: `/${$('#role').text()}/validasi`,
                                         data: {
                                             id_sgas: data.id,
                                             status_validasi: data
@@ -440,7 +439,7 @@
                 if (data.length > 0) {
                     $.ajax({
                         type: "PUT",
-                        url: "{{ route('superadmin.validasi.update_all') }}",
+                        url: `/${$('#role').text()}/validasi/bulk-update`,
                         data: {
                             dataDosen: dataDosen,
                             validasi: $('#status-select').val()

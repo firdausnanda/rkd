@@ -9,16 +9,18 @@
                 <div class="widget-content widget-content-area br-6">
 
                     <div class="">
-                        <h4 style="font-weight: bold;">Data Program Studi</h4>
+                        <h4 style="font-weight: bold;">Data Tahun Akademik</h4>
                     </div>
 
                     <div class="table-responsive mb-4 mt-4">
-                        <table id="table-prodi" class="table" style="width:100%">
+                        <table id="table-ta" class="table" style="width:100%">
                             <thead>
                                 <tr align="center">
                                     <th>No</th>
-                                    <th>KODE PRODI</th>
-                                    <th>NAMA PRODI</th>
+                                    <th>TAHUN AKADEMIK</th>
+                                    <th>TANGGAL PENGESAHAN SMT GANJIL</th>
+                                    <th>TANGGAL PENGESAHAN SMT GENAP</th>
+                                    <th>PLOT NO SURAT</th>
                                     <th class="no-content"></th>
                                 </tr>
                             </thead>
@@ -34,23 +36,38 @@
     </div>
 
     {{-- Modal Tambah Data --}}
-    <div class="modal fade fadeinUp" id="tambah-prodi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade fadeinUp" id="tambah-ta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Tambah Data Prodi</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Tambah Tahun Akademik</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
                 </div>
                 <form id="form-store">
                     <div class="modal-body">
                         <div class="form-group mb-4">
-                            <label for="kode">Kode Prodi</label>
-                            <input type="text" class="form-control" name="kode" required>
+                            <label for="ta">Tahun Akademik</label>
+                            <input type="text" class="form-control" name="ta" required>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="nama">Nama Prodi</label>
-                            <input type="text" class="form-control" name="nama">
+                            <label for="ganjil">Tanggal Penetapan Smt Ganjil</label>
+                            <input type="text" class="form-control flatpickr" id="ganjil_s" name="ganjil">
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="genap">Tanggal Penetapan Smt Genap</label>
+                            <input type="text" class="form-control flatpickr" id="genap_s" name="genap">
+                        </div>
+                        <label for="plotno">Plotting Nomoran Surat</label>
+                        <div class="form-row mb-4">
+                            <div class="form-group col-md-6">
+                                <label>Min</label>
+                                <input type="number" class="form-control" name="min" value="1">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Max</label>
+                                <input type="number" class="form-control" name="max" value="1000">
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -63,24 +80,28 @@
     </div>
 
     {{-- Modal Edit Data --}}
-    <div class="modal fade fadeinUp" id="edit-prodi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade fadeinUp" id="edit-ta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Edit Data Prodi</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Edit Data Tahun Akademik</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
                 </div>
                 <form id="form-update">
                     <div class="modal-body">
-                        <input type="hidden" class="form-control" id="id_prodi" name="id_prodi">
+                        <input type="hidden" class="form-control" id="id_ta" name="id_ta">
                         <div class="form-group mb-4">
-                            <label for="kode">Kode Prodi</label>
-                            <input type="text" class="form-control" name="kode" id="kode" required>
+                            <label for="ta">Tahun Akademik</label>
+                            <input type="text" class="form-control" name="ta" id="ta" required>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="nama">Nama Prodi</label>
-                            <input type="text" class="form-control" name="nama" id="nama">
+                            <label for="ganjil">Tanggal Penetapan Smt Ganjil</label>
+                            <input type="text" class="form-control flatpickr" name="ganjil" id="ganjil">
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="genap">Tanggal Penetapan Smt Genap</label>
+                            <input type="text" class="form-control flatpickr" name="genap" id="genap">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -97,8 +118,29 @@
     <script>
         $(document).ready(function() {
 
+            // Init Flatpicker
+            var genap = $("#genap").flatpickr({
+                altInput: true,
+                allowInput: true,
+            });
+            
+            var ganjil = $("#ganjil").flatpickr({
+                altInput: true,
+                allowInput: true,
+            });
+            
+            $("#ganjil_s").flatpickr({
+                altInput: true,
+                allowInput: true,
+            });
+
+            $("#genap_s").flatpickr({
+                altInput: true,
+                allowInput: true,
+            });
+
             // Init Datatable
-            var table = $('#table-prodi').DataTable({
+            var table = $('#table-ta').DataTable({
                 oLanguage: {
                     "oPaginate": {
                         "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>',
@@ -113,14 +155,14 @@
                 processing: true,
                 lengthChange: false,
                 ajax: {
-                    url: "{{ route('superadmin.prodi.index') }}",
+                    url: `/${$('#role').text()}/ta`,
                     type: "GET"
                 },
                 buttons: [{
                     text: '<i class="fa-solid fa-plus mr-2"></i> Tambah Data',
                     className: 'btn btn-primary btn-tambah me-2',
                     action: function(e, dt, node, config) {
-                        $('#tambah-prodi').modal('show');
+                        $('#tambah-ta').modal('show');
                     }
                 }],
                 columnDefs: [{
@@ -135,16 +177,30 @@
                         targets: 1,
                         width: '10%',
                         className: 'text-center align-middle',
-                        data: 'kode_prodi'
+                        data: 'tahun_akademik'
                     },
                     {
                         targets: 2,
                         width: '20%',
                         className: 'text-center align-middle fs-14',
-                        data: 'nama_prodi'
+                        data: 'semester_ganjil'
                     },
                     {
                         targets: 3,
+                        width: '20%',
+                        className: 'text-center align-middle fs-14',
+                        data: 'semester_genap'
+                    },
+                    {
+                        targets: 4,
+                        width: '20%',
+                        className: 'text-center align-middle fs-14',
+                        render: function(data, type, row, meta) {
+                            return `(${row.min}, ${row.max})`
+                        }
+                    },
+                    {
+                        targets: 5,
                         width: '15%',
                         className: 'text-center align-middle',
                         render: function(data, type, row, meta) {
@@ -155,65 +211,27 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                         <a class="dropdown-item btn-update" href="#">Update</a>
-                                        <a class="dropdown-item btn-hapus" href="#">Delete</a>
                                         </div>
                                     </div>`
                         }
                     }
                 ],
                 initComplete: function() {
-                    $('#table-prodi').DataTable().buttons().container().appendTo(
-                        '#table-prodi_wrapper .col-md-6:eq(0)');
+                    $('#table-ta').DataTable().buttons().container().appendTo(
+                        '#table-ta_wrapper .col-md-6:eq(0)');
                     $('.btn-tambah').removeClass("btn-secondary");
                 }
             });
 
             // Update
-            $('#table-prodi tbody').on('click', '.btn-update', function() {
+            $('#table-ta tbody').on('click', '.btn-update', function() {
                 var data = table.row($(this).parents('tr')).data();
 
-                $('#id_prodi').val(data.id)
-                $('#kode').val(data.kode_prodi)
-                $('#nama').val(data.nama_prodi)
-                $('#edit-prodi').modal('show')
-            });
-
-            // Hapus
-            $('#table-prodi tbody').on('click', '.btn-hapus', function() {
-                var data = table.row($(this).parents('tr')).data();
-
-                Swal.fire({
-                    title: 'Apakah anda yakin?',
-                    text: "Data akan dihapus!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya, Lanjutkan!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            type: "DELETE",
-                            url: "{{ route('superadmin.prodi.delete') }}",
-                            data: {
-                                id: data.id
-                            },
-                            dataType: "JSON",
-                            beforeSend: function() {
-                                Swal.showLoading()
-                            },
-                            success: function(response) {
-                                Swal.hideLoading()
-                                table.ajax.reload()
-                                Swal.fire('Sukses!', 'Data dihapus', 'success')
-                            },
-                            error: function(response) {
-                                Swal.hideLoading()
-                                Swal.fire('Error!', 'Server Error', 'error')
-                            }
-                        });
-                    }
-                })
+                $('#id_ta').val(data.id)
+                $('#ta').val(data.tahun_akademik)
+                genap.setDate(data.semester_genap, true)
+                ganjil.setDate(data.semester_ganjil, true)
+                $('#edit-ta').modal('show')
             });
 
             // Submit Store
@@ -222,7 +240,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "{{ route('superadmin.prodi.store') }}",
+                    url: `/${$('#role').text()}/ta`,
                     data: $(this).serialize(),
                     dataType: "JSON",
                     beforeSend: function() {
@@ -230,7 +248,7 @@
                     },
                     success: function(response) {
                         Swal.hideLoading()
-                        $('#tambah-prodi').modal('hide')
+                        $('#tambah-ta').modal('hide')
                         table.ajax.reload()
                         $('#form-store')[0].reset()
                         Swal.fire('Sukses!', 'Data diupdate', 'success')
@@ -248,7 +266,7 @@
                 e.preventDefault();
 
                 $.ajax({
-                    url: "{{ route('superadmin.prodi.update') }}",
+                    url: `/${$('#role').text()}/ta`,
                     type: "PUT",
                     data: $(this).serialize(),
                     dataType: "JSON",
@@ -257,7 +275,7 @@
                     },
                     success: function(response) {
                         Swal.hideLoading()
-                        $('#edit-prodi').modal('hide')
+                        $('#edit-ta').modal('hide')
                         table.ajax.reload()
                         $('#form-update')[0].reset()
                         Swal.fire('Sukses!', 'Data diupdate', 'success')

@@ -23,6 +23,7 @@
                  </a>
                  <div class="dropdown-menu position-absolute" aria-labelledby="userProfileDropdown">
                      <div class="">
+                         <div class="d-none" id="role">{{ Auth::user()->roles[0]->name }}</div>
                          <div class="dropdown-item">
                              <a style="text-decoration: none;" href="#"><svg xmlns="http://www.w3.org/2000/svg"
                                      width="24" height="24" viewBox="0 0 24 24" fill="none"

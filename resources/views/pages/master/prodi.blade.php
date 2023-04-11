@@ -9,20 +9,16 @@
                 <div class="widget-content widget-content-area br-6">
 
                     <div class="">
-                        <h4 style="font-weight: bold;">Data Dosen</h4>
+                        <h4 style="font-weight: bold;">Data Program Studi</h4>
                     </div>
 
                     <div class="table-responsive mb-4 mt-4">
-                        <table id="table-dosen" class="table" style="width:100%">
+                        <table id="table-prodi" class="table" style="width:100%">
                             <thead>
                                 <tr align="center">
                                     <th>No</th>
-                                    <th>NIP/NIDN/NIDK</th>
-                                    <th>NAMA</th>
-                                    <th>PRODI</th>
-                                    <th>JABATAN FUNGSIONAL</th>
-                                    <th>STATUS PEGAWAI</th>
-                                    <th>STATUS</th>
+                                    <th>KODE PRODI</th>
+                                    <th>NAMA PRODI</th>
                                     <th class="no-content"></th>
                                 </tr>
                             </thead>
@@ -38,54 +34,23 @@
     </div>
 
     {{-- Modal Tambah Data --}}
-    <div class="modal fade fadeinUp" id="tambah-dosen" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade fadeinUp" id="tambah-prodi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Tambah Data Dosen</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Tambah Data Prodi</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
                 </div>
                 <form id="form-store">
                     <div class="modal-body">
                         <div class="form-group mb-4">
-                            <label for="nidn">NIP/NIDN/NIDK</label>
-                            <input type="text" class="form-control" name="nidn" required>
+                            <label for="kode">Kode Prodi</label>
+                            <input type="text" class="form-control" name="kode" required>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="nama">Nama Lengkap</label>
+                            <label for="nama">Nama Prodi</label>
                             <input type="text" class="form-control" name="nama">
-                        </div>
-                        <div class="form-group mb-4">
-                            <label for="password">Prodi</label>
-                            <select class="selectpicker form-control" data-live-search="true" name="prodi">
-                                <option value="-">-</option>
-                                @foreach ($prodi as $p)
-                                    <option value="{{ $p->id }}">{{ $p->nama_prodi }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group mb-4">
-                            <label for="jabfung">Jabatan Fungsional</label><br>
-                            <select class="selectpicker form-control" data-live-search="true" name="jabfung">
-                                <option value="-">-</option>
-                                <option value="Asisten Ahli">Asisten Ahli</option>
-                                <option value="Lektor">Lektor</option>
-                                <option value="Lektor Kepala">Lektor Kepala</option>
-                                <option value="Guru Besar">Guru Besar</option>
-                            </select>
-                        </div>
-                        <div class="form-group mb-4">
-                            <label for="status">Status</label><br>
-                            <select class="selectpicker form-control" data-live-search="true" name="status">
-                                <option value="-">-</option>
-                                <option value="Tetap">Tetap</option>
-                                <option value="Tidak Tetap">Tidak Tetap</option>
-                            </select>
-                        </div>
-                        <div class="form-group mb-4">
-                            <label for="keterangan">Keterangan</label>
-                            <input type="text" class="form-control" name="keterangan">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -98,58 +63,24 @@
     </div>
 
     {{-- Modal Edit Data --}}
-    <div class="modal fade fadeinUp" id="edit-dosen" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade fadeinUp" id="edit-prodi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Edit Data Dosen</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Edit Data Prodi</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
                 </div>
                 <form id="form-update">
                     <div class="modal-body">
-                        <input type="hidden" class="form-control" id="id_dosen" name="id_dosen">
+                        <input type="hidden" class="form-control" id="id_prodi" name="id_prodi">
                         <div class="form-group mb-4">
-                            <label for="nidn">NIP/NIDN/NIDK</label>
-                            <input type="text" class="form-control" name="nidn" id="nidn" required>
+                            <label for="kode">Kode Prodi</label>
+                            <input type="text" class="form-control" name="kode" id="kode" required>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="nama">Nama Lengkap</label>
-                            <input type="text" class="form-control" name="nama" id="nama" id="nama">
-                        </div>
-                        <div class="form-group mb-4">
-                            <label for="password">Prodi</label>
-                            <select class="selectpicker form-control" data-live-search="true" name="prodi"
-                                id="prodi">
-                                <option value="-">-</option>
-                                @foreach ($prodi as $p)
-                                    <option value="{{ $p->id }}">{{ $p->nama_prodi }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group mb-4">
-                            <label for="jabfung">Jabatan Fungsional</label><br>
-                            <select class="selectpicker form-control" data-live-search="true" name="jabfung"
-                                id="jabfung">
-                                <option value="-">-</option>
-                                <option value="Asisten Ahli">Asisten Ahli</option>
-                                <option value="Lektor">Lektor</option>
-                                <option value="Lektor Kepala">Lektor Kepala</option>
-                                <option value="Guru Besar">Guru Besar</option>
-                            </select>
-                        </div>
-                        <div class="form-group mb-4">
-                            <label for="status">Status</label><br>
-                            <select class="selectpicker form-control" data-live-search="true" name="status"
-                                id="status">
-                                <option value="-">-</option>
-                                <option value="Tetap">Tetap</option>
-                                <option value="Tidak Tetap">Tidak Tetap</option>
-                            </select>
-                        </div>
-                        <div class="form-group mb-4">
-                            <label for="keterangan">Keterangan</label>
-                            <input type="text" class="form-control" name="keterangan" id="keterangan">
+                            <label for="nama">Nama Prodi</label>
+                            <input type="text" class="form-control" name="nama" id="nama">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -167,7 +98,7 @@
         $(document).ready(function() {
 
             // Init Datatable
-            var table = $('#table-dosen').DataTable({
+            var table = $('#table-prodi').DataTable({
                 oLanguage: {
                     "oPaginate": {
                         "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>',
@@ -182,14 +113,14 @@
                 processing: true,
                 lengthChange: false,
                 ajax: {
-                    url: "{{ route('superadmin.dosen.index') }}",
+                    url: `/${$('#role').text()}/prodi`,
                     type: "GET"
                 },
                 buttons: [{
                     text: '<i class="fa-solid fa-plus mr-2"></i> Tambah Data',
                     className: 'btn btn-primary btn-tambah me-2',
                     action: function(e, dt, node, config) {
-                        $('#tambah-dosen').modal('show');
+                        $('#tambah-prodi').modal('show');
                     }
                 }],
                 columnDefs: [{
@@ -204,68 +135,19 @@
                         targets: 1,
                         width: '10%',
                         className: 'text-center align-middle',
-                        data: 'nidn'
+                        data: 'kode_prodi'
                     },
                     {
                         targets: 2,
                         width: '20%',
                         className: 'text-center align-middle fs-14',
-                        data: 'nama'
+                        data: 'nama_prodi'
                     },
                     {
                         targets: 3,
                         width: '15%',
-                        className: 'text-center align-middle fs-14',
-                        data: 'prodi.nama_prodi',
-                        render: function (data, type, row, meta) { 
-                            if (data) {
-                                return data
-                            }
-                            return '-'
-                        }
-                    },
-                    {
-                        targets: 4,
-                        width: '10%',
-                        className: 'text-center align-middle fs-14',
-                        data: 'jabatan_fungsional',
-                        render: function(data, type, row, meta) {
-                            if (data == '' || data == null) {
-                                return `-`
-                            }
-                            return `${data}`
-                        }
-                    },
-                    {
-                        targets: 5,
-                        width: '10%',
-                        className: 'text-center align-middle fs-14',
-                        data: 'status'
-                    },
-                    {
-                        targets: 6,
-                        width: '10%',
-                        className: 'text-center align-middle fs-14',
-                        data: 'is_active',
-                        render: function(data, type, row, meta) {
-                            if (data == 1) {
-                                return `<h5><span class="badge badge-success">Aktif</span></h5>`
-                            }
-                            return `<h5><span class="badge badge-danger">Non Aktif</span></h5>`
-                        }
-                    },
-                    {
-                        targets: 7,
-                        width: '15%',
                         className: 'text-center align-middle',
-                        data: 'is_active',
                         render: function(data, type, row, meta) {
-
-                            if (data == 1) {
-                                var aktif = 'Non - Aktifkan'
-                            } else {
-                                var aktif = 'Aktifkan'
-                            }
 
                             return `<div class="btn-group" role="group">
                                         <button id="btnGroupDrop1" type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -273,40 +155,36 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                         <a class="dropdown-item btn-update" href="#">Update</a>
-                                        <a class="dropdown-item btn-aktif" href="#">${aktif}</a>
+                                        <a class="dropdown-item btn-hapus" href="#">Delete</a>
                                         </div>
                                     </div>`
                         }
                     }
                 ],
                 initComplete: function() {
-                    $('#table-dosen').DataTable().buttons().container().appendTo(
-                        '#table-dosen_wrapper .col-md-6:eq(0)');
+                    $('#table-prodi').DataTable().buttons().container().appendTo(
+                        '#table-prodi_wrapper .col-md-6:eq(0)');
                     $('.btn-tambah').removeClass("btn-secondary");
                 }
             });
 
             // Update
-            $('#table-dosen tbody').on('click', '.btn-update', function() {
+            $('#table-prodi tbody').on('click', '.btn-update', function() {
                 var data = table.row($(this).parents('tr')).data();
 
-                $('#id_dosen').val(data.id)
-                $('#nidn').val(data.nidn)
-                $('#nama').val(data.nama)
-                $('#prodi').val(data.id_prodi).change()
-                $('#jabfung').val(data.jabatan_fungsional).change()
-                $('#status').val(data.status).change()
-                $('#keterangan').val(data.keterangan)
-                $('#edit-dosen').modal('show')
+                $('#id_prodi').val(data.id)
+                $('#kode').val(data.kode_prodi)
+                $('#nama').val(data.nama_prodi)
+                $('#edit-prodi').modal('show')
             });
 
-            // Aktif Non Aktif Akun
-            $('#table-dosen tbody').on('click', '.btn-aktif', function() {
+            // Hapus
+            $('#table-prodi tbody').on('click', '.btn-hapus', function() {
                 var data = table.row($(this).parents('tr')).data();
 
                 Swal.fire({
                     title: 'Apakah anda yakin?',
-                    text: "Akun akan dinonaktifkan/aktifkan!",
+                    text: "Data akan dihapus!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -315,11 +193,10 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                            type: "PUT",
-                            url: "{{ route('superadmin.dosen.aktif') }}",
+                            type: "DELETE",
+                            url: `/${$('#role').text()}/prodi`,
                             data: {
-                                id: data.id,
-                                aktif: data.is_active
+                                id: data.id
                             },
                             dataType: "JSON",
                             beforeSend: function() {
@@ -328,7 +205,7 @@
                             success: function(response) {
                                 Swal.hideLoading()
                                 table.ajax.reload()
-                                Swal.fire('Sukses!', 'Data diupdate', 'success')
+                                Swal.fire('Sukses!', 'Data dihapus', 'success')
                             },
                             error: function(response) {
                                 Swal.hideLoading()
@@ -345,7 +222,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "{{ route('superadmin.dosen.store') }}",
+                    url: `/${$('#role').text()}/prodi`,
                     data: $(this).serialize(),
                     dataType: "JSON",
                     beforeSend: function() {
@@ -353,7 +230,7 @@
                     },
                     success: function(response) {
                         Swal.hideLoading()
-                        $('#tambah-dosen').modal('hide')
+                        $('#tambah-prodi').modal('hide')
                         table.ajax.reload()
                         $('#form-store')[0].reset()
                         Swal.fire('Sukses!', 'Data diupdate', 'success')
@@ -371,7 +248,7 @@
                 e.preventDefault();
 
                 $.ajax({
-                    url: "{{ route('superadmin.dosen.update') }}",
+                    url: `/${$('#role').text()}/prodi`,
                     type: "PUT",
                     data: $(this).serialize(),
                     dataType: "JSON",
@@ -380,7 +257,7 @@
                     },
                     success: function(response) {
                         Swal.hideLoading()
-                        $('#edit-dosen').modal('hide')
+                        $('#edit-prodi').modal('hide')
                         table.ajax.reload()
                         $('#form-update')[0].reset()
                         Swal.fire('Sukses!', 'Data diupdate', 'success')

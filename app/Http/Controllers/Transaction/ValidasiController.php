@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Superadmin;
+namespace App\Http\Controllers\Transaction;
 
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
@@ -48,7 +48,7 @@ class ValidasiController extends Controller
             return ResponseFormatter::success($sgas, 'Data berhasil diambil!');
         }
         
-        return view('pages.superadmin.validasi', compact('ta'));
+        return view('pages.transaction.validasi', compact('ta'));
     }
 
     public function update(Request $request)

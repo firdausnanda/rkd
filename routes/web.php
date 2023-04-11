@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Controllers\Superadmin\AkunController;
-use App\Http\Controllers\Superadmin\DashboardController;
-use App\Http\Controllers\Superadmin\DosenController;
-use App\Http\Controllers\Superadmin\MatakuliahController;
-use App\Http\Controllers\Superadmin\PengajaranController;
-use App\Http\Controllers\Superadmin\ProdiController;
-use App\Http\Controllers\Superadmin\TahunAkademikController;
-use App\Http\Controllers\Superadmin\ValidasiController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Control\AkunController;
+use App\Http\Controllers\Master\DosenController;
+use App\Http\Controllers\Master\MatakuliahController;
+use App\Http\Controllers\Master\ProdiController;
+use App\Http\Controllers\Master\TahunAkademikController;
+use App\Http\Controllers\Transaction\PengajaranController;
+use App\Http\Controllers\Transaction\ValidasiController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -29,7 +29,7 @@ Route::get('/', function () {
 Auth::routes();
 
 // Superadmin
-Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => ['role:superadmin', 'auth']], function () {
   
 	// Dashboard
 	Route::get('', [DashboardController::class, 'index'])->name('index');
@@ -98,7 +98,7 @@ Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => [
 });
 
 // Admin
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['role:admin', 'auth']], function () {
   
 	// Dashboard
 	Route::get('', [DashboardController::class, 'index'])->name('index');

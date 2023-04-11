@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Superadmin;
+namespace App\Http\Controllers\Master;
 
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
@@ -16,7 +16,7 @@ class ProdiController extends Controller
             return ResponseFormatter::success($prodi, "Data berhasil diambil");
         }
 
-        return view('pages.superadmin.prodi');
+        return view('pages.master.prodi');
     }
 
     public function store(Request $request)
