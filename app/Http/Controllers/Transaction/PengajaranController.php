@@ -15,6 +15,7 @@ use App\Models\TahunAkademik;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class PengajaranController extends Controller
@@ -22,7 +23,13 @@ class PengajaranController extends Controller
     public function index(Request $request)
     {
         $dosen = Dosen::all();
-        $prodi = Prodi::all();
+
+        if (Auth::user()->roles[0]->name == 'prodi') {
+            $prodi = Prodi::where('kode_prodi', Auth::user()->kode_prodi)->get();
+        }else{
+            $prodi = Prodi::all();
+        }
+
         $matakuliah = Matakuliah::get();
         $ta = TahunAkademik::orderBy('tahun_akademik', 'desc')->get();
 

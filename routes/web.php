@@ -153,17 +153,28 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['role:admi
 		Route::get('', [ValidasiController::class, 'index'])->name('index');
 		Route::put('', [ValidasiController::class, 'update'])->name('update');
 		Route::put('/bulk-update', [ValidasiController::class, 'update_all'])->name('update_all');
-	});
+	});		
+});
 
-  // Akun
-  Route::group(['prefix' => 'akun', 'as' => 'akun.'], function () {
-		Route::get('', [AkunController::class, 'index'])->name('index');
-		Route::post('', [AkunController::class, 'store'])->name('store');
-		Route::put('', [AkunController::class, 'update'])->name('update');
-		Route::put('/reset', [AkunController::class, 'reset'])->name('reset');
-		Route::put('/aktif', [AkunController::class, 'aktif'])->name('aktif');
+// Prodi
+Route::group(['prefix' => 'prodi', 'as' => 'prodi.', 'middleware' => ['role:prodi', 'auth']], function () {
+  
+	// Dashboard
+	Route::get('', [DashboardController::class, 'index'])->name('index');
+
+	// Pengajaran
+  Route::group(['prefix' => 'pengajaran', 'as' => 'pengajaran.'], function () {
+		Route::get('', [PengajaranController::class, 'index'])->name('index');
+		Route::post('', [PengajaranController::class, 'store'])->name('store');
+		Route::put('', [PengajaranController::class, 'update'])->name('update');
+		Route::delete('', [PengajaranController::class, 'delete'])->name('delete');
+		Route::get('/kurikulum', [PengajaranController::class, 'kurikulum'])->name('kurikulum');
+		Route::get('/matakuliah', [PengajaranController::class, 'matakuliah'])->name('matakuliah');
+		Route::get('/matakuliah-sks', [PengajaranController::class, 'sks'])->name('sks');
+		Route::post('/sgas', [PengajaranController::class, 'sgas'])->name('sgas');
+		Route::get('/print', [PengajaranController::class, 'print'])->name('print');
+		Route::get('/print-ttd', [PengajaranController::class, 'print_ttd'])->name('print_ttd');
 	});
-		
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

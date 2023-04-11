@@ -100,6 +100,12 @@
                                 </thead>
                                 <tbody>
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="8" style="text-align:right">Total:</th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>
@@ -339,7 +345,11 @@
                         text: '<i class="fa-solid fa-plus mr-2"></i> Tambah Data',
                         className: 'btn btn-primary btn-tambah me-2',
                         action: function(e, dt, node, config) {
-                            $('#tambah-pengajaran').modal('show');
+                            if ($('#status').text() == 'Pending') {
+                                $('#tambah-pengajaran').modal('show');
+                            } else {
+                                Swal.fire('Gagal!', 'Silakan hubungi admin', 'error')
+                            }
                         }
                     },
                     {
@@ -419,16 +429,19 @@
                         width: '10%',
                         className: 'text-center align-middle',
                         render: function(data, type, row, meta) {
-
-                            return `<div class="btn-group" role="group">
-                                        <button id="btnGroupDrop1" type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Aksi <i class="fa-solid fa-chevron-down ml-2"></i>
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                        <a class="dropdown-item btn-update" href="#">Update</a>
-                                        <a class="dropdown-item btn-hapus" href="#">Delete</a>
-                                        </div>
-                                    </div>`
+                            if ($('#status').text() == 'Pending') {
+                                return `<div class="btn-group" role="group">
+                                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Aksi <i class="fa-solid fa-chevron-down ml-2"></i>
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                            <a class="dropdown-item btn-update" href="#">Update</a>
+                                            <a class="dropdown-item btn-hapus" href="#">Delete</a>
+                                            </div>
+                                        </div>`
+                            } else {
+                                return ''
+                            }
                         }
                     }
                 ],
@@ -436,6 +449,26 @@
                     $('#table-pengajaran').DataTable().buttons().container().appendTo(
                         '#table-pengajaran_wrapper .col-md-6:eq(0)');
                     $('.btn-tambah').removeClass("btn-secondary");
+                },
+                footerCallback: function(row, data, start, end, display) {
+                    var api = this.api();
+
+                    // Remove the formatting to get integer data for summation
+                    var intVal = function(i) {
+                        return typeof i === 'string' ? i.replace(/[\$,]/g, '') * 1 : typeof i ===
+                            'number' ? i : 0;
+                    };
+
+                    // Total over this page
+                    var total = api
+                        .column(8)
+                        .data()
+                        .reduce(function(a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+                    console.log(total);
+                    // Update footer
+                    $(api.column(8).footer()).html(total.toFixed(2));
                 }
             });
 
