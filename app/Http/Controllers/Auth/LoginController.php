@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -72,5 +75,18 @@ class LoginController extends Controller
               return $this->redirectTo;
               break;
           }
+    }
+
+    public function validateLogin(Request $request)
+    {
+        $user = User::where($this->username(), $request->input($this->username()))->first();
+        if ($user->is_active == 0) {
+            throw ValidationException::withMessages([$this->username() => __('The account is inactive')]);
+        }
+        
+        $request->validate([
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+        ]);
     }
 }

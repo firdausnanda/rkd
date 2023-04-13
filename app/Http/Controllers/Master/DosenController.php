@@ -98,6 +98,10 @@ class DosenController extends Controller
           'is_active' => $aktif 
         ]);
 
+        User::where('id_dosen', $request->id)->update([
+            'is_active' => $aktif 
+          ]);
+
         return ResponseFormatter::success($update, 'Data Berhasil diupdate!');
       } catch (\Exception $e) {
         return ResponseFormatter::error($e, 'Server Error!');
