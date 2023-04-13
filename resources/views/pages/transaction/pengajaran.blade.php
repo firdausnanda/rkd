@@ -29,7 +29,7 @@
                                 <option value="genap">Genap</option>
                             </select>
                         </div>
-                        <div class="col-lg-3 mb-3">
+                        <div class="col-lg-4 mb-3">
                             <label for="dosen">Nama Dosen</label>
                             <select class="selectpicker form-control" data-live-search="true" id="dosen-select">
                                 <option value="-" selected disabled>-</option>
@@ -38,7 +38,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-lg-3 mb-3 d-flex align-items-end">
+                        <div class="col-lg-2 mb-3 d-flex align-items-end">
                             <button class="btn btn-primary btn-filter"><i class="fa-solid fa-magnifying-glass mr-2"></i>Cari
                                 Data</button>
                         </div>
@@ -466,7 +466,7 @@
                         .reduce(function(a, b) {
                             return intVal(a) + intVal(b);
                         }, 0);
-                    console.log(total);
+                    // console.log(total);
                     // Update footer
                     $(api.column(8).footer()).html(total.toFixed(2));
                 }

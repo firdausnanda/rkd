@@ -263,14 +263,14 @@ class Pdf extends Fpdf
 				$x=$this->GetX();
 				$y=$this->GetY();
 				//Draw the border
-				$this->Rect($x,$y,$w,$h*2);
+				$this->Rect($x,$y,$w,$h);
 				//Print the text
 				$this->MultiCell($w,5,$data[$i],0,$a);
 				//Put the position to the right of the cell
 				$this->SetXY($x+$w,$y);
 		}
 		//Go to the next line
-		$this->Ln($h);
+		$this->Ln($h-5);
 	}
 
 	function CheckPageBreak($h)

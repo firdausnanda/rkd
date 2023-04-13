@@ -393,7 +393,7 @@ class PengajaranController extends Controller
                 $v->semester,
                 $v->kelas,
                 $v->total_dosen,
-                $total,
+                number_format($total, 2, '.', ''),
             ));
         }
 
@@ -616,7 +616,7 @@ class PengajaranController extends Controller
                 $v->semester,
                 $v->kelas,
                 $v->total_dosen,
-                round($total, 2),
+                number_format($total, 2, '.', ''),
             ));
         }
 

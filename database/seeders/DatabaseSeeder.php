@@ -25,6 +25,10 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ProdiSeeder::class,
             TahunAkademikSeeder::class,
+            DosenSeeder::class,
+            MatakuliahSeeder::class,
+            SgasSeeder::class,
+            SgasPengajaranSeeder::class,
         ]);
     }
 }

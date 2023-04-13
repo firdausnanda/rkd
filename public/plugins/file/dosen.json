@@ -1,0 +1,1621 @@
+[{
+  "id": 16,
+  "nik": "119860411082009021",
+  "nidn": "0711048605",
+  "nama": "Apriyani Puji Hastuti,S.Kep.Ners, M.Kep",
+  "prodi": "1",
+  "jabatan_fungsional": "Asisten Ahli",
+  "status": "Tetap",
+  "created_at": "2021-04-19 01:34:52",
+  "updated_at": "2021-05-05 03:38:19"
+}, {
+  "id": 17,
+  "nik": "119890211032009017",
+  "nidn": "0711028304",
+  "nama": "Riki Ristanto,S.Kep.Ners, M.Kep",
+  "prodi": "1",
+  "jabatan_fungsional": "Lektor",
+  "status": "Tetap",
+  "created_at": "2021-04-19 01:36:35",
+  "updated_at": "2021-05-05 03:37:59"
+}, {
+  "id": 18,
+  "nik": "197307091997032001",
+  "nidn": "8854840017",
+  "nama": "Dr. Juliati Koesrini,A.Per.Pend.M.KPd",
+  "prodi": "1",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-04-19 01:40:43",
+  "updated_at": "2021-04-19 01:40:43"
+}, {
+  "id": 19,
+  "nik": "197411292005012004",
+  "nidn": "8827501019",
+  "nama": "Tien Aminah.S.Kep.Ners.,M.Kep",
+  "prodi": "1",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-04-19 01:41:18",
+  "updated_at": "2021-04-19 01:41:18"
+}, {
+  "id": 20,
+  "nik": "119760703102012041",
+  "nidn": "0703077604",
+  "nama": "Amin Zakaria, S.Kep.,Ners., M.Kes",
+  "prodi": "1",
+  "jabatan_fungsional": "Asisten Ahli",
+  "status": "Tetap",
+  "created_at": "2021-04-19 01:42:35",
+  "updated_at": "2021-05-05 03:44:23"
+}, {
+  "id": 22,
+  "nik": "119870906082015049",
+  "nidn": "0706098705",
+  "nama": "Bayu Budi Laksono, S.Kep.Ns., M.Kep",
+  "prodi": "1",
+  "jabatan_fungsional": "Asisten Ahli",
+  "status": "Tetap",
+  "created_at": "2021-04-19 01:44:37",
+  "updated_at": "2021-05-05 03:42:52"
+}, {
+  "id": 23,
+  "nik": "119870113082015048",
+  "nidn": "0713018702",
+  "nama": "Mokhtar Jamil, S.Kep.Ns.,M.Kep",
+  "prodi": "1",
+  "jabatan_fungsional": "Asisten Ahli",
+  "status": "Tetap",
+  "created_at": "2021-04-19 01:45:23",
+  "updated_at": "2021-05-05 03:42:20"
+}, {
+  "id": 24,
+  "nik": "119850320122006008",
+  "nidn": "0720038502",
+  "nama": "Dian Pitaloka P,S.Kep,Ners, M.Kep",
+  "prodi": "1",
+  "jabatan_fungsional": "Lektor",
+  "status": "Tetap",
+  "created_at": "2021-04-19 01:46:31",
+  "updated_at": "2021-05-05 03:39:40"
+}, {
+  "id": 25,
+  "nik": "119900131032015046",
+  "nidn": "0731019001",
+  "nama": "Musthika Wida Mashitah, S.Kep,.Ners, M.Biomed",
+  "prodi": "1",
+  "jabatan_fungsional": "Lektor",
+  "status": "Tetap",
+  "created_at": "2021-04-19 01:47:16",
+  "updated_at": "2021-05-05 03:41:57"
+}, {
+  "id": 26,
+  "nik": "119820913042011037",
+  "nidn": "0717048301",
+  "nama": "Ardhiles Wahyu  Kurniawan,S.Kep.Ners.,M.Kep",
+  "prodi": "1",
+  "jabatan_fungsional": "Asisten Ahli",
+  "status": "Tetap",
+  "created_at": "2021-04-19 01:48:30",
+  "updated_at": "2021-05-05 03:41:10"
+}, {
+  "id": 27,
+  "nik": "219820913082009022",
+  "nidn": "0713098202",
+  "nama": "Indari,S.Kep.,Ners.,M.Kep",
+  "prodi": "1",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-04-19 01:49:26",
+  "updated_at": "2021-04-19 01:49:26"
+}, {
+  "id": 28,
+  "nik": "119770825112014043",
+  "nidn": "0725087701",
+  "nama": "Heny Nurmayunita, S.Kep.Ns., MMRS",
+  "prodi": "1",
+  "jabatan_fungsional": "Asisten Ahli",
+  "status": "Tetap",
+  "created_at": "2021-04-19 01:50:01",
+  "updated_at": "2021-05-05 03:41:28"
+}, {
+  "id": 30,
+  "nik": "119840914082015050",
+  "nidn": "0714098402",
+  "nama": "Aloysia Ispriantari, S.Kep.Ns., M.Kep.",
+  "prodi": "1",
+  "jabatan_fungsional": "Lektor",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:15:04",
+  "updated_at": "2021-05-05 03:43:13"
+}, {
+  "id": 31,
+  "nik": "119850708072016053",
+  "nidn": "0708078508",
+  "nama": "Hanim Mufarokha, S.Kep,.Ners,.M.Kep",
+  "prodi": "1",
+  "jabatan_fungsional": "Asisten Ahli",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:16:19",
+  "updated_at": "2021-05-05 03:43:59"
+}, {
+  "id": 32,
+  "nik": "119671208122014044",
+  "nidn": "0708126701",
+  "nama": "Sulistiyah, S.SI.T,.M.Kes",
+  "prodi": "10",
+  "jabatan_fungsional": "Asisten Ahli",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:17:01",
+  "updated_at": "2021-09-21 14:42:29"
+}, {
+  "id": 33,
+  "nik": "196705291987032001",
+  "nidn": "8872930017",
+  "nama": "Anik Purwati,SST, MM.,M.Kes",
+  "prodi": "2",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:19:48",
+  "updated_at": "2021-04-19 02:19:48"
+}, {
+  "id": 34,
+  "nik": "119870807062010032",
+  "nidn": "0707088701",
+  "nama": "Reny Retnaningsih,SST, M.Keb",
+  "prodi": "2",
+  "jabatan_fungsional": "Asisten Ahli",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:20:23",
+  "updated_at": "2021-05-05 03:45:37"
+}, {
+  "id": 35,
+  "nik": "197102151991022000",
+  "nidn": "8956900020",
+  "nama": "Ina Indriati, SST.,M.Kes",
+  "prodi": "10",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:21:00",
+  "updated_at": "2021-09-21 14:45:25"
+}, {
+  "id": 36,
+  "nik": "119880320102010036",
+  "nidn": "0720038804",
+  "nama": "Tut Rayani Aksohini Wijayanti,SST, M.Keb",
+  "prodi": "10",
+  "jabatan_fungsional": "Asisten Ahli",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:23:46",
+  "updated_at": "2021-09-21 14:45:08"
+}, {
+  "id": 37,
+  "nik": "119740205032009018",
+  "nidn": "0705027401",
+  "nama": "Raden Maria Veronika Widiatrilupi, SST, M.keb",
+  "prodi": "3",
+  "jabatan_fungsional": "Asisten Ahli",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:24:17",
+  "updated_at": "2021-09-21 14:43:48"
+}, {
+  "id": 38,
+  "nik": "119871031062011039",
+  "nidn": "0731108702",
+  "nama": "Anik Sri Purwanti,SST.,M.Keb",
+  "prodi": "3",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:25:00",
+  "updated_at": "2021-09-21 14:43:32"
+}, {
+  "id": 39,
+  "nik": "119870603062011038",
+  "nidn": "0703068702",
+  "nama": "Rosyidah Alfitri,SST.,MPH",
+  "prodi": "10",
+  "jabatan_fungsional": "Asisten Ahli",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:26:18",
+  "updated_at": "2021-09-21 14:44:56"
+}, {
+  "id": 40,
+  "nik": "119790726092009024",
+  "nidn": "0726077901",
+  "nama": "Rani Safitri,SST, M.Keb",
+  "prodi": "10",
+  "jabatan_fungsional": "Asisten Ahli",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:28:10",
+  "updated_at": "2021-09-21 14:44:45"
+}, {
+  "id": 41,
+  "nik": "119870605062010031",
+  "nidn": "0705068705",
+  "nama": "Nila Widya Keswara,SST.,M.K.M",
+  "prodi": "10",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:28:47",
+  "updated_at": "2021-09-21 14:44:32"
+}, {
+  "id": 42,
+  "nik": "119880905122015051",
+  "nidn": "0705098801",
+  "nama": "Rifzul Maulina, SST,.M.Kes",
+  "prodi": "3",
+  "jabatan_fungsional": "Lektor",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:32:17",
+  "updated_at": "2021-09-21 14:42:45"
+}, {
+  "id": 43,
+  "nik": "119760110102004003",
+  "nidn": "0710017605",
+  "nama": "dr. Mayang Wulandari, MM",
+  "prodi": "5",
+  "jabatan_fungsional": "Asisten Ahli",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:32:58",
+  "updated_at": "2021-05-05 03:49:03"
+}, {
+  "id": 44,
+  "nik": "119760505062006006",
+  "nidn": "0705057603",
+  "nama": "Amal Prihatono,S.Ked., MM",
+  "prodi": "5",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:33:29",
+  "updated_at": "2021-04-19 02:33:29"
+}, {
+  "id": 45,
+  "nik": "119751215092009023",
+  "nidn": "0715127505",
+  "nama": "dr. Leny Candra Kurniawan, MM",
+  "prodi": "5",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:34:10",
+  "updated_at": "2022-02-03 06:12:47"
+}, {
+  "id": 46,
+  "nik": "119671115012015045",
+  "nidn": "0715116704",
+  "nama": "Puspo Wardoyo, S.Pd., MM",
+  "prodi": "5",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:34:45",
+  "updated_at": "2021-04-19 02:34:45"
+}, {
+  "id": 47,
+  "nik": "119850219092008013",
+  "nidn": "0719028501",
+  "nama": "Ikhwan Abdullah, S.Psi., MM",
+  "prodi": "5",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:35:18",
+  "updated_at": "2021-04-19 02:35:18"
+}, {
+  "id": 48,
+  "nik": "119860605092008014",
+  "nidn": "0705068601",
+  "nama": "Chantika Mahadini, S.Psi., M.Psi",
+  "prodi": "5",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:36:25",
+  "updated_at": "2021-04-19 02:36:25"
+}, {
+  "id": 49,
+  "nik": "11991040312201755",
+  "nidn": "0703049104",
+  "nama": "Rakhmadani Gadis Aprilianti, M.Farm.,Apt",
+  "prodi": "12",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:38:19",
+  "updated_at": "2021-04-19 02:38:19"
+}, {
+  "id": 50,
+  "nik": "11992073103201967",
+  "nidn": "0731079201",
+  "nama": "Betta Herilla Sekti M.Farm, Apt",
+  "prodi": "12",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:39:11",
+  "updated_at": "2021-09-21 14:42:08"
+}, {
+  "id": 51,
+  "nik": "119871227032017054",
+  "nidn": "0727128702",
+  "nama": "Rachma Putri Kasimbara, M.Pd",
+  "prodi": "4",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:39:46",
+  "updated_at": "2021-09-21 14:52:55"
+}, {
+  "id": 52,
+  "nik": "11990031806201970",
+  "nidn": "0718039001",
+  "nama": "Mayang Aditya Ayuningsiwi, M.Farm, Apt",
+  "prodi": "12",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:40:45",
+  "updated_at": "2021-04-19 02:40:45"
+}, {
+  "id": 53,
+  "nik": "219780916092008012",
+  "nidn": "2116097801",
+  "nama": "Fita Rusdian Ikawati,SE, MM",
+  "prodi": "6",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:41:33",
+  "updated_at": "2021-04-19 02:41:33"
+}, {
+  "id": 54,
+  "nik": "11966021406201969",
+  "nidn": "0414026604",
+  "nama": "dr. R.A. Rengganis Ularan MM",
+  "prodi": "6",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:42:00",
+  "updated_at": "2021-04-19 02:42:00"
+}, {
+  "id": 55,
+  "nik": "197111112014101003",
+  "nidn": "0711117103",
+  "nama": "apt. Rudy Mardianto, S.Si., M.M., M.Farm",
+  "prodi": "11",
+  "jabatan_fungsional": "Asisten Ahli",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:43:14",
+  "updated_at": "2023-02-13 06:34:28"
+}, {
+  "id": 56,
+  "nik": "196803221996031001",
+  "nidn": "8946900020",
+  "nama": "Sartoyo, SMPH.,S.Sos.,M.Kes",
+  "prodi": "4",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-04-19 02:44:08",
+  "updated_at": "2021-05-05 01:54:23"
+}, {
+  "id": 60,
+  "nik": "",
+  "nidn": "0725029201",
+  "nama": "Alifarose SZ,M.Pd",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-07-01 02:42:20",
+  "updated_at": "2021-07-01 02:43:40"
+}, {
+  "id": 63,
+  "nik": "",
+  "nidn": "0022017406",
+  "nama": "dr. Agung Kurniawan, M.Kes",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-07-01 02:56:27",
+  "updated_at": "2021-07-01 02:56:27"
+}, {
+  "id": 64,
+  "nik": "",
+  "nidn": "4023106101",
+  "nama": "Dr. Annasari Mustafa, M.Sc",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-07-01 02:56:53",
+  "updated_at": "2021-07-01 02:56:53"
+}, {
+  "id": 65,
+  "nik": "",
+  "nidn": "0722096802",
+  "nama": "dr. Diah Andriana, Sp.B",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-07-13 04:12:20",
+  "updated_at": "2021-07-13 04:12:20"
+}, {
+  "id": 66,
+  "nik": "",
+  "nidn": "0021056808",
+  "nama": "Dr. Drs. Sugeng Susilo Adi, M.Ed, M. Hum",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-07-13 04:12:49",
+  "updated_at": "2021-07-13 04:12:49"
+}, {
+  "id": 67,
+  "nik": "",
+  "nidn": "2009058603",
+  "nama": "Dr. Nuril Mufida, M.PdI",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-07-13 04:13:05",
+  "updated_at": "2021-07-13 04:13:05"
+}, {
+  "id": 68,
+  "nik": "",
+  "nidn": "0710096502",
+  "nama": "Dr. Rumadi",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-07-13 04:13:25",
+  "updated_at": "2021-07-13 04:13:25"
+}, {
+  "id": 69,
+  "nik": "",
+  "nidn": "0702125701",
+  "nama": "Dr. Sudjiwanati, MPd",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-07-13 04:13:53",
+  "updated_at": "2021-07-13 04:13:53"
+}, {
+  "id": 70,
+  "nik": "",
+  "nidn": "0707028101",
+  "nama": "Dr. Zainabur Rahmah.,M.Si",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-07-13 04:15:06",
+  "updated_at": "2021-07-13 04:15:06"
+}, {
+  "id": 71,
+  "nik": "",
+  "nidn": "0724096501",
+  "nama": "Dra. Wahyu Wuryandari, M.Pd.",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-07-13 04:15:31",
+  "updated_at": "2021-07-13 04:15:31"
+}, {
+  "id": 72,
+  "nik": "",
+  "nidn": "0720086404",
+  "nama": "Drs. Agus Suharjanta, M.Pd",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-07-13 04:15:53",
+  "updated_at": "2021-07-13 04:15:53"
+}, {
+  "id": 73,
+  "nik": "",
+  "nidn": "2113047901",
+  "nama": "Kholik, M.Pd",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-07-13 04:16:12",
+  "updated_at": "2021-07-13 04:16:12"
+}, {
+  "id": 74,
+  "nik": "",
+  "nidn": "2109098002",
+  "nama": "Muhammad Masykur Baiquni, M.Pd.",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-07-13 04:16:34",
+  "updated_at": "2021-07-13 04:16:34"
+}, {
+  "id": 75,
+  "nik": "",
+  "nidn": "0003058702",
+  "nama": "Neo Adhi Kurniawan, S.Pd., SH., MH.",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-07-13 04:17:02",
+  "updated_at": "2021-07-13 04:17:02"
+}, {
+  "id": 76,
+  "nik": "",
+  "nidn": "0009055805",
+  "nama": "Ns. Sunarmi, S.Kep",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-07-13 04:17:24",
+  "updated_at": "2021-07-13 04:17:24"
+}, {
+  "id": 77,
+  "nik": "",
+  "nidn": "4021068801",
+  "nama": "Puguh Priyo Widodo, Amd. RMIK, S.Si, SKM, MMRS",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-07-13 04:17:39",
+  "updated_at": "2021-07-13 04:17:39"
+}, {
+  "id": 78,
+  "nik": "",
+  "nidn": "0713078704",
+  "nama": "Umi Salamah, M.Pd",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-07-13 04:18:03",
+  "updated_at": "2021-07-13 04:18:03"
+}, {
+  "id": 79,
+  "nik": "",
+  "nidn": "9907000178",
+  "nama": "Ari Wisnoe Adi, S.Th, MA",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-07-13 04:18:23",
+  "updated_at": "2021-07-13 04:18:23"
+}, {
+  "id": 80,
+  "nik": "",
+  "nidn": "9907011721",
+  "nama": "dr. H. Bambang Ermanadji, A.Md.Akp., M.M.",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-07-13 04:18:57",
+  "updated_at": "2021-07-13 04:18:57"
+}, {
+  "id": 81,
+  "nik": "",
+  "nidn": "9907012583",
+  "nama": "dr. Oentoeng Agustijaya, A.Md.Akp.",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-07-13 04:19:15",
+  "updated_at": "2021-07-13 04:19:15"
+}, {
+  "id": 82,
+  "nik": "",
+  "nidn": "9907012777",
+  "nama": "Drs. Andreas Widodo Suhandok",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-07-13 04:19:34",
+  "updated_at": "2021-07-13 04:19:34"
+}, {
+  "id": 83,
+  "nik": "",
+  "nidn": "9907006965",
+  "nama": "Drs. I Ketut Arka Utama",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-07-13 04:19:52",
+  "updated_at": "2021-07-13 04:19:52"
+}, {
+  "id": 84,
+  "nik": "",
+  "nidn": "9907146689",
+  "nama": "Ir. H. Efendy, A.Md.Akp.",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-07-13 04:20:21",
+  "updated_at": "2021-07-13 04:20:21"
+}, {
+  "id": 85,
+  "nik": "",
+  "nidn": "9907146543",
+  "nama": "Kris Setyowati,S.Gz",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-07-13 04:20:39",
+  "updated_at": "2021-07-13 04:20:39"
+}, {
+  "id": 86,
+  "nik": "",
+  "nidn": "0711079303",
+  "nama": "Ns. Alfunnafi' Fahrul Rizzal, M. Kep., Sp. Kep.J",
+  "prodi": "1",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-09-21 14:37:59",
+  "updated_at": "2021-09-21 14:40:19"
+}, {
+  "id": 87,
+  "nik": "",
+  "nidn": "0704088501",
+  "nama": "Dion Kunto Adi Patria,S.Kep, Ners.,M.Kep",
+  "prodi": "1",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-09-21 14:40:42",
+  "updated_at": "2021-09-21 14:40:42"
+}, {
+  "id": 88,
+  "nik": "",
+  "nidn": "0720049103",
+  "nama": "Fendi Yoga Wardana, S.Si., M.Farm",
+  "prodi": "12",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-09-21 14:47:16",
+  "updated_at": "2021-09-21 14:47:16"
+}, {
+  "id": 89,
+  "nik": "",
+  "nidn": "0707069302",
+  "nama": "Rizta Widya Pangestika, S.Farm., M.Farm.Klin. Apt",
+  "prodi": "11",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-09-21 14:47:59",
+  "updated_at": "2021-10-13 03:41:48"
+}, {
+  "id": 90,
+  "nik": "",
+  "nidn": "0709129003",
+  "nama": "Dzikrina Ilmanita, S.Farm., M.Farm.Klin. Apt",
+  "prodi": "11",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-09-21 14:48:19",
+  "updated_at": "2021-10-13 03:41:09"
+}, {
+  "id": 91,
+  "nik": "",
+  "nidn": "0720058508",
+  "nama": "Nanang Ardianto, S.Farm., M.Farm.Klin. Apt",
+  "prodi": "11",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-09-21 14:48:46",
+  "updated_at": "2021-10-13 03:42:10"
+}, {
+  "id": 92,
+  "nik": "",
+  "nidn": "8805520016",
+  "nama": "Bagus Dadang Prasetiyo, S.T, M.T.",
+  "prodi": "11",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-09-21 14:48:59",
+  "updated_at": "2021-09-21 14:48:59"
+}, {
+  "id": 93,
+  "nik": "",
+  "nidn": "0725048503",
+  "nama": "Retno Dewi Prisusanti, SST., M.P.H",
+  "prodi": "6",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-09-21 14:49:42",
+  "updated_at": "2021-09-21 14:49:42"
+}, {
+  "id": 94,
+  "nik": "",
+  "nidn": "0730126503",
+  "nama": "Anis Ansyori, S. Psi, MMRS",
+  "prodi": "6",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-09-21 14:49:58",
+  "updated_at": "2021-09-21 14:49:58"
+}, {
+  "id": 95,
+  "nik": "",
+  "nidn": "8807901019",
+  "nama": "Arief Efendi, SMPh, SH(Adv), S.Kep.,Ners,. MM., M.Kes",
+  "prodi": "6",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-09-21 14:50:18",
+  "updated_at": "2021-09-21 14:50:18"
+}, {
+  "id": 96,
+  "nik": "",
+  "nidn": "0711029203",
+  "nama": "Achmad Jaelani Rusdi, SST., M.Kes.",
+  "prodi": "6",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-09-21 14:50:33",
+  "updated_at": "2021-09-21 14:50:33"
+}, {
+  "id": 97,
+  "nik": "",
+  "nidn": "0717059203",
+  "nama": "Wahyu Teja Kusuma, S.Kom., M.Kom.",
+  "prodi": "13",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-09-21 14:51:10",
+  "updated_at": "2021-09-21 14:51:10"
+}, {
+  "id": 98,
+  "nik": "",
+  "nidn": "0707089501",
+  "nama": "Nindynar Rikatsih, S.Kom., M.Kom.",
+  "prodi": "13",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-09-21 14:51:31",
+  "updated_at": "2021-09-21 14:51:31"
+}, {
+  "id": 99,
+  "nik": "",
+  "nidn": "0702039401",
+  "nama": "Mochamad Anshori, S.Kom., M.Kom.",
+  "prodi": "13",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-09-21 14:51:45",
+  "updated_at": "2021-09-21 14:51:45"
+}, {
+  "id": 100,
+  "nik": "",
+  "nidn": "0729078807",
+  "nama": "Ahsanun Naseh Khudori, S.Kom., M.Kom.",
+  "prodi": "13",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-09-21 14:51:59",
+  "updated_at": "2021-09-21 14:51:59"
+}, {
+  "id": 101,
+  "nik": "",
+  "nidn": "0722028501",
+  "nama": "M. Syauqi Haris, S.Kom., M.Kom.",
+  "prodi": "13",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-09-21 14:52:12",
+  "updated_at": "2021-09-21 14:52:12"
+}, {
+  "id": 102,
+  "nik": "",
+  "nidn": "0711019302",
+  "nama": "Nurul Halimah, S.Ft., Physio., M.Biomed.",
+  "prodi": "4",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-09-21 14:52:36",
+  "updated_at": "2021-09-21 14:52:36"
+}, {
+  "id": 103,
+  "nik": "",
+  "nidn": "0717028304",
+  "nama": "Achmad Fariz, S.Ft., F.Tr., M.Fis.",
+  "prodi": "4",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-09-21 14:53:18",
+  "updated_at": "2021-09-21 14:53:18"
+}, {
+  "id": 104,
+  "nik": "",
+  "nidn": "0731129003",
+  "nama": "Angria Pradita, S.Ft., Physio., M.Biomed.",
+  "prodi": "4",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-09-21 14:53:35",
+  "updated_at": "2021-09-21 14:53:35"
+}, {
+  "id": 105,
+  "nik": "",
+  "nidn": "0727025001",
+  "nama": "Bambang Soekotjo,SST",
+  "prodi": "1",
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-10-05 03:20:00",
+  "updated_at": "2021-10-05 03:32:25"
+}, {
+  "id": 106,
+  "nik": "",
+  "nidn": "0726068708",
+  "nama": "Anis Zuni Rohmania, SST., M.Kes.",
+  "prodi": "3",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:09:56",
+  "updated_at": "2021-11-19 07:09:56"
+}, {
+  "id": 107,
+  "nik": "",
+  "nidn": "8862433420",
+  "nama": "Nur Khomariyah, SST., M.Pd.",
+  "prodi": "3",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:10:31",
+  "updated_at": "2021-11-19 07:12:18"
+}, {
+  "id": 108,
+  "nik": "",
+  "nidn": "0719129004",
+  "nama": "Bd. Galila Aisyah Latif Amini, S.Keb., MKM.",
+  "prodi": "3",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:13:07",
+  "updated_at": "2021-11-19 07:13:07"
+}, {
+  "id": 109,
+  "nik": "",
+  "nidn": "0714129005",
+  "nama": "Dina Nurpita Suprawoto, S.Kep., Ners., M.Kep.",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:19:31",
+  "updated_at": "2021-11-19 07:19:31"
+}, {
+  "id": 110,
+  "nik": "",
+  "nidn": "0710096604",
+  "nama": "Ft. Fransisca Xaveria Hargiani, S.Ft., M.Pd., M.Kes.",
+  "prodi": "4",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:20:42",
+  "updated_at": "2021-11-19 07:20:42"
+}, {
+  "id": 111,
+  "nik": "",
+  "nidn": "0725037601",
+  "nama": "Ft. Agung Hadi Endaryanto, SST., M.Kes.",
+  "prodi": "4",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:21:15",
+  "updated_at": "2021-11-19 07:21:35"
+}, {
+  "id": 112,
+  "nik": "",
+  "nidn": "0708038904",
+  "nama": "Ft. Yohanes Deo Fau, S.Ft., M.H., M.Kes",
+  "prodi": "4",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:21:55",
+  "updated_at": "2021-11-19 07:21:55"
+}, {
+  "id": 113,
+  "nik": "",
+  "nidn": "0718048601",
+  "nama": "Dr. Widia Shofa Ilmiah, SST., M.Kes",
+  "prodi": "10",
+  "jabatan_fungsional": "Lektor",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:25:04",
+  "updated_at": "2023-02-14 06:07:03"
+}, {
+  "id": 114,
+  "nik": "",
+  "nidn": "8809740017",
+  "nama": "dr. I Putu Gde Santika, M.Si",
+  "prodi": "1",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:26:59",
+  "updated_at": "2021-11-19 07:26:59"
+}, {
+  "id": 115,
+  "nik": "",
+  "nidn": "0112128601",
+  "nama": "Merisdawati MR., S.Kep., Ners., M.Kep.",
+  "prodi": "8",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:27:19",
+  "updated_at": "2022-08-26 06:40:18"
+}, {
+  "id": 116,
+  "nik": "",
+  "nidn": "0716085905",
+  "nama": "Sujatmiko Yarjini",
+  "prodi": "1",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:28:30",
+  "updated_at": "2021-11-19 07:28:30"
+}, {
+  "id": 117,
+  "nik": "",
+  "nidn": "0718068005",
+  "nama": "Yuni Asri, M.Kes.",
+  "prodi": "1",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:28:47",
+  "updated_at": "2021-11-19 07:28:47"
+}, {
+  "id": 118,
+  "nik": "",
+  "nidn": "8814850017",
+  "nama": "Mustriwi, S.Kep., Ners., M.Kep",
+  "prodi": "1",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:29:05",
+  "updated_at": "2021-11-19 07:29:05"
+}, {
+  "id": 119,
+  "nik": "",
+  "nidn": "8887011019",
+  "nama": "Kumoro Asto Lenggono, S.Kep., Ners., M.Kep",
+  "prodi": "1",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:29:29",
+  "updated_at": "2021-11-19 07:29:29"
+}, {
+  "id": 120,
+  "nik": "",
+  "nidn": "8822480018",
+  "nama": "Mohamad Hadi Mulyono, S.Kep., Ners., M.Kes",
+  "prodi": "1",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:29:46",
+  "updated_at": "2021-11-19 07:29:46"
+}, {
+  "id": 121,
+  "nik": "",
+  "nidn": "0726017103",
+  "nama": "Simpen Widayati, S.Kep., Ners., M.Kep",
+  "prodi": "1",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:30:03",
+  "updated_at": "2021-11-19 07:30:03"
+}, {
+  "id": 122,
+  "nik": "",
+  "nidn": "8834840017",
+  "nama": "Dudung Kusnadi, S,Kep., M.Pd",
+  "prodi": "1",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:30:21",
+  "updated_at": "2021-11-19 07:30:21"
+}, {
+  "id": 123,
+  "nik": "",
+  "nidn": "0723118402",
+  "nama": "Ita Ulvia Vidianti, M.Kes",
+  "prodi": "2",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:30:59",
+  "updated_at": "2021-11-19 07:30:59"
+}, {
+  "id": 124,
+  "nik": "",
+  "nidn": "0710106010",
+  "nama": "Sulastri, M.Kes.",
+  "prodi": "2",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:31:19",
+  "updated_at": "2021-11-19 07:31:19"
+}, {
+  "id": 125,
+  "nik": "",
+  "nidn": "0725028501",
+  "nama": "Ana Vida Vindari, M.Kes.",
+  "prodi": "2",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:31:33",
+  "updated_at": "2021-11-19 07:31:33"
+}, {
+  "id": 126,
+  "nik": "",
+  "nidn": "0722068903",
+  "nama": "Riski Candra Karisma, SST., M.Kes",
+  "prodi": "2",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:31:53",
+  "updated_at": "2021-11-19 07:31:53"
+}, {
+  "id": 127,
+  "nik": "",
+  "nidn": "0701046903",
+  "nama": "dr. Zainal Alim, Sp.OG.",
+  "prodi": "2",
+  "jabatan_fungsional": "Asisten Ahli",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:32:11",
+  "updated_at": "2023-03-08 10:17:00"
+}, {
+  "id": 128,
+  "nik": "",
+  "nidn": "0726095703",
+  "nama": "Drs. Djoko Hirtono, SSTF., M.Si.",
+  "prodi": "5",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:33:10",
+  "updated_at": "2021-11-19 07:33:10"
+}, {
+  "id": 129,
+  "nik": "",
+  "nidn": "0725028303",
+  "nama": "dr. Lenny Tandya, Sp.Akup.",
+  "prodi": "5",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:33:44",
+  "updated_at": "2021-11-19 07:33:44"
+}, {
+  "id": 130,
+  "nik": "",
+  "nidn": "8859323419",
+  "nama": "dr. Retno Anggraini, M.Med.",
+  "prodi": "5",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:34:01",
+  "updated_at": "2021-11-19 07:34:01"
+}, {
+  "id": 131,
+  "nik": "",
+  "nidn": "0708108905",
+  "nama": "Rizal Andriyono, S.Farm., Apt., M.Sc.",
+  "prodi": "12",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:35:28",
+  "updated_at": "2021-11-19 07:35:28"
+}, {
+  "id": 132,
+  "nik": "",
+  "nidn": "0708096901",
+  "nama": "Yessi Susilowati, S.Si., Apt., MM.",
+  "prodi": "12",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:35:43",
+  "updated_at": "2021-11-19 07:35:43"
+}, {
+  "id": 133,
+  "nik": "",
+  "nidn": "8960710021",
+  "nama": "Elvianto Wihatno,S.Pd.,M.M.Kes",
+  "prodi": "12",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:36:01",
+  "updated_at": "2021-11-19 07:36:01"
+}, {
+  "id": 134,
+  "nik": "",
+  "nidn": "8962910021",
+  "nama": "dr. Maksum Pandelima, MMRS.",
+  "prodi": "12",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:36:16",
+  "updated_at": "2021-11-19 07:36:16"
+}, {
+  "id": 135,
+  "nik": "",
+  "nidn": "8802140017",
+  "nama": "Dewi Anggraeni, S.Kep., MMRS.",
+  "prodi": "6",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:37:48",
+  "updated_at": "2021-11-19 07:37:48"
+}, {
+  "id": 136,
+  "nik": "",
+  "nidn": "8870033420",
+  "nama": "Suwito, S.Kep., M.Kes.",
+  "prodi": "6",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2021-11-19 07:38:13",
+  "updated_at": "2021-11-19 07:38:13"
+}, {
+  "id": 137,
+  "nik": "",
+  "nidn": "9907001865",
+  "nama": "dr. Widiati Rahayu, Sp.P.",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-11-19 07:44:20",
+  "updated_at": "2021-11-19 07:44:20"
+}, {
+  "id": 138,
+  "nik": "",
+  "nidn": "9907160738",
+  "nama": "Agung Supriyanto, M.Pd",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-11-19 07:44:36",
+  "updated_at": "2021-11-19 07:44:36"
+}, {
+  "id": 139,
+  "nik": "",
+  "nidn": "9907160740",
+  "nama": "Muhammad Asrorur Robbani, M.Pd.I",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-11-19 07:45:31",
+  "updated_at": "2021-11-19 07:45:31"
+}, {
+  "id": 140,
+  "nik": "",
+  "nidn": "9907160743",
+  "nama": "dr. Wendy Budiawan, Sp.PD",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-11-19 07:45:53",
+  "updated_at": "2021-11-19 07:45:53"
+}, {
+  "id": 141,
+  "nik": "",
+  "nidn": "9907160741",
+  "nama": "dr. Tiwik Eriskawati, Sp.PK",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-11-19 07:46:07",
+  "updated_at": "2021-11-19 07:46:07"
+}, {
+  "id": 142,
+  "nik": "",
+  "nidn": "07202606",
+  "nama": "dr. Zainuddin Hamidi, Sp.A",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-11-19 07:46:27",
+  "updated_at": "2021-11-19 07:46:27"
+}, {
+  "id": 143,
+  "nik": "",
+  "nidn": "07202607",
+  "nama": "Muhari",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-11-19 07:46:42",
+  "updated_at": "2021-11-19 07:46:42"
+}, {
+  "id": 144,
+  "nik": "",
+  "nidn": "2110019301",
+  "nama": "Deny Setiawan, M.Pd",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-11-19 07:48:36",
+  "updated_at": "2021-11-19 07:48:36"
+}, {
+  "id": 145,
+  "nik": "",
+  "nidn": "0925128801",
+  "nama": "Listia Utami, M.Pd",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-11-19 07:48:50",
+  "updated_at": "2021-11-19 07:48:50"
+}, {
+  "id": 146,
+  "nik": "",
+  "nidn": "2014118703",
+  "nama": "Dirasti Novianti, M.Pd",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2021-11-19 07:49:03",
+  "updated_at": "2021-11-19 07:49:03"
+}, {
+  "id": 147,
+  "nik": "",
+  "nidn": "8924500020",
+  "nama": "dr. Bambang Soesilo, Sp.OG",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2022-01-31 07:10:50",
+  "updated_at": "2022-01-31 07:10:50"
+}, {
+  "id": 148,
+  "nik": "",
+  "nidn": "0727039402",
+  "nama": "Apt. Agung Permata, M.Farm",
+  "prodi": "11",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2022-02-03 06:40:03",
+  "updated_at": "2022-02-03 06:40:03"
+}, {
+  "id": 149,
+  "nik": "",
+  "nidn": "0707059205",
+  "nama": "Maulana Arif Murtadho",
+  "prodi": "1",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2022-02-08 03:53:21",
+  "updated_at": "2022-02-08 03:53:21"
+}, {
+  "id": 151,
+  "nik": "",
+  "nidn": "07202608",
+  "nama": "Ns. Ulum Mabruroh, M.Kep.",
+  "prodi": "1",
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2022-02-10 01:01:31",
+  "updated_at": "2022-02-15 11:07:07"
+}, {
+  "id": 152,
+  "nik": "",
+  "nidn": "0728036402",
+  "nama": "Untung Slamet Suhariyono, S.Kep., M.Kes.",
+  "prodi": "6",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2022-02-10 05:48:12",
+  "updated_at": "2022-02-10 05:48:12"
+}, {
+  "id": 153,
+  "nik": "",
+  "nidn": "07202609",
+  "nama": "Desma Legawa, SST",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2022-02-12 04:31:12",
+  "updated_at": "2022-02-12 04:31:12"
+}, {
+  "id": 154,
+  "nik": "",
+  "nidn": "07202610",
+  "nama": "Bekti Putro Wibowo, S.Kom",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2022-02-12 04:32:10",
+  "updated_at": "2022-02-12 04:32:10"
+}, {
+  "id": 155,
+  "nik": "",
+  "nidn": "0703019101",
+  "nama": "Ns. Ratna Roesardhyati, M.Kep",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2022-02-15 07:08:12",
+  "updated_at": "2022-02-25 06:30:04"
+}, {
+  "id": 156,
+  "nik": "",
+  "nidn": "07202612",
+  "nama": "Ns. Rif'atul Fani, M.Kep",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2022-02-15 07:08:31",
+  "updated_at": "2022-02-15 07:08:36"
+}, {
+  "id": 157,
+  "nik": "",
+  "nidn": "07202613",
+  "nama": "dr. Yusuf Arifin, Sp.JP.FIHA",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2022-02-16 06:35:17",
+  "updated_at": "2022-02-16 06:35:17"
+}, {
+  "id": 158,
+  "nik": "",
+  "nidn": "07202614",
+  "nama": "dr. Bowo Hery Prasetyo, Sp.S",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2022-02-16 06:35:45",
+  "updated_at": "2022-02-16 06:35:45"
+}, {
+  "id": 159,
+  "nik": "",
+  "nidn": "9907003531",
+  "nama": "Bd. Nikmatin, SST., M.M",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2022-02-16 06:36:54",
+  "updated_at": "2022-02-16 06:36:54"
+}, {
+  "id": 160,
+  "nik": "",
+  "nidn": "0709047002",
+  "nama": "Lilik Afifah, SE., M.Kes",
+  "prodi": "6",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2022-03-24 01:03:51",
+  "updated_at": "2022-03-24 01:03:51"
+}, {
+  "id": 161,
+  "nik": "",
+  "nidn": "07202615",
+  "nama": "Apt. Aldesra Fitri, M.Farm",
+  "prodi": "12",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2022-08-26 06:37:19",
+  "updated_at": "2022-08-26 06:37:19"
+}, {
+  "id": 162,
+  "nik": "",
+  "nidn": "0718019701",
+  "nama": "Ns. Kaslinda Nur Umifa, S.Kep., M.Kep",
+  "prodi": "8",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2022-08-26 06:38:37",
+  "updated_at": "2023-02-07 02:11:04"
+}, {
+  "id": 163,
+  "nik": "",
+  "nidn": "07202617",
+  "nama": "Lupita Bunga Pertiwi, M.Pd.",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2022-08-26 06:39:26",
+  "updated_at": "2022-08-26 11:46:31"
+}, {
+  "id": 164,
+  "nik": "",
+  "nidn": "0714048104",
+  "nama": "Widigdo Rekso Negoro, S.Tr.Kep., MH.",
+  "prodi": "8",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2022-09-03 08:12:56",
+  "updated_at": "2022-09-03 08:12:56"
+}, {
+  "id": 165,
+  "nik": "",
+  "nidn": "0715087602",
+  "nama": "dr. Reko Priyonggo, Sp.An",
+  "prodi": "8",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2022-09-03 08:13:20",
+  "updated_at": "2022-09-03 08:13:20"
+}, {
+  "id": 166,
+  "nik": "",
+  "nidn": "0716078301",
+  "nama": "dr. Muhammad Rodli, Sp.An",
+  "prodi": "8",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2022-09-03 08:13:47",
+  "updated_at": "2022-09-03 08:13:47"
+}, {
+  "id": 167,
+  "nik": "",
+  "nidn": "0717078404",
+  "nama": "dr. Sindu Sintara, Sp.An",
+  "prodi": "8",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2022-09-03 08:14:32",
+  "updated_at": "2022-09-03 08:14:32"
+}, {
+  "id": 168,
+  "nik": "",
+  "nidn": "0705047602",
+  "nama": "dr. Umi Satiyah, Sp.An",
+  "prodi": "8",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2022-09-03 08:15:06",
+  "updated_at": "2022-09-03 08:15:06"
+}, {
+  "id": 169,
+  "nik": "",
+  "nidn": "07202618",
+  "nama": "Triyono",
+  "prodi": "8",
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2022-09-03 08:15:21",
+  "updated_at": "2022-09-03 08:15:21"
+}, {
+  "id": 170,
+  "nik": "",
+  "nidn": "0714066506",
+  "nama": "Suryanto, S. Kep., Ns., S. Tr. Kes., M. Kes.",
+  "prodi": "8",
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2022-09-03 08:15:39",
+  "updated_at": "2023-02-07 04:07:33"
+}, {
+  "id": 171,
+  "nik": "",
+  "nidn": "07202620",
+  "nama": "Buang Santoso",
+  "prodi": "8",
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2022-09-03 08:16:00",
+  "updated_at": "2022-09-03 08:16:00"
+}, {
+  "id": 172,
+  "nik": "",
+  "nidn": "07202621",
+  "nama": "Emmanuel",
+  "prodi": "8",
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2022-09-03 08:16:18",
+  "updated_at": "2022-09-03 08:16:18"
+}, {
+  "id": 173,
+  "nik": "",
+  "nidn": "07202622",
+  "nama": "Isrom Widiono",
+  "prodi": "8",
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2022-09-03 08:16:39",
+  "updated_at": "2022-09-03 08:16:39"
+}, {
+  "id": 174,
+  "nik": "",
+  "nidn": "07202623",
+  "nama": "Priyo Santoso, SST., MM",
+  "prodi": "8",
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2022-09-03 08:17:03",
+  "updated_at": "2022-09-03 08:17:14"
+}, {
+  "id": 175,
+  "nik": "",
+  "nidn": "07202625",
+  "nama": "Apt. Tri Danang Kurniawan, S.Si., M.Farm",
+  "prodi": "11",
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2022-09-28 02:46:01",
+  "updated_at": "2022-11-02 04:12:00"
+}, {
+  "id": 176,
+  "nik": "",
+  "nidn": "07202626",
+  "nama": "Yunita, S.Pd., M.Si",
+  "prodi": "11",
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2022-09-28 02:46:17",
+  "updated_at": "2022-11-02 04:11:53"
+}, {
+  "id": 177,
+  "nik": "",
+  "nidn": "07202627",
+  "nama": "Apt. Farid Zulkarnain Nur Syah, S.Farm., M.Farm",
+  "prodi": "11",
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2022-09-28 02:46:45",
+  "updated_at": "2022-11-02 04:11:38"
+}, {
+  "id": 178,
+  "nik": "",
+  "nidn": "0728039301",
+  "nama": "Risqy Siwi Pradini, SST., M.Kom",
+  "prodi": "13",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2023-02-15 04:56:43",
+  "updated_at": "2023-02-15 04:56:43"
+}, {
+  "id": 179,
+  "nik": "",
+  "nidn": "07202629",
+  "nama": "apt. Novyananda Salmasfattah, M. Farm",
+  "prodi": "11",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2023-02-22 08:59:55",
+  "updated_at": "2023-02-22 08:59:55"
+}, {
+  "id": 180,
+  "nik": "",
+  "nidn": "0702119601",
+  "nama": "Ratih Tyas Widara, M.Si",
+  "prodi": "11",
+  "jabatan_fungsional": "-",
+  "status": "Tetap",
+  "created_at": "2023-03-02 06:54:09",
+  "updated_at": "2023-03-02 06:54:09"
+}, {
+  "id": 181,
+  "nik": "",
+  "nidn": "0713087402",
+  "nama": "Dr. Erna Susanti,SSi, MBiomed, Apt",
+  "prodi": "11",
+  "jabatan_fungsional": "Lektor Kepala",
+  "status": "Tidak Tetap",
+  "created_at": "2023-03-08 10:14:57",
+  "updated_at": "2023-03-08 10:15:32"
+}, {
+  "id": 182,
+  "nik": "",
+  "nidn": "0002118807",
+  "nama": "Wiranto Aji Dewandono, M.Pd",
+  "prodi": "6",
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2023-03-08 10:17:46",
+  "updated_at": "2023-03-08 10:17:46"
+}, {
+  "id": 183,
+  "nik": "",
+  "nidn": "0725058102",
+  "nama": "Apt. Tri Danang Kurniawan, SSi., M.Farm",
+  "prodi": "11",
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2023-03-16 01:00:02",
+  "updated_at": "2023-03-16 01:00:02"
+}, {
+  "id": 184,
+  "nik": "",
+  "nidn": "2112088402",
+  "nama": "Budik Kusworo, M.Pd",
+  "prodi": "11",
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2023-04-04 04:00:44",
+  "updated_at": "2023-04-05 02:32:11"
+}, {
+  "id": 185,
+  "nik": "",
+  "nidn": "0217048301",
+  "nama": "Siti Nurlaila, M.Psi",
+  "prodi": null,
+  "jabatan_fungsional": "-",
+  "status": "Tidak Tetap",
+  "created_at": "2023-04-04 04:09:49",
+  "updated_at": "2023-04-04 04:09:49"
+}]
