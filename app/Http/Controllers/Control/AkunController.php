@@ -6,6 +6,7 @@ use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Models\Prodi;
 use App\Models\User;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -18,7 +19,10 @@ class AkunController extends Controller
         $role = Role::all();
         $prodi = Prodi::all();
         if ($request->ajax()) {
-            $user = User::with('roles', 'prodi')->get();
+            $user = User::with('roles', 'prodi')
+                        ->whereHas('roles',  function (Builder $query) use ($request) {
+                          $query->where('name', $request->role);
+                        })->get();
             return ResponseFormatter::success($user, 'Data Received Succesfully!');
         }
         return view('pages.control.akun', compact('role', 'prodi'));

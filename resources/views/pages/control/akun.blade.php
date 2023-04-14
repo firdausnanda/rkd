@@ -12,6 +12,19 @@
                         <h4 style="font-weight: bold;">Data Akun</h4>
                     </div>
 
+                    {{-- Filter --}}
+                    <div class="row">
+                        <div class="col-lg-4 mb-3">
+                            <label for="role">Role</label>
+                            <select class="form-control" id="role-select">
+                                <option value="-">-</option>
+                                @foreach ($role as $p)
+                                    <option value="{{ $p->name }}">{{ $p->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="table-responsive mb-4 mt-4">
                         <table id="table-akun" class="table     " style="width:100%">
                             <thead>
@@ -181,7 +194,10 @@
                 lengthChange: false,
                 ajax: {
                     url: "{{ route('superadmin.akun.index') }}",
-                    type: "GET"
+                    type: "GET",
+                    data: function (d) { 
+                        d.role = $('#role-select').val()
+                    }
                 },
                 buttons: [{
                     text: '<i class="fa-solid fa-plus mr-2"></i> Tambah Data',
@@ -273,6 +289,11 @@
                         '#table-akun_wrapper .col-md-6:eq(0)');
                     $('.btn-tambah').removeClass("btn-secondary");
                 }
+            });
+
+            $('#role-select').change(function (e) { 
+                e.preventDefault();
+                table.ajax.reload()
             });
 
             // Update
