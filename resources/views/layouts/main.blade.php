@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>RKD | Dashboard </title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('img/logo 90x90.png') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/logo_90x90.png') }}" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{ asset('css/loader.css') }}" rel="stylesheet" type="text/css" />
     <script src="{{ asset('js/loader.js') }}"></script>
