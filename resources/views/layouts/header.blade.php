@@ -5,7 +5,7 @@
          <ul class="navbar-item theme-brand flex-row  text-center">
              <li class="nav-item theme-logo">
                  <a href="">
-                     <img src="{{ asset('img/logo 90x90.png') }}" class="navbar-logo" alt="logo">
+                     <img src="{{ asset('img/logo_90x90.png') }}" class="navbar-logo" alt="logo">
                  </a>
              </li>
              <li class="nav-item theme-text">
