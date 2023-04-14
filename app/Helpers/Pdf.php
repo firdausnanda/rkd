@@ -20,7 +20,7 @@ class Pdf extends Fpdf
     $this->Cell($w, 4, $teksHeader2, 0, 0, 'C');
     $this->Line(10, 19, 135, 19);
     $this->Ln(7);
-    $this->Image(asset('img/anonim.png'), 18, 10, 1, 1);
+    $this->Image('./img/anonim.png', 18, 10, 1, 1);
   }
 
   
