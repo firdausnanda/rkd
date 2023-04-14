@@ -77,16 +77,16 @@ class LoginController extends Controller
           }
     }
 
-    public function validateLogin(Request $request)
-    {
-        $user = User::where($this->username(), $request->input($this->username()))->first();
-        if ($user->is_active == 0) {
-            throw ValidationException::withMessages([$this->username() => __('The account is inactive')]);
-        }
+    // public function validateLogin(Request $request)
+    // {
+    //     $user = User::where($this->username(), $request->input($this->username()))->first();
+    //     if ($user->is_active == 0) {
+    //         throw ValidationException::withMessages([$this->username() => __('The account is inactive')]);
+    //     }
         
-        $request->validate([
-            $this->username() => 'required|string',
-            'password' => 'required|string',
-        ]);
-    }
+    //     $request->validate([
+    //         $this->username() => 'required|string',
+    //         'password' => 'required|string',
+    //     ]);
+    // }
 }
