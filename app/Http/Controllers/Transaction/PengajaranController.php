@@ -519,7 +519,7 @@ class PengajaranController extends Controller
         $pdf->Cell(97);
         $x = $pdf->GetX();
         $y = $pdf->GetY();
-        $pdf->Image(asset('img/ttd8.png'), $x, $y - 30, 90);
+        $pdf->Image('./img/ttd8.png', $x, $y - 30, 90);
 
         $pdf->ln();
         $pdf->Cell(97);
@@ -638,7 +638,7 @@ class PengajaranController extends Controller
         $pdf->Cell(97);
         $x = $pdf->GetX();
         $y = $pdf->GetY();
-        $pdf->Image(asset('img/ttd8.png'), $x, $y - 30, 90);
+        $pdf->Image('./img/ttd8.png', $x, $y - 30, 90);
         
         $pdf->ln();
         $pdf->Cell(97);
