@@ -31,6 +31,11 @@ Route::get('/', function () {
 
 Auth::routes(['register' => false]);
 
+// Akun
+Route::group(['prefix' => 'akun', 'as' => 'akun.', 'middleware' => ['auth']], function () {
+	Route::put('', [DashboardController::class, 'update'])->name('update');
+});
+
 // Superadmin
 Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => ['role:superadmin', 'auth']], function () {
   

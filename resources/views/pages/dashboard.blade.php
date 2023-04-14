@@ -87,7 +87,7 @@
                 <div class="widget-content-area br-4">
                     <div>
 
-                        <h6>Selamat Datang, <b>{{ strtoupper(Auth::user()->name) }}!</b></h6>
+                        <h6>Selamat Datang, <b>{{ Auth::user()->name }}!</b></h6>
 
                         <p style="margin-bottom: 0px;">The starter page is highly optimized which gives you freedom to
                             start.</p>

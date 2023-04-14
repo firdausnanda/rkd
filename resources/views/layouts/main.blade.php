@@ -105,6 +105,46 @@
     </div>
     <!-- END MAIN CONTAINER -->
 
+    {{-- Modal Akun --}}
+    <div class="modal fade fadeinUp" id="modal-akun" tabindex="-1" role="dialog" tabindex="-1"
+        data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Ganti Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
+                </div>
+                <form id="form-akun">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password Lama</label>
+                            <input type="password" class="form-control" name="pass_lama"
+                                placeholder="Password lama">
+                            <input type="hidden" name="id" value="{{ Auth::user()->id }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password Baru</label>
+                            <input type="password" class="form-control" name="pass_baru"
+                                placeholder="Password baru">
+                            <small id="emailHelp" class="form-text text-muted"><span class="text-danger">*</span>
+                                Password harus lebih dari 8 karakter.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Ulangi Password Baru</label>
+                            <input type="password" class="form-control" name="pass_baru_ulangi"
+                                placeholder="Ulangi password baru">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i>
+                            Discard</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
     <script src="{{ asset('js/libs/jquery-3.1.1.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
@@ -112,8 +152,7 @@
     <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
-    {{-- <script src="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script> --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.5/perfect-scrollbar.min.js"></script>
+    <script src="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
@@ -152,6 +191,38 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
+            });
+
+            // Update
+            $('#show-akun').click(function(e) {
+                e.preventDefault();
+                $('#modal-akun').modal('show');
+            });
+
+            // Submit Update
+            $('#form-akun').submit(function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    type: "PUT",
+                    url: "{{ route('akun.update') }}",
+                    data: $(this).serialize(),
+                    dataType: "JSON",
+                    beforeSend: function() {
+                        Swal.showLoading()
+                    },
+                    success: function(response) {
+                        Swal.hideLoading()
+                        $('#modal-akun').modal('hide');
+                        Swal.fire('Sukses!', 'Data berhasil diupdate', 'success')
+                    },
+                    error: function(response) {
+                        Swal.hideLoading()
+                        $('#modal-akun').modal('hide');
+                        Swal.fire('Error!', response.responseJSON.meta.message, 'error')
+                    }
+                });
+
             });
         });
     </script>
