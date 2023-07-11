@@ -372,30 +372,39 @@ class PengajaranController extends Controller
         $pdf->Cell(25, 7,'Kode MA', 1, 0, 'C');
         $pdf->Cell(45, 7,'Matakuliah', 1, 0, 'C');
         $pdf->Cell(25, 7,'Prodi', 1, 0, 'C');
-        $pdf->Cell(25, 7,'Semester', 1, 0, 'C');
-        $pdf->Cell(20, 7,'Kelas', 1, 0, 'C');
+        $pdf->Cell(15, 7,'Semester', 1, 0, 'C');
+        $pdf->Cell(15, 7,'SKS', 1, 0, 'C');
+        $pdf->Cell(15, 7,'Kelas', 1, 0, 'C');
         $pdf->Cell(20, 7,'Total Dosen', 1, 0, 'C');
         $pdf->Cell(20, 7,'Total', 1, 0, 'C');
 
         $pdf->SetFont('Arial', '', 8);
+        $totalall = 0;
         foreach($pengajaran as $key => $v){
             $total = $v->total_sks * $v->kelas / $v->total_dosen;
+            $totalall = $totalall + $total;
             $pdf->ln();
 
-            $pdf->SetWidths(Array(10,25,45,25,25,20,20,20));
+            $pdf->SetWidths(Array(10,25,45,25,15,15,15,20,20));
             $pdf->SetLineHeight(5);
-            $pdf->SetAligns(Array('C','L','L','L','C','C', 'C', 'C'));
+            $pdf->SetAligns(Array('C','L','L','L','C','C', 'C', 'C', 'C'));
             $pdf->Row(Array(
                 $key+1,
                 $v->matakuliah->kode_matakuliah,
                 $v->matakuliah->nama_matakuliah,
                 $v->prodi->nama_prodi,
                 $v->semester,
+                $v->total_sks,
                 $v->kelas,
                 $v->total_dosen,
                 number_format($total, 2, '.', ''),
             ));
         }
+
+        $pdf->ln();
+        $pdf->SetFont('Arial', 'B', 9);
+        $pdf->Cell(170, 7, 'Total', 1, 0, 'C');
+        $pdf->Cell(20, 7, number_format($totalall, 2, '.', ''), 1, 0, 'C');
 
         // Ttd
         $pdf->Ln(15);
@@ -595,30 +604,39 @@ class PengajaranController extends Controller
         $pdf->Cell(25, 7,'Kode MA', 1, 0, 'C');
         $pdf->Cell(45, 7,'Matakuliah', 1, 0, 'C');
         $pdf->Cell(25, 7,'Prodi', 1, 0, 'C');
-        $pdf->Cell(25, 7,'Semester', 1, 0, 'C');
-        $pdf->Cell(20, 7,'Kelas', 1, 0, 'C');
+        $pdf->Cell(15, 7,'Semester', 1, 0, 'C');
+        $pdf->Cell(15, 7,'SKS', 1, 0, 'C');
+        $pdf->Cell(15, 7,'Kelas', 1, 0, 'C');
         $pdf->Cell(20, 7,'Total Dosen', 1, 0, 'C');
         $pdf->Cell(20, 7,'Total', 1, 0, 'C');
 
         $pdf->SetFont('Arial', '', 8);
+        $totalall = 0;
         foreach($pengajaran as $key => $v){
             $total = $v->total_sks * $v->kelas / $v->total_dosen;
+            $totalall = $totalall + $total;
             $pdf->ln();
 
-            $pdf->SetWidths(Array(10,25,45,25,25,20,20,20));
+            $pdf->SetWidths(Array(10,25,45,25,15,15,15,20,20));
             $pdf->SetLineHeight(5);
-            $pdf->SetAligns(Array('C','L','L','L','C','C', 'C', 'C'));
+            $pdf->SetAligns(Array('C','L','L','L','C','C', 'C', 'C', 'C'));
             $pdf->Row(Array(
                 $key+1,
                 $v->matakuliah->kode_matakuliah,
                 $v->matakuliah->nama_matakuliah,
                 $v->prodi->nama_prodi,
                 $v->semester,
+                $v->total_sks,
                 $v->kelas,
                 $v->total_dosen,
                 number_format($total, 2, '.', ''),
             ));
         }
+
+        $pdf->ln();
+        $pdf->SetFont('Arial', 'B', 9);
+        $pdf->Cell(170, 7, 'Total', 1, 0, 'C');
+        $pdf->Cell(20, 7, number_format($totalall, 2, '.', ''), 1, 0, 'C');
 
         // Ttd
         $pdf->Ln(15);
