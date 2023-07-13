@@ -6,6 +6,7 @@ use App\Http\Controllers\Master\DosenController;
 use App\Http\Controllers\Master\MatakuliahController;
 use App\Http\Controllers\Master\ProdiController;
 use App\Http\Controllers\Master\TahunAkademikController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\Transaction\PengajaranController;
 use App\Http\Controllers\Transaction\ValidasiController;
 use Illuminate\Support\Facades\Auth;
@@ -246,6 +247,17 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['role:user',
 		Route::get('/print', [PengajaranController::class, 'print'])->name('print');
 		Route::get('/print-ttd', [PengajaranController::class, 'print_ttd'])->name('print_ttd');
 	});
+});
+
+// Report
+Route::group(['prefix' => 'report', 'as' => 'report.', 'middleware' => ['role:superadmin|admin|prodi|mwi|bsdm', 'auth']], function () {
+
+	// Matakuliah
+	Route::get('/matakuliah', [ReportController::class, 'matakuliah'])->name('matakuliah');
+
+	// Dosen
+	Route::get('/dosen', [ReportController::class, 'dosen'])->name('dosen');
+
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -26,4 +26,9 @@ class Matakuliah extends Model
     {
         return $this->belongsTo(Prodi::class, 'kode_prodi', 'kode_prodi');
     }
+
+    public function pengajaran()
+    {
+        return $this->hasMany(SgasPengajaran::class, 'id_matakuliah', 'id');
+    }
 }

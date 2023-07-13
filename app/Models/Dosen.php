@@ -24,4 +24,9 @@ class Dosen extends Model
     {
         return $this->belongsTo(Prodi::class, 'id_prodi', 'id');
     }
+
+    public function sgas()
+    {
+        return $this->hasMany(Sgas::class, 'id_dosen', 'id');
+    }
 }
