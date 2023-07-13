@@ -52,8 +52,6 @@
                                     <th>NAMA DOSEN</th>
                                     <th>PRODI</th>
                                     <th>MATAKULIAH</th>
-                                    <th>SKS</th>
-                                    <th class="no-content"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -135,28 +133,7 @@
                         width: '10%',
                         className: 'text-center align-middle fs-14',
                         render: function(data, type, row, meta) {
-                            console.log(row.sgas[0].pengajaran);
-                            var value = null
-                            $.each(row.sgas[0].pengajaran, function (i, v) { 
-                               value = v.matakuliah.nama_matakuliah
-                            });
-                            return value
-                        }
-                    },
-                    {
-                        targets: 5,
-                        width: '10%',
-                        className: 'text-center align-middle fs-14',
-                        render: function(data, type, row, meta) {
-                            return 'tes'
-                        }
-                    },
-                    {
-                        targets: 6,
-                        width: '10%',
-                        className: 'text-center align-middle fs-14',
-                        render: function(data, type, row, meta) {
-                            return 'tes'
+                            return '<button class="btn btn-outline-info btn-sm btn-detail">Detail</button>'
                         }
                     }
                 ],

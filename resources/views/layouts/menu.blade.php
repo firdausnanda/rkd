@@ -407,11 +407,11 @@
                     </a>
                     <ul class="submenu list-unstyled collapse {{ request()->is('report/*') ? 'show' : '' }}"
                         id="elements" data-parent="#accordionExample" style="">
-                        <li class="{{ request()->is('report/rekap-matkul') ? 'active' : '' }}">
-                            <a href="/report/rekap-matkul" style="text-decoration: none;">Rekap Matakuliah</a>
+                        <li class="{{ request()->is('report/matakuliah') ? 'active' : '' }}">
+                            <a href="/report/matakuliah" style="text-decoration: none;">Rekap Matakuliah</a>
                         </li>
-                        <li class="{{ request()->is('report/rekap-dosen') ? 'active' : '' }}">
-                            <a href="/report/rekap-dosen" style="text-decoration: none;">Rekap Dosen</a>
+                        <li class="{{ request()->is('report/dosen') ? 'active' : '' }}">
+                            <a href="/report/dosen" style="text-decoration: none;">Rekap Dosen</a>
                         </li>
                         <li class="{{ request()->is('report/rekap-pembimbingan') ? 'active' : '' }}">
                             <a href="/report/rekap-pembimbingan" style="text-decoration: none; font-size: 12px;">Rekap

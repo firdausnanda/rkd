@@ -338,19 +338,19 @@ select.bs-select-hidden, select.selectpicker {
   width: 100%; }
 
 .btn-outline-primary:hover {
-  color: #1b55e2 !important; }
+  color: #1b55e2; }
 
 .btn-outline-info:hover {
-  color: #2196f3 !important; }
+  color: #2196f3; }
 
 .btn-outline-warning:hover {
-  color: #e2a03f !important; }
+  color: #e2a03f; }
 
 .btn-outline-success:hover {
-  color: #8dbf42 !important; }
+  color: #8dbf42; }
 
 .btn-outline-danger:hover {
-  color: #e7515a !important; }
+  color: #e7515a; }
 
 .bootstrap-select.btn-group > .dropdown-toggle.btn-outline-primary, .bootstrap-select.btn-group > .dropdown-toggle.btn-outline-success, .bootstrap-select.btn-group > .dropdown-toggle.btn-outline-info, .bootstrap-select.btn-group > .dropdown-toggle.btn-outline-danger, .bootstrap-select.btn-group > .dropdown-toggle.btn-outline-warning {
   background-color: transparent; }
