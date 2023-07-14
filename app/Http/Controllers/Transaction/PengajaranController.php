@@ -381,7 +381,8 @@ class PengajaranController extends Controller
         $pdf->SetFont('Arial', '', 8);
         $totalall = 0;
         foreach($pengajaran as $key => $v){
-            $total = $v->total_sks * $v->kelas / $v->total_dosen;
+            // $total = $v->total_sks * $v->kelas / $v->total_dosen;
+            $total = $v->matakuliah->sks * $v->kelas / $v->total_dosen;
             $totalall = $totalall + $total;
             $pdf->ln();
 
@@ -394,7 +395,7 @@ class PengajaranController extends Controller
                 $v->matakuliah->nama_matakuliah,
                 $v->prodi->nama_prodi,
                 $v->semester,
-                $v->total_sks,
+                $v->matakuliah->sks,
                 $v->kelas,
                 $v->total_dosen,
                 number_format($total, 2, '.', ''),
@@ -613,7 +614,8 @@ class PengajaranController extends Controller
         $pdf->SetFont('Arial', '', 8);
         $totalall = 0;
         foreach($pengajaran as $key => $v){
-            $total = $v->total_sks * $v->kelas / $v->total_dosen;
+            // $total = $v->total_sks * $v->kelas / $v->total_dosen;
+            $total = $v->matakuliah->sks * $v->kelas / $v->total_dosen;
             $totalall = $totalall + $total;
             $pdf->ln();
 
@@ -626,7 +628,7 @@ class PengajaranController extends Controller
                 $v->matakuliah->nama_matakuliah,
                 $v->prodi->nama_prodi,
                 $v->semester,
-                $v->total_sks,
+                $v->matakuliah->sks,
                 $v->kelas,
                 $v->total_dosen,
                 number_format($total, 2, '.', ''),

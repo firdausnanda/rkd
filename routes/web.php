@@ -257,6 +257,7 @@ Route::group(['prefix' => 'report', 'as' => 'report.', 'middleware' => ['role:su
 
 	// Dosen
 	Route::get('/dosen', [ReportController::class, 'dosen'])->name('dosen');
+	Route::post('/dosen/print', [ReportController::class, 'printDosen'])->name('printDosen');
 
 });
 
