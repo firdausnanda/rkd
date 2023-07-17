@@ -22,20 +22,22 @@ class SiakadController extends Controller
                         ->where('semester', $request->semester)
                         ->with('pengajaran.matakuliah.prodi', 'dosen.prodi')
                         ->first();
-        
-        foreach ($sgas->pengajaran as $key => $p) {
-            
-                $totalDosen = SgasPengajaran::with('matakuliah', 'sgas')
-                                ->whereHas('matakuliah', function (Builder $query) use ($p) {
-                                    $query->where('id', $p->id_matakuliah);
-                                })
-                                ->whereHas('sgas', function (Builder $query) use ($p) {
-                                    $query->where('id_tahun_akademik', $p->sgas->id_tahun_akademik);
-                                })
-                                ->where('semester', $p->semester)
-                                ->count();
-
-                $sgas->pengajaran[$key]->total_dosen = $totalDosen;                
+                        
+        if ($sgas && $sgas->pengajaran) {
+            foreach ($sgas->pengajaran as $key => $p) {
+                
+                    $totalDosen = SgasPengajaran::with('matakuliah', 'sgas')
+                                    ->whereHas('matakuliah', function (Builder $query) use ($p) {
+                                        $query->where('id', $p->id_matakuliah);
+                                    })
+                                    ->whereHas('sgas', function (Builder $query) use ($p) {
+                                        $query->where('id_tahun_akademik', $p->sgas->id_tahun_akademik);
+                                    })
+                                    ->where('semester', $p->semester)
+                                    ->count();
+    
+                    $sgas->pengajaran[$key]->total_dosen = $totalDosen;                
+            }
         }
 
         return ResponseFormatter::success($sgas, 'Data berhasil diambil!', 200);
