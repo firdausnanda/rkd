@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\SiakadController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+// Siakad
+Route::group(['prefix' => 'siakad', 'as' => 'siakad.'], function () {
+    Route::get('', [SiakadController::class, 'index'])->name('index');
 });
