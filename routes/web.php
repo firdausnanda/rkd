@@ -9,6 +9,7 @@ use App\Http\Controllers\Master\TahunAkademikController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\Transaction\PengajaranController;
 use App\Http\Controllers\Transaction\ValidasiController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -262,3 +263,7 @@ Route::group(['prefix' => 'report', 'as' => 'report.', 'middleware' => ['role:su
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/config-clear', function(){
+	Artisan::call('cache:clear');
+});
