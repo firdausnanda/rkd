@@ -150,7 +150,7 @@
                             },
                             error: function(data) {
                                 Swal.hideLoading()
-                                alert('Not downloaded');
+                                console.log(data);
                             }
                         });
                     }
