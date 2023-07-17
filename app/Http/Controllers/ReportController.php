@@ -77,8 +77,12 @@ class ReportController extends Controller
     }
 
     public function printDosen(Request $request) 
-    {       
-        $nama_file = 'Dosen_'.date('Y-m-d_H-i-s').'.xlsx';
-        return Excel::download(new DosenExport($request->semester, $request->ta), $nama_file);
+    {
+        try {
+            $nama_file = 'Dosen_'.date('Y-m-d_H-i-s').'.xlsx';
+            return Excel::download(new DosenExport($request->semester, $request->ta), $nama_file);
+        } catch (\Exception $e) {
+            return ResponseFormatter::error($e, 'Server Error!');
+        }       
     }
 }
