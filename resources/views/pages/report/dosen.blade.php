@@ -151,6 +151,7 @@
                             error: function(data) {
                                 Swal.hideLoading()
                                 console.log(data);
+                                alert('Not downloaded');
                             }
                         });
                     }
