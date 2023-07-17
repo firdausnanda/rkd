@@ -263,7 +263,3 @@ Route::group(['prefix' => 'report', 'as' => 'report.', 'middleware' => ['role:su
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/config-clear', function(){
-	Artisan::call('cache:clear');
-});
