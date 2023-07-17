@@ -80,7 +80,12 @@ class ReportController extends Controller
     {
         try {
             $nama_file = 'Dosen_'.date('Y-m-d_H-i-s').'.xlsx';
-            return Excel::download(new DosenExport($request->semester, $request->ta), $nama_file);
+            $download = Excel::download(new DosenExport($request->semester, $request->ta), $nama_file);
+            if ($download) {
+                return $download;
+            } else {
+                return ResponseFormatter::error('Excel Error', 'Server Error!');
+            }
         } catch (\Exception $e) {
             return ResponseFormatter::error($e, 'Server Error!');
         }       

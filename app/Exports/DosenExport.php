@@ -21,7 +21,6 @@ class DosenExport implements FromView
 
     public function view(): View
     {
-        dd($this->semester);
         $sgas = Dosen::join('sgas', 'm_dosen.id', '=', 'sgas.id_dosen')
                     ->join('sgas_pengajaran', 'sgas.id', '=', 'sgas_pengajaran.id_sgas')
                     ->join('m_matakuliah', 'sgas_pengajaran.id_matakuliah', '=', 'm_matakuliah.id')
