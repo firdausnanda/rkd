@@ -269,7 +269,7 @@ class SiakadController extends Controller
         $pdf->Cell(97);
         $pdf->Cell(98, 7, 'NIDN. 0703077604', 0, 0, 'C');
         $pdf->ln(10);
-
+        header('Access-Control-Allow-Origin: *');
         $pdf->Output('D', 'PA.pdf');
     }
     
@@ -509,7 +509,7 @@ class SiakadController extends Controller
         $pdf->Cell(97);
         $pdf->Cell(98, 7, 'NIDN. 0703077604', 0, 0, 'C');
         $pdf->ln(10);
-
+        header('Access-Control-Allow-Origin: *');
         $pdf->Output('D', 'PA.pdf');
     }
 }
