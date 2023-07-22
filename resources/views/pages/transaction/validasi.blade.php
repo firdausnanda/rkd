@@ -12,6 +12,13 @@
                         <h4 style="font-weight: bold;">Validasi Data</h4>
                     </div>
 
+                    @role('admin')
+                    <div class="alert alert-primary" role="alert">
+                        <strong class="font-weight-bold">Perhatian!</strong><br>
+                        Data Dosen yang muncul adalah data dosen yang memiliki homebase di <b>{{ Auth::user()->fakultas->nama_fakultas }}</b> 
+                    </div>
+                    @endrole
+
                     {{-- Filter --}}
                     <div class="row">
                         <div class="col-lg-3 mb-3">

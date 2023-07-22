@@ -9,6 +9,7 @@ use App\Models\SgasPengajaran;
 use App\Models\TahunAkademik;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ValidasiController extends Controller
 {
@@ -40,11 +41,23 @@ class ValidasiController extends Controller
                 return ResponseFormatter::success($pengajaran, 'Data berhasil diambil!');
             }
 
-            $sgas = Sgas::where('semester', $request->semester)
-                        ->where('id_tahun_akademik', $request->ta)
-                        ->where('validasi', $request->status)
-                        ->with('tahun_akademik', 'dosen.prodi')
-                        ->get();
+            if (Auth::user()->roles[0]->name == 'admin') {
+                $sgas = Sgas::where('semester', $request->semester)
+                            ->where('id_tahun_akademik', $request->ta)
+                            ->where('validasi', $request->status)
+                            ->whereHas('dosen.prodi.fakultas', function (Builder $q){
+                                $q->where('id', Auth::user()->id_fakultas);
+                            })
+                            ->with('tahun_akademik', 'dosen.prodi')
+                            ->get();
+            }else{
+                $sgas = Sgas::where('semester', $request->semester)
+                            ->where('id_tahun_akademik', $request->ta)
+                            ->where('validasi', $request->status)
+                            ->with('tahun_akademik', 'dosen.prodi')
+                            ->get();
+            }
+
             return ResponseFormatter::success($sgas, 'Data berhasil diambil!');
         }
         

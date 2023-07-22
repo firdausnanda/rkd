@@ -15,4 +15,9 @@ class Prodi extends Model
     ];
 
     protected $table = 'm_prodi';
+
+    public function fakultas()
+    {
+        return $this->belongsTo(Fakultas::class, 'id_fakultas', 'id');
+    }
 }

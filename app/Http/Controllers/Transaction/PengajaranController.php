@@ -208,7 +208,16 @@ class PengajaranController extends Controller
     public function print(Request $request)
     {
         $id = $request->id;
-        $sgas = Sgas::with('pengajaran', 'tahun_akademik', 'dosen.prodi')->where('id', $id)->first();
+        $sgas = Sgas::with('pengajaran', 'tahun_akademik', 'dosen.prodi.fakultas')->where('id', $id)->first();
+        
+        if (!$sgas->dosen->prodi) {
+            return ResponseFormatter::error('Data dosen tidak memiliki homebase', 'server error', 402);
+        }
+
+        $aliasFakultas = $sgas->dosen && $sgas->dosen->prodi ? $sgas->dosen->prodi->fakultas->alias : '';
+        $fakultas = $sgas->dosen && $sgas->dosen->prodi ? $sgas->dosen->prodi->fakultas->nama_fakultas : '';
+        $dekan = $sgas->dosen && $sgas->dosen->prodi ? $sgas->dosen->prodi->fakultas->dekan : '';
+        $nidn_dekan = $sgas->dosen && $sgas->dosen->prodi ? $sgas->dosen->prodi->fakultas->nidn_dekan : '';
 
         $pengajaran = SgasPengajaran::with('matakuliah', 'prodi', 'sgas')
                             ->whereHas('sgas',  function (Builder $query) use ($id) {
@@ -231,7 +240,7 @@ class PengajaranController extends Controller
         }
 
         // dd($sgas);
-        $pdf = new Pdf(); //L For Landscape / P For Portrait
+        $pdf = new Pdf($fakultas); //L For Landscape / P For Portrait
         $pdf->AddPage();
 
         // Header
@@ -242,21 +251,21 @@ class PengajaranController extends Controller
         $pdf->Cell($w, 15, $title, 0, 0, 'C');
         $pdf->Ln(4);
         $tahun = $sgas->semester == 'ganjil' ? $sgas->tahun_akademik->semester_ganjil : $sgas->tahun_akademik->semester_genap;
-        $pdf->Cell(193, 15, 'Nomor : Sgas / ' . $sgas->no_plot . ' / ' . Bilangan::Roman((int)Carbon::parse($tahun)->format('m')) . ' / ' . Str::of($tahun)->substr(0, 4), 0, 0, 'C');
+        $pdf->Cell(193, 15, 'Nomor : Sgas / ' . $sgas->no_plot . ' / ' . Bilangan::Roman((int)Carbon::parse($tahun)->format('m')) . ' / ' . Str::of($tahun)->substr(0, 4) . ' / ' . $aliasFakultas, 0, 0, 'C');
         $pdf->Ln(17);
 
         $pdf->Cell(1, 7, 'Menimbang', 0, 0, 'L');
         $pdf->Cell(45);
         $pdf->Cell(1, 7, ':', 0, 0, 'L');
         $pdf->Cell(5);
-        $pdf->MultiCellIndent(135, 7, 'Bahwa untuk melaksanakan kegiatan Tri Dharma di lingkungan Fakultas Sains, Teknologi, dan Kesehatan ITSK RS DR. Soepraoen Kesdam V/Brw Malang maka perlu dikeluarkan surat tugas.', 0, 'J', false, 10);
+        $pdf->MultiCellIndent(135, 7, 'Bahwa untuk melaksanakan kegiatan Tri Dharma di lingkungan ' . $fakultas . ' ITSK RS DR. Soepraoen Kesdam V/Brw Malang maka perlu dikeluarkan surat tugas.', 0, 'J', false, 10);
         $pdf->Ln(3);
 
         $pdf->Cell(1, 7, 'Dasar', 0, 0, 'L');
         $pdf->Cell(45);
         $pdf->Cell(1, 7, ':', 0, 0, 'L');
         $pdf->Cell(5);
-        $pdf->MultiCellIndent(135, 7, 'Rencana Operasional kegiatan pelaksanaan Tri Dharma perguruan tinggi bagi dosen Semester ' . Str::title($sgas->semester) . ' TA. ' . $sgas->tahun_akademik->tahun_akademik .' di lingkungan Fakultas Sains, Teknologi, dan Kesehatan ITSK RS DR. Soepraoen Kesdam V/Brw Malang.', 0, 'J', false, 10);
+        $pdf->MultiCellIndent(135, 7, 'Rencana Operasional kegiatan pelaksanaan Tri Dharma perguruan tinggi bagi dosen Semester ' . Str::title($sgas->semester) . ' TA. ' . $sgas->tahun_akademik->tahun_akademik .' di lingkungan ' . $fakultas . ' ITSK RS DR. Soepraoen Kesdam V/Brw Malang.', 0, 'J', false, 10);
 
         $title = "DITUGASKAN";
         $pdf->SetFont('Arial', 'B', 11, 5);
@@ -276,10 +285,10 @@ class PengajaranController extends Controller
         $pdf->Cell(45);
         $pdf->Cell(1, 7, ':', 0, 0, 'L');
         $pdf->Cell(5);
-        $pdf->MultiCellIndent(135, 7, '1.   Seterimanya surat perintah ini ditugaskan sebagai Dosen Pengajar untuk melaksanakan kegiatan tri dharma perguruan tinggi bagi dosen Semester ' . Str::title($sgas->semester) . ' TA. ' . $sgas->tahun_akademik->tahun_akademik .' di lingkungan Fakultas Sains, Teknologi, dan Kesehatan ITSK RS DR. Soepraoen Kesdam V/Brw Malang;', 0, 'J', false, 0);
+        $pdf->MultiCellIndent(135, 7, '1.   Seterimanya surat perintah ini ditugaskan sebagai Dosen Pengajar untuk melaksanakan kegiatan tri dharma perguruan tinggi bagi dosen Semester ' . Str::title($sgas->semester) . ' TA. ' . $sgas->tahun_akademik->tahun_akademik .' di lingkungan ' . $fakultas . ' ITSK RS DR. Soepraoen Kesdam V/Brw Malang;', 0, 'J', false, 0);
         $pdf->Ln(3);
         $pdf->Cell(52);
-        $pdf->MultiCellIndent(135, 7, '2.   Lapor kepada Dekan Fakultas Sains, Teknologi, Dan Kesehatan RS dr. Soepraoen atas pelaksanaan surat tugas ini;', 0, 'J', false, 0);
+        $pdf->MultiCellIndent(135, 7, '2.   Lapor kepada Dekan ' . $fakultas . ' RS dr. Soepraoen atas pelaksanaan surat tugas ini;', 0, 'J', false, 0);
         $pdf->Ln(3);
         $pdf->Cell(52);
         $pdf->MultiCellIndent(135, 7, '3.   Melaksanakan tugas ini dengan seksama dan penuh rasa tanggung jawab.', 0, 'J', false, 0);
@@ -297,13 +306,13 @@ class PengajaranController extends Controller
         $pdf->Cell(97);
         $pdf->Cell(98, 5, 'Dekan', 0, 1, 'C');
         $pdf->Cell(97);
-        $pdf->Cell(98, 5, 'Fakultas Sains, Teknologi Dan Kesehatan', 0, 1, 'C');
+        $pdf->Cell(98, 5, $fakultas, 0, 1, 'C');
         $pdf->ln(23);
         $pdf->Cell(97);
-        $pdf->Cell(98, 7, 'Amin Zakaria, S.Kep., Ners., M.Kes', 0, 0, 'C');
+        $pdf->Cell(98, 7, $dekan, 0, 0, 'C');
         $pdf->ln(5);
         $pdf->Cell(97);
-        $pdf->Cell(98, 7, 'NIDN. 0703077604', 0, 0, 'C');
+        $pdf->Cell(98, 7, 'NIDN. ' . $nidn_dekan, 0, 0, 'C');
         $pdf->ln(10);
 
         $pdf->SetFont('Arial', '', 10);
@@ -316,7 +325,7 @@ class PengajaranController extends Controller
         
         $pdf->AddPage();
         $pdf->SetFont('Arial', '', 11);
-        $pdf->Cell(1, 7, 'Nomor : Sgas / ' . $sgas->no_plot . ' / ' . Bilangan::Roman((int)Carbon::parse($tahun)->format('m')) . ' / ' . Str::of($tahun)->substr(0, 4), 0, 0, 'L');
+        $pdf->Cell(1, 7, 'Nomor : Sgas / ' . $sgas->no_plot . ' / ' . Bilangan::Roman((int)Carbon::parse($tahun)->format('m')) . ' / ' . Str::of($tahun)->substr(0, 4) . ' / ' . $aliasFakultas, 0, 0, 'L');
         $pdf->Ln(5);
 
         // Header
@@ -332,7 +341,7 @@ class PengajaranController extends Controller
         $pdf->Cell(60);
         $pdf->Cell(1, 7, ':', 0, 0, 'L');
         $pdf->Cell(5);
-        $pdf->MultiCellIndent(100, 7, 'Dekan Fakultas Sains Teknologi dan Kesehatan', 0, 'J', false, 0);
+        $pdf->MultiCellIndent(100, 7, 'Dekan ' . $fakultas, 0, 'J', false, 0);
         $pdf->Ln(0);
         
         $pdf->Cell(1, 7, '2.    Nama yang diberi tugas', 0, 0, 'L');
@@ -419,22 +428,32 @@ class PengajaranController extends Controller
         $pdf->Cell(97);
         $pdf->Cell(98, 5, 'Dekan', 0, 1, 'C');
         $pdf->Cell(97);
-        $pdf->Cell(98, 5, 'Fakultas Sains, Teknologi Dan Kesehatan', 0, 1, 'C');
+        $pdf->Cell(98, 5, $fakultas, 0, 1, 'C');
         $pdf->ln(23);
         $pdf->Cell(97);
-        $pdf->Cell(98, 7, 'Amin Zakaria, S.Kep., Ners., M.Kes', 0, 0, 'C');
+        $pdf->Cell(98, 7, $dekan, 0, 0, 'C');
         $pdf->ln(5);
         $pdf->Cell(97);
-        $pdf->Cell(98, 7, 'NIDN. 0703077604', 0, 0, 'C');
+        $pdf->Cell(98, 7, 'NIDN. ' . $nidn_dekan, 0, 0, 'C');
         $pdf->ln(10);
 
+        header('Access-Control-Allow-Origin: *');
         $pdf->Output('D', 'PA.pdf');
     }
     
     public function print_ttd(Request $request)
     {
         $id = $request->id;
-        $sgas = Sgas::with('pengajaran', 'tahun_akademik', 'dosen.prodi')->where('id', $id)->first();
+        $sgas = Sgas::with('pengajaran', 'tahun_akademik', 'dosen.prodi.fakultas')->where('id', $id)->first();
+        
+        if (!$sgas->dosen->prodi) {
+            return ResponseFormatter::error('Data dosen tidak memiliki homebase', 'server error', 402);
+        }
+
+        $aliasFakultas = $sgas->dosen && $sgas->dosen->prodi ? $sgas->dosen->prodi->fakultas->alias : '';
+        $fakultas = $sgas->dosen && $sgas->dosen->prodi ? $sgas->dosen->prodi->fakultas->nama_fakultas : '';
+        $dekan = $sgas->dosen && $sgas->dosen->prodi ? $sgas->dosen->prodi->fakultas->dekan : '';
+        $nidn_dekan = $sgas->dosen && $sgas->dosen->prodi ? $sgas->dosen->prodi->fakultas->nidn_dekan : '';
 
         $pengajaran = SgasPengajaran::with('matakuliah', 'prodi', 'sgas')
                             ->whereHas('sgas',  function (Builder $query) use ($id) {
@@ -457,7 +476,7 @@ class PengajaranController extends Controller
         }
 
         // dd($sgas);
-        $pdf = new Pdf(); //L For Landscape / P For Portrait
+        $pdf = new Pdf($fakultas); //L For Landscape / P For Portrait
         $pdf->AddPage();
 
         // Header
@@ -468,21 +487,21 @@ class PengajaranController extends Controller
         $pdf->Cell($w, 15, $title, 0, 0, 'C');
         $pdf->Ln(4);
         $tahun = $sgas->semester == 'ganjil' ? $sgas->tahun_akademik->semester_ganjil : $sgas->tahun_akademik->semester_genap;
-        $pdf->Cell(193, 15, 'Nomor : Sgas / ' . $sgas->no_plot . ' / ' . Bilangan::Roman((int)Carbon::parse($tahun)->format('m')) . ' / ' . Str::of($tahun)->substr(0, 4), 0, 0, 'C');
+        $pdf->Cell(193, 15, 'Nomor : Sgas / ' . $sgas->no_plot . ' / ' . Bilangan::Roman((int)Carbon::parse($tahun)->format('m')) . ' / ' . Str::of($tahun)->substr(0, 4) . ' / ' . $aliasFakultas, 0, 0, 'C');
         $pdf->Ln(17);
 
         $pdf->Cell(1, 7, 'Menimbang', 0, 0, 'L');
         $pdf->Cell(45);
         $pdf->Cell(1, 7, ':', 0, 0, 'L');
         $pdf->Cell(5);
-        $pdf->MultiCellIndent(135, 7, 'Bahwa untuk melaksanakan kegiatan Tri Dharma di lingkungan Fakultas Sains, Teknologi, dan Kesehatan ITSK RS DR. Soepraoen Kesdam V/Brw Malang maka perlu dikeluarkan surat tugas.', 0, 'J', false, 10);
+        $pdf->MultiCellIndent(135, 7, 'Bahwa untuk melaksanakan kegiatan Tri Dharma di lingkungan ' . $fakultas . ' ITSK RS DR. Soepraoen Kesdam V/Brw Malang maka perlu dikeluarkan surat tugas.', 0, 'J', false, 10);
         $pdf->Ln(3);
 
         $pdf->Cell(1, 7, 'Dasar', 0, 0, 'L');
         $pdf->Cell(45);
         $pdf->Cell(1, 7, ':', 0, 0, 'L');
         $pdf->Cell(5);
-        $pdf->MultiCellIndent(135, 7, 'Rencana Operasional kegiatan pelaksanaan Tri Dharma perguruan tinggi bagi dosen Semester ' . Str::title($sgas->semester) . ' TA. ' . $sgas->tahun_akademik->tahun_akademik .' di lingkungan Fakultas Sains, Teknologi, dan Kesehatan ITSK RS DR. Soepraoen Kesdam V/Brw Malang.', 0, 'J', false, 10);
+        $pdf->MultiCellIndent(135, 7, 'Rencana Operasional kegiatan pelaksanaan Tri Dharma perguruan tinggi bagi dosen Semester ' . Str::title($sgas->semester) . ' TA. ' . $sgas->tahun_akademik->tahun_akademik .' di lingkungan ' . $fakultas . ' ITSK RS DR. Soepraoen Kesdam V/Brw Malang.', 0, 'J', false, 10);
 
         $title = "DITUGASKAN";
         $pdf->SetFont('Arial', 'B', 11, 5);
@@ -502,10 +521,10 @@ class PengajaranController extends Controller
         $pdf->Cell(45);
         $pdf->Cell(1, 7, ':', 0, 0, 'L');
         $pdf->Cell(5);
-        $pdf->MultiCellIndent(135, 7, '1.   Seterimanya surat perintah ini ditugaskan sebagai Dosen Pengajar untuk melaksanakan kegiatan tri dharma perguruan tinggi bagi dosen Semester ' . Str::title($sgas->semester) . ' TA. ' . $sgas->tahun_akademik->tahun_akademik .' di lingkungan Fakultas Sains, Teknologi, dan Kesehatan ITSK RS DR. Soepraoen Kesdam V/Brw Malang;', 0, 'J', false, 0);
+        $pdf->MultiCellIndent(135, 7, '1.   Seterimanya surat perintah ini ditugaskan sebagai Dosen Pengajar untuk melaksanakan kegiatan tri dharma perguruan tinggi bagi dosen Semester ' . Str::title($sgas->semester) . ' TA. ' . $sgas->tahun_akademik->tahun_akademik .' di lingkungan ' . $fakultas . ' ITSK RS DR. Soepraoen Kesdam V/Brw Malang;', 0, 'J', false, 0);
         $pdf->Ln(3);
         $pdf->Cell(52);
-        $pdf->MultiCellIndent(135, 7, '2.   Lapor kepada Dekan Fakultas Sains, Teknologi, Dan Kesehatan RS dr. Soepraoen atas pelaksanaan surat tugas ini;', 0, 'J', false, 0);
+        $pdf->MultiCellIndent(135, 7, '2.   Lapor kepada Dekan ' . $fakultas . ' RS dr. Soepraoen atas pelaksanaan surat tugas ini;', 0, 'J', false, 0);
         $pdf->Ln(3);
         $pdf->Cell(52);
         $pdf->MultiCellIndent(135, 7, '3.   Melaksanakan tugas ini dengan seksama dan penuh rasa tanggung jawab.', 0, 'J', false, 0);
@@ -523,7 +542,7 @@ class PengajaranController extends Controller
         $pdf->Cell(97);
         $pdf->Cell(98, 5, 'Dekan', 0, 1, 'C');
         $pdf->Cell(97);
-        $pdf->Cell(98, 5, 'Fakultas Sains, Teknologi Dan Kesehatan', 0, 1, 'C');
+        $pdf->Cell(98, 5, $fakultas, 0, 1, 'C');
         $pdf->ln(23);
 
         $pdf->Cell(97);
@@ -533,10 +552,10 @@ class PengajaranController extends Controller
 
         $pdf->ln();
         $pdf->Cell(97);
-        $pdf->Cell(98, 7, 'Amin Zakaria, S.Kep., Ners., M.Kes', 0, 0, 'C');
+        $pdf->Cell(98, 7, $dekan, 0, 0, 'C');
         $pdf->ln(5);
         $pdf->Cell(97);
-        $pdf->Cell(98, 7, 'NIDN. 0703077604', 0, 0, 'C');
+        $pdf->Cell(98, 7, 'NIDN. ' . $nidn_dekan, 0, 0, 'C');
         $pdf->ln(10);
 
         $pdf->SetFont('Arial', '', 10);
@@ -549,7 +568,7 @@ class PengajaranController extends Controller
         
         $pdf->AddPage();
         $pdf->SetFont('Arial', '', 11);
-        $pdf->Cell(1, 7, 'Nomor : Sgas / ' . $sgas->no_plot . ' / ' . Bilangan::Roman((int)Carbon::parse($tahun)->format('m')) . ' / ' . Str::of($tahun)->substr(0, 4), 0, 0, 'L');
+        $pdf->Cell(1, 7, 'Nomor : Sgas / ' . $sgas->no_plot . ' / ' . Bilangan::Roman((int)Carbon::parse($tahun)->format('m')) . ' / ' . Str::of($tahun)->substr(0, 4) . ' / ' . $aliasFakultas, 0, 0, 'L');
         $pdf->Ln(5);
 
         // Header
@@ -565,7 +584,7 @@ class PengajaranController extends Controller
         $pdf->Cell(60);
         $pdf->Cell(1, 7, ':', 0, 0, 'L');
         $pdf->Cell(5);
-        $pdf->MultiCellIndent(100, 7, 'Dekan Fakultas Sains Teknologi dan Kesehatan', 0, 'J', false, 0);
+        $pdf->MultiCellIndent(100, 7, 'Dekan ' . $fakultas, 0, 'J', false, 0);
         $pdf->Ln(0);
         
         $pdf->Cell(1, 7, '2.    Nama yang diberi tugas', 0, 0, 'L');
@@ -652,7 +671,7 @@ class PengajaranController extends Controller
         $pdf->Cell(97);
         $pdf->Cell(98, 5, 'Dekan', 0, 1, 'C');
         $pdf->Cell(97);
-        $pdf->Cell(98, 5, 'Fakultas Sains, Teknologi Dan Kesehatan', 0, 1, 'C');
+        $pdf->Cell(98, 5, $fakultas, 0, 1, 'C');
         $pdf->ln(23);
 
         $pdf->Cell(97);
@@ -662,12 +681,13 @@ class PengajaranController extends Controller
         
         $pdf->ln();
         $pdf->Cell(97);
-        $pdf->Cell(98, 7, 'Amin Zakaria, S.Kep., Ners., M.Kes', 0, 0, 'C');
+        $pdf->Cell(98, 7, $dekan, 0, 0, 'C');
         $pdf->ln(5);
         $pdf->Cell(97);
-        $pdf->Cell(98, 7, 'NIDN. 0703077604', 0, 0, 'C');
+        $pdf->Cell(98, 7, 'NIDN. ' . $nidn_dekan, 0, 0, 'C');
         $pdf->ln(10);
 
+        header('Access-Control-Allow-Origin: *');
         $pdf->Output('D', 'PA.pdf');
     }
 }

@@ -1,19 +1,26 @@
 <?php
 namespace App\Helpers;
+use Illuminate\Support\Str;
 use Codedge\Fpdf\Fpdf\Fpdf;
 
 
 class Pdf extends Fpdf
 {
 
-	protected $widths, $aligns, $lineHeight;
+	protected $widths, $aligns, $lineHeight, $fakultas;
+
+	public function  __construct($fakultas)
+	{
+			parent::__construct();
+			$this->fakultas = $fakultas;
+	}
 
   // Page header
   function Header()
   {
     //Header
     $teksHeader1 = "INSTITUT TEKNOLOGI, SAINS, DAN KESEHATAN RS dr.SOEPRAOEN";
-    $teksHeader2 = "FAKULTAS SAINS, TEKNOLOGI, DAN KESEHATAN";
+    $teksHeader2 = Str::upper($this->fakultas);
     $this->SetFont('Arial', '', 11);
     $w = $this->GetStringWidth($teksHeader1);
     $this->Cell($w, 4, $teksHeader1, 0, 1, 'C');

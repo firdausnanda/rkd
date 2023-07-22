@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\SiakadController;
+use App\Http\Controllers\Transaction\PengajaranController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Siakad
 Route::group(['prefix' => 'siakad', 'as' => 'siakad.'], function () {
     Route::get('', [SiakadController::class, 'index'])->name('index');
-    Route::get('/print', [SiakadController::class, 'print'])->name('print');
-    Route::get('/print-ttd', [SiakadController::class, 'print_ttd'])->name('print_ttd');
+    Route::get('/print', [PengajaranController::class, 'print'])->name('print');
+    Route::get('/print-ttd', [PengajaranController::class, 'print_ttd'])->name('print_ttd');
 });

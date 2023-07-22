@@ -358,6 +358,9 @@
                         action: function(e, dt, node, config) {
                             if ($('#status').text() == 'Pending') {
                                 Swal.fire('Gagal!', 'Silakan hubungi admin', 'error')
+                            } else if ($('#prodi_dosen').val() == '-'){
+                                $('#print-pengajaran').modal('show')
+                                // Swal.fire('Gagal!', 'Data dosen belum memiliki homebase', 'error')
                             } else {
                                 $('#print-pengajaran').modal('show')
                             }
@@ -794,10 +797,16 @@
                         var url = URL.createObjectURL(blob);
                         window.open(url, '_blank');
                     },
-                    error: function(response) {
+                    error: function(xhr, status, error) {
                         Swal.hideLoading()
-                        Swal.fire('Data Tidak Ditemukan!', 'Periksa kembali data anda.',
-                            'error');
+
+                        if (xhr.status == 402) {
+                            Swal.fire('Periksa kembali data anda!', 'Data Dosen tidak memiliki homebase', 
+                                'error');                            
+                        }else{
+                            Swal.fire( 'Periksa kembali data anda!', 'Data Tidak Ditemukan',
+                                'error');
+                        }
                     },
                 });
 

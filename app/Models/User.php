@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Prodi::class, 'kode_prodi', 'kode_prodi');
     }
+
+    public function fakultas()
+    {
+        return $this->belongsTo(Fakultas::class, 'id_fakultas', 'id');
+    }
 }
