@@ -26,7 +26,7 @@ class PengajaranController extends Controller
         if (Auth::user()->roles[0]->name == 'user') {
             $dosen = Dosen::where('id', Auth::user()->id_dosen)->get();
         }else{
-            $dosen = Dosen::all();
+            $dosen = Dosen::where('is_active', 1)->get();
         }
 
         if (Auth::user()->roles[0]->name == 'prodi') {
@@ -365,7 +365,7 @@ class PengajaranController extends Controller
         $pdf->MultiCellIndent(100, 7, $sgas->dosen->jabatan_fungsional ?? '-', 0, 'J', false, 0);
         $pdf->Ln(0);
         
-        $pdf->Cell(1, 7, '5.    NIP / NIDN / NIDK', 0, 0, 'L');
+        $pdf->Cell(1, 7, '5.    NIDN', 0, 0, 'L');
         $pdf->Cell(60);
         $pdf->Cell(1, 7, ':', 0, 0, 'L');
         $pdf->Cell(5);
@@ -612,7 +612,7 @@ class PengajaranController extends Controller
         $pdf->MultiCellIndent(100, 7, $sgas->dosen->jabatan_fungsional ?? '-', 0, 'J', false, 0);
         $pdf->Ln(0);
         
-        $pdf->Cell(1, 7, '5.    NIP / NIDN / NIDK', 0, 0, 'L');
+        $pdf->Cell(1, 7, '5.    NIDN', 0, 0, 'L');
         $pdf->Cell(60);
         $pdf->Cell(1, 7, ':', 0, 0, 'L');
         $pdf->Cell(5);
