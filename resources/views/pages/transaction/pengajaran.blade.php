@@ -423,7 +423,8 @@
                         className: 'text-center align-middle fs-14',
                         data: 'total',
                         render: function(data, type, row, meta) {
-                            var total = row.total_sks * row.kelas / row.total_dosen
+                            // console.log(row);
+                            var total = row.matakuliah.sks * row.kelas / row.total_dosen
                             return total.toFixed(2)
                         }
                     },
@@ -465,7 +466,7 @@
                     // Total over this page
                     var total = api
                         .column(8)
-                        .data()
+                        .cache('search')
                         .reduce(function(a, b) {
                             return intVal(a) + intVal(b);
                         }, 0);
