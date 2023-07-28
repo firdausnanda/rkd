@@ -573,6 +573,27 @@
                 </li>
 
                 <li class="menu menu-heading">
+                    <div class="heading" style="margin-left: 3px;;"><span>Master</span></div>
+                </li>
+
+                <li class="menu">
+                    <a href="{{ route('bsdm.dosen.index') }}"
+                        data-active="{{ request()->routeIs('bsdm.dosen.*') ? 'true' : '' }}"
+                        aria-expanded="{{ request()->routeIs('bsdm.dosen.*') ? 'true' : 'false' }}"
+                        class="dropdown-toggle" style="text-decoration: none;">
+                        <div class="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="feather feather-user">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            <span>Dosen</span>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="menu menu-heading">
                     <div class="heading" style="margin-left: 3px;;"><span>Transaction</span></div>
                 </li>
 

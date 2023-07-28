@@ -214,6 +214,15 @@ Route::group(['prefix' => 'bsdm', 'as' => 'bsdm.', 'middleware' => ['role:bsdm',
 	// Dashboard
 	Route::get('', [DashboardController::class, 'index'])->name('index');
 
+	// Dosen
+  Route::group(['prefix' => 'dosen', 'as' => 'dosen.'], function () {
+		Route::get('', [DosenController::class, 'index'])->name('index');
+		Route::post('', [DosenController::class, 'store'])->name('store');
+		Route::put('', [DosenController::class, 'update'])->name('update');
+		Route::put('/aktif', [DosenController::class, 'aktif'])->name('aktif');
+	});
+
+
 	// Pengajaran
   Route::group(['prefix' => 'pengajaran', 'as' => 'pengajaran.'], function () {
 		Route::get('', [PengajaranController::class, 'index'])->name('index');
