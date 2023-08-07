@@ -18,16 +18,48 @@ class Pdf extends Fpdf
   // Page header
   function Header()
   {
+    //Header Lama
+    // $teksHeader1 = "INSTITUT TEKNOLOGI, SAINS, DAN KESEHATAN RS dr.SOEPRAOEN";
+    // $teksHeader2 = Str::upper($this->fakultas);
+    // $this->SetFont('Arial', '', 11);
+    // $w = $this->GetStringWidth($teksHeader1);
+    // $this->Cell($w, 4, $teksHeader1, 0, 1, 'C');
+    // $this->Cell($w, 4, $teksHeader2, 0, 0, 'C');
+    // $this->Line(10, 19, 135, 19);
+    // $this->Ln(7);
+    // $this->Image('./img/anonim.png', 18, 10, 1, 1);
+		
     //Header
-    $teksHeader1 = "INSTITUT TEKNOLOGI, SAINS, DAN KESEHATAN RS dr.SOEPRAOEN";
-    $teksHeader2 = Str::upper($this->fakultas);
-    $this->SetFont('Arial', '', 11);
-    $w = $this->GetStringWidth($teksHeader1);
-    $this->Cell($w, 4, $teksHeader1, 0, 1, 'C');
-    $this->Cell($w, 4, $teksHeader2, 0, 0, 'C');
-    $this->Line(10, 19, 135, 19);
-    $this->Ln(7);
-    $this->Image('./img/anonim.png', 18, 10, 1, 1);
+		$this->Image('./img/logo.png', 16, 10, 25);
+    $title0 = "INSTITUT TEKNOLOGI SAINS DAN KESEHATAN";
+    $title =  "RS DR.SOEPRAOEN KESDAM V/BRAWIJAYA MALANG";
+    $title1 =  Str::upper($this->fakultas);
+    $title2 =  "Jalan Sudanco Supriyadi nomor 22 Malang 65147 Telp (0341) 351275 Fax. (0341) 351310";
+    $title3 =  "Website : www.itsk-soepraoen.ac.id Email : informasi@itsk-soepraoen.ac.id";
+    $this->SetFont('Arial', 'B', 12, 5);
+    $w0 = $this->GetStringWidth($title0) + 6;
+    $w = $this->GetStringWidth($title) + 6;
+    $w1 = $this->GetStringWidth($title1) + 6;
+    $w2 = $this->GetStringWidth($title2) + 6;
+    $w3 = $this->GetStringWidth($title3) + 6;
+    $this->SetX((210 - $w0) / 2);
+    $this->Cell($w0, 7, $title0, 0, 0, 'C');
+    $this->SetX((210 - $w) / 2);
+    $this->Cell($w, 17, $title, 0, 0, 'C');
+    // $this->SetFont('Arial', 'B', 11, 5);
+    $this->SetX((210 - $w1) / 2);
+    $this->Cell($w1, 27, $title1, 0, 0, 'C');
+    $this->SetFont('Arial', '', 8, 5);
+    $this->SetX((210 - $w2) / 2);
+    $this->Cell($w2, 37, $title2, 0, 0, 'C');
+    $this->SetX((210 - $w3) / 2);
+    $this->Cell($w3, 44, $title3, 0, 0, 'C');
+    // header Line break
+    $this->SetLineWidth(1);
+    $this->Line(10, 36, 200, 36);
+    $this->SetLineWidth(0);
+    $this->Line(10, 37, 200, 37);
+		$this->Ln(26);
   }
 
   

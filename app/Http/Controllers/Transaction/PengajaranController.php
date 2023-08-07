@@ -325,6 +325,7 @@ class PengajaranController extends Controller
         
         $pdf->AddPage();
         $pdf->SetFont('Arial', '', 11);
+        $pdf->Ln(2);
         $pdf->Cell(1, 7, 'Nomor : Sgas / ' . $sgas->no_plot . ' / ' . Bilangan::Roman((int)Carbon::parse($tahun)->format('m')) . ' / ' . Str::of($tahun)->substr(0, 4) . ' / ' . $aliasFakultas, 0, 0, 'L');
         $pdf->Ln(5);
 
@@ -572,6 +573,7 @@ class PengajaranController extends Controller
         
         $pdf->AddPage();
         $pdf->SetFont('Arial', '', 11);
+        $pdf->Ln(2);
         $pdf->Cell(1, 7, 'Nomor : Sgas / ' . $sgas->no_plot . ' / ' . Bilangan::Roman((int)Carbon::parse($tahun)->format('m')) . ' / ' . Str::of($tahun)->substr(0, 4) . ' / ' . $aliasFakultas, 0, 0, 'L');
         $pdf->Ln(5);
 
