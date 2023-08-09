@@ -575,7 +575,7 @@ class PengajaranController extends Controller
         $pdf->SetFont('Arial', '', 11);
         $pdf->Ln(2);
         $pdf->Cell(1, 7, 'Nomor : Sgas / ' . $sgas->no_plot . ' / ' . Bilangan::Roman((int)Carbon::parse($tahun)->format('m')) . ' / ' . Str::of($tahun)->substr(0, 4) . ' / ' . $aliasFakultas, 0, 0, 'L');
-        $pdf->Ln(5);
+        $pdf->Ln(2);
 
         // Header
         $pdf->SetFont('Arial', 'BU', 12 , 5);
@@ -583,7 +583,7 @@ class PengajaranController extends Controller
         $w = $pdf->GetStringWidth($title) + 6;
         $pdf->SetX((210 - $w) / 2);
         $pdf->Cell($w, 15, $title, 0, 0, 'C');
-        $pdf->Ln(17);
+        $pdf->Ln(13);
 
         $pdf->SetFont('Arial', '', 11, 5);
         $pdf->Cell(1, 7, '1.    Pejabat yang memberi tugas', 0, 0, 'L');
@@ -619,7 +619,7 @@ class PengajaranController extends Controller
         $pdf->Cell(1, 7, ':', 0, 0, 'L');
         $pdf->Cell(5);
         $pdf->MultiCellIndent(100, 7, $sgas->dosen->nidn ?? '-', 0, 'J', false, 0);
-        $pdf->Ln(5);
+        $pdf->Ln(0);
         
         $pdf->SetFont('Arial', 'B', 11, 5);
         $pdf->Cell(1, 7, 'I. Pengajaran', 0, 0, 'L');
@@ -666,7 +666,7 @@ class PengajaranController extends Controller
         $pdf->Cell(20, 7, number_format($totalall, 2, '.', ''), 1, 0, 'C');
 
         // Ttd
-        $pdf->Ln(15);
+        $pdf->Ln(7);
         $pdf->SetFont('Arial', '', 11);
         $pdf->Cell(97);
         $pdf->Cell(98, 7, 'Ditetapkan di : Malang', 0, 0, 'C');
