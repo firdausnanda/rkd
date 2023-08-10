@@ -11,24 +11,37 @@ use Illuminate\Database\Eloquent\Builder;
 class DosenExport implements FromView
 {
 
-    protected $ta, $semester;
+    protected $ta, $semester, $fakultas;
 
-    public function  __construct($semester, $ta)
+    public function  __construct($semester, $ta, $fakultas)
     {
         $this->ta= $ta;
         $this->semester= $semester;
+        $this->fakultas= $fakultas;
     }
 
     public function view(): View
     {
-        $sgas = Dosen::join('sgas', 'm_dosen.id', '=', 'sgas.id_dosen')
-                    ->join('sgas_pengajaran', 'sgas.id', '=', 'sgas_pengajaran.id_sgas')
-                    ->join('m_matakuliah', 'sgas_pengajaran.id_matakuliah', '=', 'm_matakuliah.id')
-                    ->join('m_prodi', 'm_matakuliah.kode_prodi', '=', 'm_prodi.kode_prodi')
-                    ->where('sgas.semester', $this->semester)
-                    ->where('sgas.id_tahun_akademik', $this->ta)
-                    ->where('validasi', 1)
-                    ->get();
+        if ($this->fakultas) {
+            $sgas = Dosen::join('sgas', 'm_dosen.id', '=', 'sgas.id_dosen')
+                        ->join('sgas_pengajaran', 'sgas.id', '=', 'sgas_pengajaran.id_sgas')
+                        ->join('m_matakuliah', 'sgas_pengajaran.id_matakuliah', '=', 'm_matakuliah.id')
+                        ->join('m_prodi', 'm_matakuliah.kode_prodi', '=', 'm_prodi.kode_prodi')
+                        ->where('sgas.semester', $this->semester)
+                        ->where('sgas.id_tahun_akademik', $this->ta)
+                        ->where('m_prodi.id_fakultas', $this->fakultas)
+                        ->where('validasi', 1)
+                        ->get();
+        }else{
+            $sgas = Dosen::join('sgas', 'm_dosen.id', '=', 'sgas.id_dosen')
+                        ->join('sgas_pengajaran', 'sgas.id', '=', 'sgas_pengajaran.id_sgas')
+                        ->join('m_matakuliah', 'sgas_pengajaran.id_matakuliah', '=', 'm_matakuliah.id')
+                        ->join('m_prodi', 'm_matakuliah.kode_prodi', '=', 'm_prodi.kode_prodi')
+                        ->where('sgas.semester', $this->semester)
+                        ->where('sgas.id_tahun_akademik', $this->ta)
+                        ->where('validasi', 1)
+                        ->get();
+        }
 
         foreach ($sgas as $k => $v) {
             $totalDosen = SgasPengajaran::with('matakuliah', 'sgas')

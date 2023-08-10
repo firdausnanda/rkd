@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\DosenExport;
 use App\Helpers\ResponseFormatter;
 use App\Models\Dosen;
+use App\Models\Fakultas;
 use App\Models\Matakuliah;
 use App\Models\Prodi;
 use App\Models\Sgas;
@@ -41,6 +42,7 @@ class ReportController extends Controller
     {
         $ta = TahunAkademik::orderBy('tahun_akademik', 'desc')->get();
         $prodi = Prodi::all();
+        $fakultas = Fakultas::all();
         if ($request->ajax()) {
             if ($request->id_sgas) {
                 
@@ -67,18 +69,27 @@ class ReportController extends Controller
                 return ResponseFormatter::success($sgas, 'Data berhasil diambil!');
             }
 
-            $sgas = Dosen::whereHas('sgas', function(Builder $q) use ($request) {
-                    $q->where('semester', $request->semester)->where('id_tahun_akademik', $request->ta)->where('validasi', 1);
-                })->with('sgas.pengajaran.matakuliah', 'prodi')->latest()->get();
-            return ResponseFormatter::success($sgas, 'Data berhasil diambil!');
+            if ($request->fakultas) {
+                $sgas = Dosen::whereHas('sgas', function(Builder $q) use ($request) {
+                        $q->where('semester', $request->semester)->where('id_tahun_akademik', $request->ta)->where('validasi', 1);
+                    })->whereHas('prodi', function(Builder $q) use ($request){
+                        $q->where('id_fakultas', $request->fakultas);
+                    })->with('sgas.pengajaran.matakuliah', 'prodi')->latest()->get();
+                return ResponseFormatter::success($sgas, 'Data berhasil diambil!');
+            }else{
+                $sgas = Dosen::whereHas('sgas', function(Builder $q) use ($request) {
+                        $q->where('semester', $request->semester)->where('id_tahun_akademik', $request->ta)->where('validasi', 1);
+                    })->with('sgas.pengajaran.matakuliah', 'prodi')->latest()->get();
+                return ResponseFormatter::success($sgas, 'Data berhasil diambil!');
+            }
 
         }
-        return view('pages.report.dosen', compact('ta', 'prodi'));
+        return view('pages.report.dosen', compact('ta', 'prodi', 'fakultas'));
     }
 
     public function printDosen(Request $request) 
     {       
         $nama_file = 'Dosen_'.date('Y-m-d_H-i-s').'.xlsx';
-        return Excel::download(new DosenExport($request->semester, $request->ta), $nama_file);
+        return Excel::download(new DosenExport($request->semester, $request->ta, $request->fakultas), $nama_file);
     }
 }

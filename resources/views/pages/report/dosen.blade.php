@@ -29,6 +29,15 @@
                                 <option value="genap">Genap</option>
                             </select>
                         </div>
+                        <div class="col-lg-3 mb-3">
+                            <label for="fakultas">Fakultas</label>
+                            <select class="selectpicker form-control" data-live-search="true" id="fakultas-select">
+                                <option value="" selected>Semua</option>
+                                @foreach ($fakultas as $f)
+                                    <option value="{{ $f->id }}">{{ $f->nama_fakultas }} ({{ $f->alias }})</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="col-lg-3 mb-3 d-flex align-items-end">
                             <button class="btn btn-primary btn-filter"><i class="fa-solid fa-magnifying-glass mr-2"></i>Cari
                                 Data</button>
@@ -117,6 +126,7 @@
                     data: function(d) {
                         d.ta = $('#ta-select').val()
                         d.semester = $('#semester-select').val()
+                        d.fakultas = $('#fakultas-select').val()
                     }
                 },
                 buttons: [{
@@ -129,7 +139,8 @@
                             url: "{{ route('report.printDosen') }}",
                             data: {
                                 ta: $('#ta-select').val(),
-                                semester: $('#semester-select').val()
+                                semester: $('#semester-select').val(),
+                                fakultas: $('#fakultas-select').val()
                             },
                             cache: false,
                             xhrFields: {
