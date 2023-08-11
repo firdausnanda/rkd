@@ -391,7 +391,7 @@
                             className: 'text-center align-middle fs-14',
                             data: 'total',
                             render: function(data, type, row, meta) {
-                                var total = row.total_sks * row.kelas / row.total_dosen
+                                var total = row.matakuliah.sks * row.kelas / row.total_dosen
                                 return total.toFixed(2)
                             }
                         }
