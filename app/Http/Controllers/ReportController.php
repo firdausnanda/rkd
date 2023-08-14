@@ -46,9 +46,9 @@ class ReportController extends Controller
         if ($request->ajax()) {
             if ($request->id_sgas) {
                 
-                $sgas = SgasPengajaran::with('matakuliah', 'prodi', 'sgas')
+                $sgas = SgasPengajaran::with('matakuliah', 'prodi')
                             ->whereHas('sgas', function (Builder $q) use ($request){
-                                $q->where('id', $request->id_sgas);
+                                $q->where('id_tahun_akademik', $request->ta)->where('semester', $request->semester)->where('id_dosen', $request->id_dosen);
                             })->get();
 
                 foreach ($sgas as $key => $p) {
@@ -66,7 +66,7 @@ class ReportController extends Controller
                     $sgas[$key]->total_dosen = $totalDosen;                
                 }
 
-                return ResponseFormatter::success($sgas, 'Data berhasil diambil!');
+                return ResponseFormatter::success($sgas, 'Data Detail berhasil diambil!');
             }
 
             if ($request->fakultas) {
