@@ -82,7 +82,32 @@
         <div class="search-overlay"></div>
 
         <!--  BEGIN SIDEBAR  -->
-        @include('layouts.menu')
+        @switch(Auth::user()->roles[0]->name)
+            @case('superadmin')
+                @include('layouts.menu.superadmin')
+            @break
+
+            @case('admin')
+                @include('layouts.menu.admin')
+            @break
+
+            @case('bsdm')
+                @include('layouts.menu.bsdm')
+            @break
+
+            @case('mwi')
+                @include('layouts.menu.mwi')
+            @break
+
+            @case('prodi')
+                @include('layouts.menu.prodi')
+            @break
+
+            @case('user')
+                @include('layouts.menu.user')
+            @break
+        @endswitch
+        {{-- @include('layouts.menu') --}}
         <!--  END SIDEBAR  -->
 
         <!--  BEGIN CONTENT AREA  -->

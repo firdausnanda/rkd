@@ -243,7 +243,10 @@
                         url: `{{ route('report.dosen') }}`,
                         type: "GET",
                         data: {
-                            id_sgas: data.sgas[0].id
+                            id_sgas: data.sgas[0].id,
+                            ta: $('#ta-select').val(),
+                            semester: $('#semester-select').val(),
+                            id_dosen: data.id
                         }
                     },
                     columnDefs: [{
