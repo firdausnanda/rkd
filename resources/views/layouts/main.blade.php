@@ -98,6 +98,10 @@
             @case('mwi')
                 @include('layouts.menu.mwi')
             @break
+            
+            @case('baa')
+                @include('layouts.menu.baa')
+            @break
 
             @case('prodi')
                 @include('layouts.menu.prodi')

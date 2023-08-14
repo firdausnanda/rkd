@@ -21,6 +21,7 @@ class RoleSeeder extends Seeder
         Role::create(['name' => 'prodi']);
         Role::create(['name' => 'mwi']);
         Role::create(['name' => 'bsdm']);
+        Role::create(['name' => 'baa']);
         Role::create(['name' => 'user']);
     }
 }

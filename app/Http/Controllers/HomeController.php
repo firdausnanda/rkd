@@ -43,6 +43,9 @@ class HomeController extends Controller
             case 'user':
                 return redirect()->route('user.index');
                 break;
+            case 'baa':
+                return redirect()->route('baa.index');
+                break;
             default:
                 return redirect()->url('/login');
                 break;

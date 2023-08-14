@@ -296,8 +296,15 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['role:user',
 	});
 });
 
+// BAA
+Route::group(['prefix' => 'baa', 'as' => 'baa.', 'middleware' => ['role:baa', 'auth']], function () {
+  
+	// Dashboard
+	Route::get('', [DashboardController::class, 'index'])->name('index');
+});
+
 // Report
-Route::group(['prefix' => 'report', 'as' => 'report.', 'middleware' => ['role:superadmin|admin|prodi|mwi|bsdm', 'auth']], function () {
+Route::group(['prefix' => 'report', 'as' => 'report.', 'middleware' => ['role:superadmin|admin|prodi|mwi|bsdm|baa', 'auth']], function () {
 
 	// Matakuliah
 	Route::get('/matakuliah', [ReportController::class, 'matakuliah'])->name('matakuliah');
