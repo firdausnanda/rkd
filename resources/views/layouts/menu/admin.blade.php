@@ -88,7 +88,7 @@
                 <div class="heading" style="margin-left: 3px;;"><span>Transaction</span></div>
             </li>
 
-            <li class="menu">
+            {{-- <li class="menu">
                 <a href="{{ route('admin.pengajaran.index') }}"
                     data-active="{{ request()->routeIs('admin.pengajaran.*') ? 'true' : '' }}"
                     aria-expanded="{{ request()->routeIs('admin.pengajaran.*') ? 'true' : 'false' }}"
@@ -112,7 +112,7 @@
                         <span>Input Pengajaran</span>
                     </div>
                 </a>
-            </li>
+            </li> --}}
 
             <li class="menu">
                 <a href="{{ route('admin.validasi.index') }}"
