@@ -12,7 +12,7 @@ class TahunAkademikController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $ta = TahunAkademik::all();
+            $ta = TahunAkademik::orderBy('tahun_akademik', 'desc')->get();
             return ResponseFormatter::success($ta, 'Data berhasil diambil');
         }
         return view('pages.master.ta');
