@@ -88,7 +88,10 @@ class PengajaranController extends Controller
             // Dosen
             $dosen = Dosen::with('prodi')->where('id', $request->dosen)->first();
 
-            return ResponseFormatter::success([$dosen, $sgas], 'Data berhasil diambil!');
+            // Tahun Akademik
+            $ta = TahunAkademik::where('id', $request->ta)->first();
+
+            return ResponseFormatter::success([$dosen, $sgas, $ta], 'Data berhasil diambil!');
         } catch (\Exception $e) {
             return ResponseFormatter::error($e, 'Server Error!');
         }

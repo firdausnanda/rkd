@@ -49,4 +49,17 @@ class TahunAkademikController extends Controller
             return ResponseFormatter::error($e, 'Server Error');
         }
     }
+    
+    public function aktif(Request $request)
+    {
+        try {
+
+            $ta_lama = TahunAkademik::where('is_active', 1)->update(['is_active' => 0]);
+            $ta = TahunAkademik::where('id', $request->id)->update(['is_active' => 1]);
+
+            return ResponseFormatter::success($ta, 'Data Berhasil Disimpan');
+        } catch (\Exception $e) {
+            return ResponseFormatter::error($e, 'Server Error');
+        }
+    }
 }

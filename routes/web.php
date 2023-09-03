@@ -73,6 +73,7 @@ Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => [
 		Route::get('', [TahunAkademikController::class, 'index'])->name('index');
 		Route::post('', [TahunAkademikController::class, 'store'])->name('store');
 		Route::put('', [TahunAkademikController::class, 'update'])->name('update');
+		Route::put('/aktif', [TahunAkademikController::class, 'aktif'])->name('aktif');
 	});
 
 	// Pengajaran
@@ -142,6 +143,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['role:admi
 		Route::get('', [TahunAkademikController::class, 'index'])->name('index');
 		Route::post('', [TahunAkademikController::class, 'store'])->name('store');
 		Route::put('', [TahunAkademikController::class, 'update'])->name('update');
+		Route::put('/aktif', [TahunAkademikController::class, 'aktif'])->name('aktif');
 	});
 
 	// Pengajaran
@@ -251,6 +253,7 @@ Route::group(['prefix' => 'bsdm', 'as' => 'bsdm.', 'middleware' => ['role:bsdm',
 		Route::get('', [TahunAkademikController::class, 'index'])->name('index');
 		Route::post('', [TahunAkademikController::class, 'store'])->name('store');
 		Route::put('', [TahunAkademikController::class, 'update'])->name('update');
+		Route::put('/aktif', [TahunAkademikController::class, 'aktif'])->name('aktif');
 	});
 
 	// Pengajaran

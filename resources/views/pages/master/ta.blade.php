@@ -21,6 +21,7 @@
                                     <th>TANGGAL PENGESAHAN SMT GANJIL</th>
                                     <th>TANGGAL PENGESAHAN SMT GENAP</th>
                                     <th>PLOT NO SURAT</th>
+                                    <th>STATUS</th>
                                     <th class="no-content"></th>
                                 </tr>
                             </thead>
@@ -123,12 +124,12 @@
                 altInput: true,
                 allowInput: true,
             });
-            
+
             var ganjil = $("#ganjil").flatpickr({
                 altInput: true,
                 allowInput: true,
             });
-            
+
             $("#ganjil_s").flatpickr({
                 altInput: true,
                 allowInput: true,
@@ -201,6 +202,16 @@
                     },
                     {
                         targets: 5,
+                        width: '20%',
+                        className: 'text-center align-middle fs-14',
+                        render: function(data, type, row, meta) {
+                            if (row.is_active == 0)
+                            return `<span class="badge bg-danger btn-aktif">Tidak Aktif</span>`
+                            return `<span class="badge bg-success btn-aktif">Aktif</span>`
+                        }
+                    },
+                    {
+                        targets: 6,
                         width: '15%',
                         className: 'text-center align-middle',
                         render: function(data, type, row, meta) {
@@ -232,6 +243,45 @@
                 genap.setDate(data.semester_genap, true)
                 ganjil.setDate(data.semester_ganjil, true)
                 $('#edit-ta').modal('show')
+            });
+
+            // Aktif
+            $('#table-ta tbody').on('click', '.btn-aktif', function(e) {
+                e.preventDefault()
+                var data = table.row($(this).parents('tr')).data();
+
+                Swal.fire({
+                    title: 'Apakah anda yakin?',
+                    text: "Data akan diaktifkan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, Lanjutkan!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: "PUT",
+                            url: `/${$('#role').text()}/ta/aktif`,
+                            data: {
+                                id: data.id
+                            },
+                            dataType: "JSON",
+                            beforeSend: function() {
+                                Swal.showLoading()
+                            },
+                            success: function(response) {
+                                Swal.hideLoading()
+                                table.ajax.reload()
+                                Swal.fire('Sukses!', 'Data diaktifkan', 'success')
+                            },
+                            error: function(response) {
+                                Swal.hideLoading()
+                                Swal.fire('Error!', 'Server Error', 'error')
+                            }
+                        });
+                    }
+                })
             });
 
             // Submit Store

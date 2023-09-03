@@ -77,6 +77,7 @@
                                 <div class="col-6 col-md-4"><label>Status</label></div>
                                 <div class="col-12 col-md-8">
                                     <h3><span class="badge" id="status"></span></h3>
+                                    <h3><span class="d-none" id="ta_aktif"></span></h3>
                                     {{-- <input type="text" readonly class="form-control-plaintext bg-white" id="status"> --}}
                                 </div>
                             </div>
@@ -345,9 +346,11 @@
                         text: '<i class="fa-solid fa-plus mr-2"></i> Tambah Data',
                         className: 'btn btn-primary btn-tambah me-2',
                         action: function(e, dt, node, config) {
-                            if ($('#status').text() == 'Pending') {
+                            if ($('#status').text() == 'Pending' && $('#ta_aktif').text() == 1) {
                                 $('#tambah-pengajaran').modal('show');
-                            } else {
+                            } else if ($('#status').text() == 'Pending') {
+                                Swal.fire('Gagal!', 'Periode tidak aktif, hubungi BSDM', 'error')
+                            } else if ($('#ta_aktif').text() == 0) {
                                 Swal.fire('Gagal!', 'Silakan hubungi admin', 'error')
                             }
                         }
@@ -433,7 +436,7 @@
                         width: '10%',
                         className: 'text-center align-middle',
                         render: function(data, type, row, meta) {
-                            if ($('#status').text() == 'Pending') {
+                            if ($('#status').text() == 'Pending' && $('#ta_aktif').text() == 1) {
                                 return `<div class="btn-group" role="group">
                                             <button id="btnGroupDrop1" type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Aksi <i class="fa-solid fa-chevron-down ml-2"></i>
@@ -513,6 +516,9 @@
 
                             $('#sgas_s').val(response.data[1].id);
                             $('#ta_s').val(response.data[1].id_tahun_akademik);
+
+                            $('#ta_aktif').text(response.data[2].is_active);
+
                             $('#konten').addClass('d-block').removeClass('d-none')
 
                             Swal.fire('Sukses!', '', 'success')

@@ -15,6 +15,7 @@ class TahunAkademik extends Model
         'semester_ganjil',
         'min',
         'max',
+        'is_active',
     ];
 
     protected $table = 'm_tahun_akademik';
