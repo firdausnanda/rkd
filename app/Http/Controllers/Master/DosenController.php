@@ -43,25 +43,26 @@ class DosenController extends Controller
                 'nama' => $request->nama,
                 'id_prodi' => $request->prodi,
                 'jabatan_fungsional' => $request->jabfung,
+                'jabatan_struktural' => $request->jabatan_struktural,
                 'status' => $request->status,
                 'keterangan' => $request->keterangan,
             ]);
-
+            
             $user = User::create([
                 'name' => $request->nama,
                 'email' => $request->nidn,
                 'id_dosen' => $dosen->id,
                 'password' => Hash::make($request->nidn)
             ]);
-
+            
             $user->syncRoles('user');   
-
+            
             return ResponseFormatter::success($dosen, 'Data Berhasil Disimpan!');
         } catch (\Exception $e) {
             return ResponseFormatter::error($e, 'Server Error!');
         }
     }
-
+    
     public function update(Request $request)
     {
         try {
@@ -70,6 +71,7 @@ class DosenController extends Controller
                 'nidn' => $request->nidn,
                 'id_prodi' => $request->prodi,
                 'jabatan_fungsional' => $request->jabfung,
+                'jabatan_struktural' => $request->jabatan_struktural,
                 'status' => $request->status,
                 'keterangan' => $request->keterangan,
             ]);

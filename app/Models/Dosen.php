@@ -14,6 +14,7 @@ class Dosen extends Model
         'nama',
         'id_prodi',
         'jabatan_fungsional',
+        'jabatan_struktural',
         'status',
         'keterangan'
     ];

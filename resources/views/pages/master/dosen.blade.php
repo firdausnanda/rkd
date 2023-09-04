@@ -21,6 +21,7 @@
                                     <th>NAMA</th>
                                     <th>PRODI</th>
                                     <th>JABATAN FUNGSIONAL</th>
+                                    <th>JABATAN STRUKTURAL</th>
                                     <th>STATUS PEGAWAI</th>
                                     <th>STATUS</th>
                                     <th class="no-content"></th>
@@ -40,7 +41,7 @@
     {{-- Modal Tambah Data --}}
     <div class="modal fade fadeinUp" id="tambah-dosen" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Tambah Data Dosen</h5>
@@ -76,6 +77,10 @@
                             </select>
                         </div>
                         <div class="form-group mb-4">
+                            <label for="jabatan_struktural">Jabatan Struktural</label>
+                            <input type="text" class="form-control" name="jabatan_struktural">
+                        </div>
+                        <div class="form-group mb-4">
                             <label for="status">Status</label><br>
                             <select class="selectpicker form-control" data-live-search="true" name="status">
                                 <option value="-">-</option>
@@ -100,7 +105,7 @@
     {{-- Modal Edit Data --}}
     <div class="modal fade fadeinUp" id="edit-dosen" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Edit Data Dosen</h5>
@@ -137,6 +142,10 @@
                                 <option value="Lektor Kepala">Lektor Kepala</option>
                                 <option value="Guru Besar">Guru Besar</option>
                             </select>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="jabatan_struktural">Jabatan Struktural</label>
+                            <input type="text" class="form-control" name="jabatan_struktural" id="jabatan_struktural">
                         </div>
                         <div class="form-group mb-4">
                             <label for="status">Status</label><br>
@@ -240,10 +249,22 @@
                         targets: 5,
                         width: '10%',
                         className: 'text-center align-middle fs-14',
-                        data: 'status'
+                        data: 'jabatan_struktural',
+                        render: function(data, type, row, meta) {
+                            if (data == '' || data == null) {
+                                return `-`
+                            }
+                            return `${data}`
+                        }
                     },
                     {
                         targets: 6,
+                        width: '10%',
+                        className: 'text-center align-middle fs-14',
+                        data: 'status'
+                    },
+                    {
+                        targets: 7,
                         width: '10%',
                         className: 'text-center align-middle fs-14',
                         data: 'is_active',
@@ -255,7 +276,7 @@
                         }
                     },
                     {
-                        targets: 7,
+                        targets: 8,
                         width: '15%',
                         className: 'text-center align-middle',
                         data: 'is_active',
@@ -295,6 +316,7 @@
                 $('#nama').val(data.nama)
                 $('#prodi').val(data.id_prodi).change()
                 $('#jabfung').val(data.jabatan_fungsional).change()
+                $('#jabatan_struktural').val(data.jabatan_struktural)
                 $('#status').val(data.status).change()
                 $('#keterangan').val(data.keterangan)
                 $('#edit-dosen').modal('show')
