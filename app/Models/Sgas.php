@@ -15,6 +15,9 @@ class Sgas extends Model
         'semester',
         'validasi',
         'no_plot',
+        'homebase_dosen',
+        'jabatan_fungsional',
+        'jabatan_struktural',
     ];
 
     protected $table = 'sgas';
@@ -32,5 +35,10 @@ class Sgas extends Model
     public function dosen()
     {
         return $this->belongsTo(Dosen::class, 'id_dosen', 'id');
+    }
+
+    public function homebase()
+    {
+        return $this->belongsTo(Prodi::class, 'homebase_dosen', 'id');
     }
 }

@@ -73,25 +73,30 @@ class PengajaranController extends Controller
             // Get Nomor Plot
             $no = Sgas::select('no_plot')->where('id_tahun_akademik', $request->ta)->where('semester', $request->semester)->get();
 
+            // CekDosen
+            $cekdosen = Dosen::with('prodi')->where('id', $request->dosen)->first();
+
             // Check if Sgas exist
-            $sgas = Sgas::where('id_dosen', $request->dosen)->where('id_tahun_akademik', $request->ta)->where('semester', $request->semester)->first();
-            if ($sgas == null || $sgas == '') {
-                $sgas = Sgas::create([
+            $ceksgas = Sgas::where('id_dosen', $request->dosen)->where('id_tahun_akademik', $request->ta)->where('semester', $request->semester)->first();
+            if ($ceksgas == null || $ceksgas == '') {
+                Sgas::create([
                     'id_dosen' => $request->dosen,
                     'id_tahun_akademik' => $request->ta,
                     'semester' => $request->semester,
                     'validasi' => 0,
-                    'no_plot' => $no->count() + 1
+                    'no_plot' => $no->count() + 1,
+                    'homebase_dosen' => $cekdosen->id_prodi,
+                    'jabatan_fungsional' => $cekdosen->jabatan_fungsional,
+                    'jabatan_struktural' => $cekdosen->jabatan_struktural
                 ]);
             }
 
-            // Dosen
-            $dosen = Dosen::with('prodi')->where('id', $request->dosen)->first();
+            $sgas = Sgas::with('homebase', 'dosen')->where('id_dosen', $request->dosen)->where('id_tahun_akademik', $request->ta)->where('semester', $request->semester)->first();
 
             // Tahun Akademik
             $ta = TahunAkademik::where('id', $request->ta)->first();
 
-            return ResponseFormatter::success([$dosen, $sgas, $ta], 'Data berhasil diambil!');
+            return ResponseFormatter::success([$cekdosen, $sgas, $ta], 'Data berhasil diambil!');
         } catch (\Exception $e) {
             return ResponseFormatter::error($e, 'Server Error!');
         }

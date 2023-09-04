@@ -68,6 +68,13 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-6 col-md-4"><label>Jabatan Struktural</label></div>
+                                <div class="col-12 col-md-8">
+                                    <input type="text" readonly class="form-control-plaintext bg-white"
+                                        id="jabatan_struktural_dosen">
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-6 col-md-4"><label>NIP/NIDN/NIDK</label></div>
                                 <div class="col-12 col-md-8">
                                     <input type="text" readonly class="form-control-plaintext bg-white" id="nidn_dosen">
