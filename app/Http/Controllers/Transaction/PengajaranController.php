@@ -374,7 +374,14 @@ class PengajaranController extends Controller
         $pdf->MultiCellIndent(100, 7, $sgas->dosen->jabatan_fungsional ?? '-', 0, 'J', false, 0);
         $pdf->Ln(0);
         
-        $pdf->Cell(1, 7, '5.    NIDN', 0, 0, 'L');
+        $pdf->Cell(1, 7, '5.    Jabatan Struktural', 0, 0, 'L');
+        $pdf->Cell(60);
+        $pdf->Cell(1, 7, ':', 0, 0, 'L');
+        $pdf->Cell(5);
+        $pdf->MultiCellIndent(100, 7, $sgas->dosen->jabatan_struktural ?? '-', 0, 'J', false, 0);
+        $pdf->Ln(0);
+        
+        $pdf->Cell(1, 7, '6.    NIDN', 0, 0, 'L');
         $pdf->Cell(60);
         $pdf->Cell(1, 7, ':', 0, 0, 'L');
         $pdf->Cell(5);
@@ -621,8 +628,15 @@ class PengajaranController extends Controller
         $pdf->Cell(5);
         $pdf->MultiCellIndent(100, 7, $sgas->dosen->jabatan_fungsional ?? '-', 0, 'J', false, 0);
         $pdf->Ln(0);
-        
-        $pdf->Cell(1, 7, '5.    NIDN', 0, 0, 'L');
+
+        $pdf->Cell(1, 7, '5.    Jabatan Struktural', 0, 0, 'L');
+        $pdf->Cell(60);
+        $pdf->Cell(1, 7, ':', 0, 0, 'L');
+        $pdf->Cell(5);
+        $pdf->MultiCellIndent(100, 7, $sgas->dosen->jabatan_struktural ?? '-', 0, 'J', false, 0);
+        $pdf->Ln(0);
+      
+        $pdf->Cell(1, 7, '6.    NIDN', 0, 0, 'L');
         $pdf->Cell(60);
         $pdf->Cell(1, 7, ':', 0, 0, 'L');
         $pdf->Cell(5);
