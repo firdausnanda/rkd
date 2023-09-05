@@ -513,6 +513,7 @@
                             $('#prodi_dosen').val(response.data[0].prodi ? response.data[0]
                                 .prodi.nama_prodi : '-');
                             $('#jabfung_dosen').val(response.data[0].jabatan_fungsional);
+                            $('#jabatan_struktural_dosen').val(response.data[0].jabatan_struktural);
                             $('#nidn_dosen').val(response.data[0].nidn);
 
                             response.data[1].validasi == 0 ? $('#status').text('Pending') : $(
