@@ -307,8 +307,8 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <button type="button" class="btn btn-success btn-print"><i
-                            class="fa-solid fa-print mr-2"></i>Print</button>
+                    {{-- <button type="button" class="btn btn-success btn-print"><i
+                            class="fa-solid fa-print mr-2"></i>Print</button> --}}
                     <button type="button" class="btn btn-success btn-print-ttd"><i
                             class="fa-solid fa-print mr-2"></i>Print + TTD</button>
                 </div>

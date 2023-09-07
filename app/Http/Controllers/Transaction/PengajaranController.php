@@ -615,11 +615,11 @@ class PengajaranController extends Controller
         $pdf->MultiCellIndent(100, 7, $sgas->dosen->nama, 0, 'J', false, 0);
         $pdf->Ln(0);
         
-        $pdf->Cell(1, 7, '3.    Unit Kerja', 0, 0, 'L');
+        $pdf->Cell(1, 7, '3.    NIDN', 0, 0, 'L');
         $pdf->Cell(60);
         $pdf->Cell(1, 7, ':', 0, 0, 'L');
         $pdf->Cell(5);
-        $pdf->MultiCellIndent(100, 7, $sgas->dosen->prodi ? $sgas->dosen->prodi->nama_prodi : '-', 0, 'J', false, 0);
+        $pdf->MultiCellIndent(100, 7, $sgas->dosen->nidn ?? '-', 0, 'J', false, 0);
         $pdf->Ln(0);
        
         $pdf->Cell(1, 7, '4.    Jabatan Fungsional', 0, 0, 'L');
@@ -635,12 +635,12 @@ class PengajaranController extends Controller
         $pdf->Cell(5);
         $pdf->MultiCellIndent(100, 7, $sgas->dosen->jabatan_struktural ?? '-', 0, 'J', false, 0);
         $pdf->Ln(0);
-      
-        $pdf->Cell(1, 7, '6.    NIDN', 0, 0, 'L');
+
+        $pdf->Cell(1, 7, '6.    Unit Kerja', 0, 0, 'L');
         $pdf->Cell(60);
         $pdf->Cell(1, 7, ':', 0, 0, 'L');
         $pdf->Cell(5);
-        $pdf->MultiCellIndent(100, 7, $sgas->dosen->nidn ?? '-', 0, 'J', false, 0);
+        $pdf->MultiCellIndent(100, 7, $sgas->dosen->prodi ? $sgas->dosen->prodi->nama_prodi : '-', 0, 'J', false, 0);
         $pdf->Ln(0);
         
         $pdf->SetFont('Arial', 'B', 11, 5);
