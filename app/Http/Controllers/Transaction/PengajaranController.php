@@ -496,7 +496,7 @@ class PengajaranController extends Controller
         $pdf->AddPage();
 
         // Header
-        $title = "SURAT TUGAS";
+        $title = "SURAT TUGAS MENGAJAR";
         $pdf->SetFont('Arial', '', 11, 5);
         $w = $pdf->GetStringWidth($title) + 6;
         $pdf->SetX((210 - $w) / 2);
@@ -594,7 +594,7 @@ class PengajaranController extends Controller
 
         // Header
         $pdf->SetFont('Arial', 'BU', 12 , 5);
-        $title = "SURAT TUGAS";
+        $title = "SURAT TUGAS MENGAJAR";
         $w = $pdf->GetStringWidth($title) + 6;
         $pdf->SetX((210 - $w) / 2);
         $pdf->Cell($w, 15, $title, 0, 0, 'C');
@@ -615,11 +615,11 @@ class PengajaranController extends Controller
         $pdf->MultiCellIndent(100, 7, $sgas->dosen->nama, 0, 'J', false, 0);
         $pdf->Ln(0);
         
-        $pdf->Cell(1, 7, '3.    Jabatan', 0, 0, 'L');
+        $pdf->Cell(1, 7, '3.    Unit Kerja', 0, 0, 'L');
         $pdf->Cell(60);
         $pdf->Cell(1, 7, ':', 0, 0, 'L');
         $pdf->Cell(5);
-        $pdf->MultiCellIndent(100, 7, $sgas->dosen->prodi ? 'Dosen ' . $sgas->dosen->prodi->nama_prodi : '-', 0, 'J', false, 0);
+        $pdf->MultiCellIndent(100, 7, $sgas->dosen->prodi ? $sgas->dosen->prodi->nama_prodi : '-', 0, 'J', false, 0);
         $pdf->Ln(0);
        
         $pdf->Cell(1, 7, '4.    Jabatan Fungsional', 0, 0, 'L');
