@@ -173,7 +173,7 @@
                         </div>
                         <div class="form-group mb-4">
                             <label for="teori">Teori <div style="font-size:12px;"><i>SKS</i></div></label>
-                            <input type="number" name="teori" id="teori" class="form-control">
+                            <input type="number" name="teori" id="teori" class="form-control" step="any">
                             <div id="teori_text" class="d-none">
                                 <small class="form-text text-danger">* Jumlah Maksimal SKS Teori adalah :
                                     <span class="text-danger font-weight-bold text-center"></span>
@@ -182,7 +182,7 @@
                         </div>
                         <div class="form-group mb-4">
                             <label for="praktek">Praktek <div style="font-size:12px;"><i>SKS</i></div></label>
-                            <input type="number" name="praktek" id="praktek" class="form-control">
+                            <input type="number" name="praktek" id="praktek" class="form-control" step="any">
                             <div id="praktek_text" class="d-none">
                                 <small class="form-text text-danger">* Jumlah Maksimal SKS Praktek adalah :
                                     <span class="text-danger font-weight-bold text-center"></span>
@@ -191,7 +191,7 @@
                         </div>
                         <div class="form-group mb-4">
                             <label for="klinik">Klinik <div style="font-size:12px;"><i>SKS</i></div></label>
-                            <input type="number" name="klinik" id="klinik" class="form-control">
+                            <input type="number" name="klinik" id="klinik" class="form-control" step="any">
                             <div id="klinik_text" class="d-none">
                                 <small class="form-text text-danger">* Jumlah Maksimal SKS Klinik adalah :
                                     <span class="text-danger font-weight-bold text-center"></span>
@@ -262,7 +262,7 @@
                         </div>
                         <div class="form-group mb-4">
                             <label for="teori">Teori <div style="font-size:12px;"><i>SKS</i></div></label>
-                            <input type="number" name="teori" id="teori_e" class="form-control">
+                            <input type="number" name="teori" id="teori_e" class="form-control" step="any">
                             <div id="teori_text" class="d-none">
                                 <small class="form-text text-danger">* Jumlah Maksimal SKS Teori adalah :
                                     <span class="text-danger font-weight-bold text-center"></span>
@@ -271,7 +271,7 @@
                         </div>
                         <div class="form-group mb-4">
                             <label for="praktek">Praktek <div style="font-size:12px;"><i>SKS</i></div></label>
-                            <input type="number" name="praktek" id="praktek_e" class="form-control">
+                            <input type="number" name="praktek" id="praktek_e" class="form-control" step="any">
                             <div id="praktek_text" class="d-none">
                                 <small class="form-text text-danger">* Jumlah Maksimal SKS Praktek adalah :
                                     <span class="text-danger font-weight-bold text-center"></span>
@@ -280,7 +280,7 @@
                         </div>
                         <div class="form-group mb-4">
                             <label for="klinik">Klinik <div style="font-size:12px;"><i>SKS</i></div></label>
-                            <input type="number" name="klinik" id="klinik_e" class="form-control">
+                            <input type="number" name="klinik" id="klinik_e" class="form-control" step="any">
                             <div id="klinik_text" class="d-none">
                                 <small class="form-text text-danger">* Jumlah Maksimal SKS Klinik adalah :
                                     <span class="text-danger font-weight-bold text-center"></span>
