@@ -565,7 +565,7 @@ class PengajaranController extends Controller
         $x = $pdf->GetX();
         $y = $pdf->GetY();
         if ($aliasFakultas == 'FST') {
-            $pdf->Image('./img/ttd10.png', $x, $y - 30, 90);
+            $pdf->Image('./img/ttd11.png', $x, $y - 30, 90);
         }elseif($aliasFakultas == 'FIK'){
             $pdf->Image('./img/ttd9.png', $x, $y - 35, 90);
         }
@@ -706,7 +706,7 @@ class PengajaranController extends Controller
         $x = $pdf->GetX();
         $y = $pdf->GetY();
         if ($aliasFakultas == 'FST') {
-            $pdf->Image('./img/ttd10.png', $x, $y - 30, 90);
+            $pdf->Image('./img/ttd11.png', $x, $y - 30, 90);
         }elseif($aliasFakultas == 'FIK'){
             $pdf->Image('./img/ttd9.png', $x, $y - 35, 90);
         }
