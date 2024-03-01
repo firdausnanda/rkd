@@ -39,7 +39,8 @@
                             </select>
                         </div>
                         <div class="col-lg-2 mb-3 d-flex align-items-end">
-                            <button class="btn btn-primary btn-filter mb-2"><i class="fa-solid fa-magnifying-glass mr-2"></i>Cari
+                            <button class="btn btn-primary btn-filter mb-2"><i
+                                    class="fa-solid fa-magnifying-glass mr-2"></i>Cari
                                 Data</button>
                         </div>
                     </div>
@@ -137,7 +138,8 @@
                     <div class="modal-body">
                         <div class="form-group mb-4">
                             <label for="prodi">Prodi</label>
-                            <select class="selectpicker form-control" data-live-search="true" name="prodi" id="prodi_s">
+                            <select class="selectpicker form-control" data-live-search="true" name="prodi"
+                                id="prodi_s">
                                 <option value="-" selected disabled>-</option>
                                 @foreach ($prodi as $p)
                                     <option value="{{ $p->kode_prodi }}">{{ $p->nama_prodi }}</option>
@@ -368,7 +370,7 @@
                         action: function(e, dt, node, config) {
                             if ($('#status').text() == 'Pending') {
                                 Swal.fire('Gagal!', 'Silakan hubungi admin', 'error')
-                            } else if ($('#prodi_dosen').val() == '-'){
+                            } else if ($('#prodi_dosen').val() == '-') {
                                 $('#print-pengajaran').modal('show')
                                 // Swal.fire('Gagal!', 'Data dosen belum memiliki homebase', 'error')
                             } else {
@@ -513,7 +515,8 @@
                             $('#prodi_dosen').val(response.data[0].prodi ? response.data[0]
                                 .prodi.nama_prodi : '-');
                             $('#jabfung_dosen').val(response.data[0].jabatan_fungsional);
-                            $('#jabatan_struktural_dosen').val(response.data[0].jabatan_struktural);
+                            $('#jabatan_struktural_dosen').val(response.data[0]
+                                .jabatan_struktural);
                             $('#nidn_dosen').val(response.data[0].nidn);
 
                             response.data[1].validasi == 0 ? $('#status').text('Pending') : $(
@@ -538,29 +541,33 @@
                     });
 
                     // Semester Value
-                    if ($('#semester-select').val() == 'ganjil') {
-                        $("#semester_s").append(`<option value="I">I</option>`);
-                        $("#semester_s").append(`<option value="III">III</option>`);
-                        $("#semester_s").append(`<option value="V">V</option>`);
-                        $("#semester_s").append(`<option value="VII">VII</option>`);
-                        $("#semester_s").selectpicker('refresh');
-                        $("#semester_e").append(`<option value="I">I</option>`);
-                        $("#semester_e").append(`<option value="III">III</option>`);
-                        $("#semester_e").append(`<option value="V">V</option>`);
-                        $("#semester_e").append(`<option value="VII">VII</option>`);
-                        $("#semester_e").selectpicker('refresh');
-                    } else {
-                        $("#semester_s").append(`<option value="II">II</option>`);
-                        $("#semester_s").append(`<option value="IV">IV</option>`);
-                        $("#semester_s").append(`<option value="VI">VI</option>`);
-                        $("#semester_s").append(`<option value="VIII">VIII</option>`);
-                        $("#semester_s").selectpicker('refresh');
-                        $("#semester_e").append(`<option value="II">II</option>`);
-                        $("#semester_e").append(`<option value="IV">IV</option>`);
-                        $("#semester_e").append(`<option value="VI">VI</option>`);
-                        $("#semester_e").append(`<option value="VIII">VIII</option>`);
-                        $("#semester_e").selectpicker('refresh');
-                    }
+                    $("#semester_s").append(`<option value="I">I</option>`);
+                    $("#semester_s").append(`<option value="II">II</option>`);
+                    $("#semester_s").append(`<option value="III">III</option>`);
+                    $("#semester_s").append(`<option value="IV">IV</option>`);
+                    $("#semester_s").append(`<option value="V">V</option>`);
+                    $("#semester_s").append(`<option value="VI">VI</option>`);
+                    $("#semester_s").append(`<option value="VII">VII</option>`);
+                    $("#semester_s").append(`<option value="VIII">VIII</option>`);
+                    $("#semester_s").selectpicker('refresh');
+
+                    $("#semester_e").append(`<option value="I">I</option>`);
+                    $("#semester_e").append(`<option value="II">II</option>`);
+                    $("#semester_e").append(`<option value="III">III</option>`);
+                    $("#semester_e").append(`<option value="IV">IV</option>`);
+                    $("#semester_e").append(`<option value="V">V</option>`);
+                    $("#semester_e").append(`<option value="VI">VI</option>`);
+                    $("#semester_e").append(`<option value="VII">VII</option>`);
+                    $("#semester_e").append(`<option value="VIII">VIII</option>`);
+                    $("#semester_e").selectpicker('refresh');
+                    // if ($('#semester-select').val() == 'ganjil') {
+                    // } else {
+                    //     $("#semester_s").append(`<option value="II">II</option>`);
+                    //     $("#semester_s").append(`<option value="IV">IV</option>`);
+                    //     $("#semester_s").append(`<option value="VI">VI</option>`);
+                    //     $("#semester_s").append(`<option value="VIII">VIII</option>`);
+                    //     $("#semester_s").selectpicker('refresh');
+                    // }
                 }
 
 
@@ -816,10 +823,11 @@
                         Swal.hideLoading()
 
                         if (xhr.status == 402) {
-                            Swal.fire('Periksa kembali data anda!', 'Data Dosen tidak memiliki homebase', 
-                                'error');                            
-                        }else{
-                            Swal.fire( 'Periksa kembali data anda!', 'Data Tidak Ditemukan',
+                            Swal.fire('Periksa kembali data anda!',
+                                'Data Dosen tidak memiliki homebase',
+                                'error');
+                        } else {
+                            Swal.fire('Periksa kembali data anda!', 'Data Tidak Ditemukan',
                                 'error');
                         }
                     },
