@@ -541,6 +541,7 @@
                     });
 
                     // Semester Value
+                    $("#semester_s").remove();
                     $("#semester_s").append(`<option value="I">I</option>`);
                     $("#semester_s").append(`<option value="II">II</option>`);
                     $("#semester_s").append(`<option value="III">III</option>`);
@@ -551,6 +552,7 @@
                     $("#semester_s").append(`<option value="VIII">VIII</option>`);
                     $("#semester_s").selectpicker('refresh');
 
+                    $("#semester_e").remove();
                     $("#semester_e").append(`<option value="I">I</option>`);
                     $("#semester_e").append(`<option value="II">II</option>`);
                     $("#semester_e").append(`<option value="III">III</option>`);
