@@ -165,6 +165,14 @@
                             <select class="selectpicker form-control" data-live-search="true" name="semester"
                                 id="semester_s">
                                 <option value="-" selected disabled>-- Pilih Semester --</option>
+                                <option value="I">I</option>
+                                <option value="II">II</option>
+                                <option value="III">III</option>
+                                <option value="IV">IV</option>
+                                <option value="V">V</option>
+                                <option value="VI">VI</option>
+                                <option value="VII">VII</option>
+                                <option value="VIII">VIII</option>
                             </select>
                         </div>
                         <div class="form-group mb-4">
@@ -254,6 +262,14 @@
                             <select class="selectpicker form-control" data-live-search="true" name="semester"
                                 id="semester_e">
                                 <option value="-" selected disabled>-- Pilih Semester --</option>
+                                <option value="I">I</option>
+                                <option value="II">II</option>
+                                <option value="III">III</option>
+                                <option value="IV">IV</option>
+                                <option value="V">V</option>
+                                <option value="VI">VI</option>
+                                <option value="VII">VII</option>
+                                <option value="VIII">VIII</option>
                             </select>
                         </div>
                         <div class="form-group mb-4">
@@ -541,25 +557,25 @@
                     });
 
                     // Semester Value
-                    $("#semester_s").append(`<option value="I">I</option>`);
-                    $("#semester_s").append(`<option value="II">II</option>`);
-                    $("#semester_s").append(`<option value="III">III</option>`);
-                    $("#semester_s").append(`<option value="IV">IV</option>`);
-                    $("#semester_s").append(`<option value="V">V</option>`);
-                    $("#semester_s").append(`<option value="VI">VI</option>`);
-                    $("#semester_s").append(`<option value="VII">VII</option>`);
-                    $("#semester_s").append(`<option value="VIII">VIII</option>`);
-                    $("#semester_s").selectpicker('refresh');
+                    // $("#semester_s").append(`<option value="I">I</option>`);
+                    // $("#semester_s").append(`<option value="II">II</option>`);
+                    // $("#semester_s").append(`<option value="III">III</option>`);
+                    // $("#semester_s").append(`<option value="IV">IV</option>`);
+                    // $("#semester_s").append(`<option value="V">V</option>`);
+                    // $("#semester_s").append(`<option value="VI">VI</option>`);
+                    // $("#semester_s").append(`<option value="VII">VII</option>`);
+                    // $("#semester_s").append(`<option value="VIII">VIII</option>`);
+                    // $("#semester_s").selectpicker('refresh');
 
-                    $("#semester_e").append(`<option value="I">I</option>`);
-                    $("#semester_e").append(`<option value="II">II</option>`);
-                    $("#semester_e").append(`<option value="III">III</option>`);
-                    $("#semester_e").append(`<option value="IV">IV</option>`);
-                    $("#semester_e").append(`<option value="V">V</option>`);
-                    $("#semester_e").append(`<option value="VI">VI</option>`);
-                    $("#semester_e").append(`<option value="VII">VII</option>`);
-                    $("#semester_e").append(`<option value="VIII">VIII</option>`);
-                    $("#semester_e").selectpicker('refresh');
+                    // $("#semester_e").append(`<option value="I">I</option>`);
+                    // $("#semester_e").append(`<option value="II">II</option>`);
+                    // $("#semester_e").append(`<option value="III">III</option>`);
+                    // $("#semester_e").append(`<option value="IV">IV</option>`);
+                    // $("#semester_e").append(`<option value="V">V</option>`);
+                    // $("#semester_e").append(`<option value="VI">VI</option>`);
+                    // $("#semester_e").append(`<option value="VII">VII</option>`);
+                    // $("#semester_e").append(`<option value="VIII">VIII</option>`);
+                    // $("#semester_e").selectpicker('refresh');
                     // if ($('#semester-select').val() == 'ganjil') {
                     // } else {
                     //     $("#semester_s").append(`<option value="II">II</option>`);
