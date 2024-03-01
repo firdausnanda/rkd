@@ -541,24 +541,24 @@
                     });
 
                     // Semester Value
-                    $("#semester_s").val(`<option value="I">I</option>`);
-                    $("#semester_s").val(`<option value="II">II</option>`);
-                    $("#semester_s").val(`<option value="III">III</option>`);
-                    $("#semester_s").val(`<option value="IV">IV</option>`);
-                    $("#semester_s").val(`<option value="V">V</option>`);
-                    $("#semester_s").val(`<option value="VI">VI</option>`);
-                    $("#semester_s").val(`<option value="VII">VII</option>`);
-                    $("#semester_s").val(`<option value="VIII">VIII</option>`);
+                    $("#semester_s").append(`<option value="I">I</option>`);
+                    $("#semester_s").append(`<option value="II">II</option>`);
+                    $("#semester_s").append(`<option value="III">III</option>`);
+                    $("#semester_s").append(`<option value="IV">IV</option>`);
+                    $("#semester_s").append(`<option value="V">V</option>`);
+                    $("#semester_s").append(`<option value="VI">VI</option>`);
+                    $("#semester_s").append(`<option value="VII">VII</option>`);
+                    $("#semester_s").append(`<option value="VIII">VIII</option>`);
                     $("#semester_s").selectpicker('refresh');
 
-                    $("#semester_e").val(`<option value="I">I</option>`);
-                    $("#semester_e").val(`<option value="II">II</option>`);
-                    $("#semester_e").val(`<option value="III">III</option>`);
-                    $("#semester_e").val(`<option value="IV">IV</option>`);
-                    $("#semester_e").val(`<option value="V">V</option>`);
-                    $("#semester_e").val(`<option value="VI">VI</option>`);
-                    $("#semester_e").val(`<option value="VII">VII</option>`);
-                    $("#semester_e").val(`<option value="VIII">VIII</option>`);
+                    $("#semester_e").append(`<option value="I">I</option>`);
+                    $("#semester_e").append(`<option value="II">II</option>`);
+                    $("#semester_e").append(`<option value="III">III</option>`);
+                    $("#semester_e").append(`<option value="IV">IV</option>`);
+                    $("#semester_e").append(`<option value="V">V</option>`);
+                    $("#semester_e").append(`<option value="VI">VI</option>`);
+                    $("#semester_e").append(`<option value="VII">VII</option>`);
+                    $("#semester_e").append(`<option value="VIII">VIII</option>`);
                     $("#semester_e").selectpicker('refresh');
                     // if ($('#semester-select').val() == 'ganjil') {
                     // } else {
