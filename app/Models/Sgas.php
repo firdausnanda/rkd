@@ -14,6 +14,7 @@ class Sgas extends Model
         'id_tahun_akademik',
         'semester',
         'validasi',
+        'validasi_pa',
         'no_plot',
         'homebase_dosen',
         'jabatan_fungsional',

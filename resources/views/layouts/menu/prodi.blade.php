@@ -65,7 +65,7 @@
                             <line x1="1" y1="9" x2="4" y2="9"></line>
                             <line x1="1" y1="14" x2="4" y2="14"></line>
                         </svg>
-                        <span>Input Pengajaran</span>
+                        <span>Pengajaran</span>
                     </div>
                 </a>
             </li>

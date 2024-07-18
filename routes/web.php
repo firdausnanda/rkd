@@ -7,6 +7,7 @@ use App\Http\Controllers\Master\MatakuliahController;
 use App\Http\Controllers\Master\ProdiController;
 use App\Http\Controllers\Master\TahunAkademikController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\Transaction\PembimbinganMahasiswaController;
 use App\Http\Controllers\Transaction\PengajaranController;
 use App\Http\Controllers\Transaction\ValidasiController;
 use Illuminate\Support\Facades\Artisan;
@@ -88,6 +89,17 @@ Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => [
 		Route::post('/sgas', [PengajaranController::class, 'sgas'])->name('sgas');
 		Route::get('/print', [PengajaranController::class, 'print'])->name('print');
 		Route::get('/print-ttd', [PengajaranController::class, 'print_ttd'])->name('print_ttd');
+	});
+
+	// Pembimbingan Mahasiswa
+  Route::group(['prefix' => 'pa', 'as' => 'pa.'], function () {
+		Route::get('', [PembimbinganMahasiswaController::class, 'index'])->name('index');
+		Route::post('', [PembimbinganMahasiswaController::class, 'store'])->name('store');
+		Route::put('', [PembimbinganMahasiswaController::class, 'update'])->name('update');
+		Route::delete('', [PembimbinganMahasiswaController::class, 'delete'])->name('delete');
+		Route::post('/sgas', [PembimbinganMahasiswaController::class, 'sgas'])->name('sgas');
+		Route::get('/print', [PembimbinganMahasiswaController::class, 'print'])->name('print');
+		Route::get('/print-all', [PembimbinganMahasiswaController::class, 'print_all'])->name('print_ttd');
 	});
 
 	// Validasi
