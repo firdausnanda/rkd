@@ -29,8 +29,8 @@
                                     <select class="selectpicker form-control" data-live-search="true" id="kegiatan-select">
                                         <option value="1">Pengajaran</option>
                                         <option value="2">Akademik</option>
-                                        <option value="3">Tugas Akhir</option>
-                                        <option value="4">Praktik Lapangan</option>
+                                        {{-- <option value="3">Tugas Akhir</option>
+                                        <option value="4">Praktik Lapangan</option> --}}
                                     </select>
                                 </div>
                                 <div class="col-lg-3 mb-3">
