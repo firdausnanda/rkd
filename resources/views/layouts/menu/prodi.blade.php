@@ -72,8 +72,8 @@
             <li class="menu">
                 <a href="{{ route('prodi.pa.index') }}"
                     data-active="{{ request()->routeIs('prodi.pa.*') ? 'true' : '' }}"
-                    aria-expanded="{{ request()->routeIs('prodi.pa.*') ? 'true' : 'false' }}"
-                    class="dropdown-toggle" style="text-decoration: none;">
+                    aria-expanded="{{ request()->routeIs('prodi.pa.*') ? 'true' : 'false' }}" class="dropdown-toggle"
+                    style="text-decoration: none;">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -84,7 +84,7 @@
                             <line x1="16" y1="17" x2="8" y2="17"></line>
                             <polyline points="10 9 9 9 8 9"></polyline>
                         </svg>
-                        <span>Akademik</span>
+                        <span style="font-size: 11px">Bimbingan Akademik</span>
                     </div>
                 </a>
             </li>
