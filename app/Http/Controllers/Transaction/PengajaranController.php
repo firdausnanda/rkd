@@ -124,6 +124,9 @@ class PengajaranController extends Controller
     {
         try {
             $prodi = Prodi::where('kode_prodi', $request->prodi)->first();
+            $cek_sgas = Sgas::with('tahun_akademik')->where('id', $request->sgas)->first();
+            $cek_sks_matakuliah = Matakuliah::where('id', $request->matkul)->first();
+
             // Hitung Total SKS
             $total_sks = $request->teori + $request->praktek + $request->klinik;
 
@@ -141,7 +144,14 @@ class PengajaranController extends Controller
             if ($totalDosen == 0) {
                 $totalDosen = 1;
             }
-            $total = $total_sks * $request->kelas / $totalDosen;
+
+            if ($cek_sgas->tahun_akademik->id > 5) {
+                // jumlah pertemuan / jumlah rencana pertemuan 1 semester * sks matakuliah
+                $total = $request->jumlah_pertemuan / 14 * $cek_sks_matakuliah->sks;
+            }else{
+                // Rumus sebelum TA 2023 
+                $total = $total_sks * $request->kelas / $totalDosen;
+            }
 
             $pengajaran = SgasPengajaran::create([
                 'id_sgas' => $request->sgas,
@@ -149,6 +159,7 @@ class PengajaranController extends Controller
                 'id_prodi' => $prodi->id,
                 'semester' => $request->semester,
                 'kelas' => $request->kelas,
+                'jumlah_pertemuan' => $request->jumlah_pertemuan,
                 't_sks' => $request->teori,
                 'p_sks' => $request->praktek,
                 'k_sks' => $request->klinik,
@@ -166,6 +177,9 @@ class PengajaranController extends Controller
     {
         try {
             $prodi = Prodi::where('kode_prodi', $request->prodi)->first();
+            $cek_sgas = Sgas::with('tahun_akademik')->where('id', $request->sgas)->first();
+            $cek_sks_matakuliah = Matakuliah::where('id', $request->matkul)->first();
+
             // Hitung Total SKS
             $total_sks = $request->teori + $request->praktek + $request->klinik;
 
@@ -183,13 +197,21 @@ class PengajaranController extends Controller
             if ($totalDosen == 0) {
                 $totalDosen = 1;
             }
-            $total = $total_sks * $request->kelas / $totalDosen;
+            
+            if ($cek_sgas->tahun_akademik->id > 5) {
+                // jumlah pertemuan / jumlah rencana pertemuan 1 semester * sks matakuliah
+                $total = $request->jumlah_pertemuan / 14 * $cek_sks_matakuliah->sks;
+            }else{
+                // Rumus sebelum TA 2023 
+                $total = $total_sks * $request->kelas / $totalDosen;
+            }
 
             $pengajaran = SgasPengajaran::where('id', $request->id_pengajaran)->update([
                 'id_matakuliah' => $request->matkul,
                 'id_prodi' => $prodi->id,
                 'semester' => $request->semester,
                 'kelas' => $request->kelas,
+                'jumlah_pertemuan' => $request->jumlah_pertemuan,
                 't_sks' => $request->teori,
                 'p_sks' => $request->praktek,
                 'k_sks' => $request->klinik,
@@ -662,8 +684,16 @@ class PengajaranController extends Controller
         $totalall = 0;
         foreach($pengajaran as $key => $v){
             // $total = $v->total_sks * $v->kelas / $v->total_dosen;
-            $total = $v->matakuliah->sks * $v->kelas / $v->total_dosen;
-            $totalall = $totalall + $total;
+
+            if ($sgas->tahun_akademik->id > 5) {
+                // jumlah pertemuan / jumlah rencana pertemuan 1 semester * sks matakuliah
+                $total = $v->jumlah_pertemuan / 14 * $v->matakuliah->sks;
+            }else{
+                // Rumus sebelum TA 2023 
+                $total = $v->matakuliah->sks * $v->kelas / $v->total_dosen;
+            }
+
+            $totalall = $totalall + round($total, 2);
             $pdf->ln();
 
             $pdf->SetWidths(Array(10,25,45,25,15,15,15,20,20));

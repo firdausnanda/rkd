@@ -8,8 +8,10 @@ use App\Http\Controllers\Master\ProdiController;
 use App\Http\Controllers\Master\TahunAkademikController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\Transaction\PembimbinganMahasiswaController;
+use App\Http\Controllers\Transaction\PembimbinganTAController;
 use App\Http\Controllers\Transaction\PengajaranController;
 use App\Http\Controllers\Transaction\ValidasiController;
+use App\Models\PembimbinganTugasAkhir;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -100,6 +102,17 @@ Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => [
 		Route::post('/sgas', [PembimbinganMahasiswaController::class, 'sgas'])->name('sgas');
 		Route::get('/print', [PembimbinganMahasiswaController::class, 'print'])->name('print');
 		Route::get('/print-all', [PembimbinganMahasiswaController::class, 'print_all'])->name('print_ttd');
+	});
+
+	// Pembimbingan Tugas Akhir
+	Route::group(['prefix' => 'tugas-akhir', 'as' => 'tugas-akhir.'], function () {
+		Route::get('', [PembimbinganTAController::class, 'index'])->name('index');
+		Route::post('', [PembimbinganTAController::class, 'store'])->name('store');
+		Route::put('', [PembimbinganTAController::class, 'update'])->name('update');
+		Route::delete('', [PembimbinganTAController::class, 'delete'])->name('delete');
+		Route::post('/sgas', [PembimbinganTAController::class, 'sgas'])->name('sgas');
+		Route::get('/print', [PembimbinganTAController::class, 'print'])->name('print');
+		Route::get('/print-all', [PembimbinganTAController::class, 'print_all'])->name('print_ttd');
 	});
 
 	// Validasi

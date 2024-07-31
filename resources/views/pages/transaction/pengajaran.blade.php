@@ -182,6 +182,10 @@
                             <input type="hidden" name="ta" id="ta_s">
                         </div>
                         <div class="form-group mb-4">
+                            <label for="jumlah">Jumlah Pertemuan</label>
+                            <input type="text" class="form-control" name="jumlah_pertemuan" id="jumlah_pertemuan">
+                        </div>
+                        <div class="form-group mb-4">
                             <label for="teori">Teori <div style="font-size:12px;"><i>SKS</i></div></label>
                             <input type="number" name="teori" id="teori" class="form-control" step="any">
                             <div id="teori_text" class="d-none">
@@ -277,6 +281,11 @@
                             <input type="text" class="form-control" name="kelas" id="kelas_e">
                             <input type="hidden" name="id_pengajaran" id="id_pengajaran">
                             <input type="hidden" name="ta" id="ta_e">
+                            <input type="hidden" name="sgas" id="sgas_e">
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="jumlah">Jumlah Pertemuan</label>
+                            <input type="text" class="form-control" name="jumlah_pertemuan" id="jumlah_pertemuan_e">
                         </div>
                         <div class="form-group mb-4">
                             <label for="teori">Teori <div style="font-size:12px;"><i>SKS</i></div></label>
@@ -431,7 +440,17 @@
                         targets: 5,
                         width: '10%',
                         className: 'text-center align-middle fs-14',
-                        data: 'kelas'
+                        data: 'kelas',
+                        render: function(data, type, row, meta) {
+                            let datas = ''
+                            if (row.jumlah_pertemuan > 0) {
+                                datas = `${data}<br><span style='font-size:10px'>(${row.jumlah_pertemuan} Jumlah Pertemuan)</span>`
+                            }else{
+                                datas = data
+                            }
+                            
+                            return datas
+                        }
                     },
                     {
                         targets: 6,
@@ -451,8 +470,12 @@
                         className: 'text-center align-middle fs-14',
                         data: 'total',
                         render: function(data, type, row, meta) {
-                            // console.log(row);
-                            var total = row.matakuliah.sks * row.kelas / row.total_dosen
+                            let total = 0
+                            if (row.sgas.id_tahun_akademik > 5) {
+                                total = row.jumlah_pertemuan / 14 * row.matakuliah.sks
+                            }else{
+                                total = row.matakuliah.sks * row.kelas / row.total_dosen
+                            }
                             return total.toFixed(2)
                         }
                     },
@@ -714,6 +737,8 @@
                 $('#praktek_e').val(data.p_sks)
                 $('#klinik_e').val(data.k_sks)
                 $('#id_pengajaran').val(data.id)
+                $('#sgas_e').val(data.id_sgas)
+                $('#jumlah_pertemuan_e').val(data.jumlah_pertemuan)
                 $('#ta_e').val(data.sgas.id_tahun_akademik)
                 $('#edit-pengajaran').modal('show')
             });

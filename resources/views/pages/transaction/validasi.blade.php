@@ -28,9 +28,9 @@
                                     <label for="ta">Jenis Kegiatan</label>
                                     <select class="selectpicker form-control" data-live-search="true" id="kegiatan-select">
                                         <option value="1">Pengajaran</option>
-                                        <option value="2">Akademik</option>
-                                        {{-- <option value="3">Tugas Akhir</option>
-                                        <option value="4">Praktik Lapangan</option> --}}
+                                        <option value="2">Bimbingan Akademik</option>
+                                        <option value="3">Bimbingan Tugas Akhir</option>
+                                        {{-- <option value="4">Praktik Lapangan</option> --}}
                                     </select>
                                 </div>
                                 <div class="col-lg-3 mb-3">
@@ -143,6 +143,40 @@
                                     <th>No</th>
                                     <th>NIM</th>
                                     <th>NAMA MAHASISWA</th>
+                                    <th class="no-content"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Modal Validasi Tugas Akhir --}}
+    <div class="modal fade fadeinUp" id="modal-validasi-ta" tabindex="-1" role="dialog" tabindex="-1"
+        data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Validasi Data Tugas Akhir
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table id="table-ta" class="table" style="width:100%">
+                            <thead>
+                                <tr align="center">
+                                    <th>No</th>
+                                    <th>NIM</th>
+                                    <th>NAMA MAHASISWA</th>
+                                    <th>JUDUL</th>
                                     <th class="no-content"></th>
                                 </tr>
                             </thead>
@@ -281,6 +315,12 @@
                                         '<span class="badge bg-danger">Pending</span>' :
                                         '<span class="badge bg-success">Approved</span>'
                                     break;
+
+                                case '3':
+                                    validasi = row.validasi_ta == 0 ?
+                                        '<span class="badge bg-danger">Pending</span>' :
+                                        '<span class="badge bg-success">Approved</span>'
+                                    break;
                             }
 
                             return validasi
@@ -380,7 +420,9 @@
                                                 url: `/${$('#role').text()}/validasi`,
                                                 data: {
                                                     id_sgas: data.id,
-                                                    kegiatan: $('#kegiatan-select').val()
+                                                    kegiatan: $(
+                                                        '#kegiatan-select'
+                                                    ).val()
                                                 },
                                                 dataType: "JSON",
                                                 beforeSend: function() {
@@ -557,7 +599,9 @@
                                                 url: `/${$('#role').text()}/validasi`,
                                                 data: {
                                                     id_sgas: data.id,
-                                                    kegiatan: $('#kegiatan-select').val()
+                                                    kegiatan: $(
+                                                        '#kegiatan-select'
+                                                    ).val()
                                                 },
                                                 dataType: "JSON",
                                                 beforeSend: function() {
@@ -621,6 +665,134 @@
                         });
 
                         $('#modal-validasi-pa').modal('show')
+
+                        break;
+
+                    case '3':
+
+                        if (data.validasi_ta == 1) {
+                            var buttonText =
+                                '<i class="fa-solid fa-circle-xmark mr-2"></i> Batalkan Validasi'
+                            var buttonClass = 'btn btn-danger btn-tambah me-2'
+                        } else {
+                            var buttonText = '<i class="fa-solid fa-circle-check mr-2"></i> Validasi Data'
+                            var buttonClass = 'btn btn-primary btn-tambah me-2'
+                        }
+
+                        var table3 = $('#table-ta').DataTable({
+                            oLanguage: {
+                                "oPaginate": {
+                                    "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>',
+                                    "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>'
+                                },
+                                "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+                                "sSearchPlaceholder": "Search...",
+                                "sLengthMenu": "Results :  _MENU_",
+                                "infoFiltered": " - filtered from _MAX_ records",
+                            },
+                            ordering: false,
+                            processing: true,
+                            lengthChange: false,
+                            bDestroy: true,
+                            ajax: {
+                                url: `/${$('#role').text()}/validasi`,
+                                type: "GET",
+                                data: function(d) {
+                                    d.id_sgas = data.id,
+                                        d.kegiatan = $('#kegiatan-select').val()
+                                }
+                            },
+                            buttons: [{
+                                text: buttonText,
+                                className: buttonClass,
+                                action: function(e, dt, node, config) {
+                                    Swal.fire({
+                                        title: 'Apakah anda yakin?',
+                                        text: "Data akan diubah!",
+                                        icon: 'question',
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#3085d6',
+                                        cancelButtonColor: '#d33',
+                                        confirmButtonText: 'Ya, Lanjutkan!'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            $.ajax({
+                                                type: "PUT",
+                                                url: `/${$('#role').text()}/validasi`,
+                                                data: {
+                                                    id_sgas: data.id,
+                                                    kegiatan: $(
+                                                        '#kegiatan-select'
+                                                    ).val()
+                                                },
+                                                dataType: "JSON",
+                                                beforeSend: function() {
+                                                    Swal.showLoading()
+                                                },
+                                                success: function(
+                                                    response) {
+                                                    Swal.hideLoading()
+                                                    table.ajax
+                                                        .reload()
+                                                    $('#modal-validasi-ta')
+                                                        .modal(
+                                                            'hide')
+                                                    Swal.fire(
+                                                        'Sukses!',
+                                                        'Data dihapus',
+                                                        'success'
+                                                    )
+                                                }
+                                            });
+                                        }
+                                    })
+                                }
+                            }],
+                            columnDefs: [{
+                                    targets: 0,
+                                    width: '5%',
+                                    className: 'text-center align-middle',
+                                    render: function(data, type, row, meta) {
+                                        return meta.row + 1;
+                                    }
+                                },
+                                {
+                                    targets: 1,
+                                    width: '10%',
+                                    className: 'text-center align-middle',
+                                    data: 'nim'
+                                },
+                                {
+                                    targets: 2,
+                                    width: '40%',
+                                    className: 'text-center align-middle fs-14',
+                                    data: 'nama_mahasiswa'
+                                },
+                                {
+                                    targets: 3,
+                                    width: '15%',
+                                    className: 'text-center align-middle fs-14',
+                                    data: 'judul_ta'
+                                },
+                                {
+                                    targets: 4,
+                                    width: '15%',
+                                    className: 'text-center align-middle fs-14',
+                                    data: 'judul_ta',
+                                    render: function(data, type, row, meta) {
+                                        return ''
+                                    }
+                                }
+                            ],
+                            initComplete: function() {
+                                $('#table-ta').DataTable().buttons().container()
+                                    .appendTo(
+                                        '#table-ta_wrapper .col-md-6:eq(0)');
+                                $('.btn-tambah').removeClass("btn-secondary");
+                            }
+                        });
+
+                        $('#modal-validasi-ta').modal('show')
 
                         break;
                 }

@@ -11,10 +11,15 @@ class PembimbinganTugasAkhir extends Model
 
     protected $table = 'sgas_pembimbingan_tugas_akhir';
 
-    protected $filable = [
+    protected $fillable = [
         'id_sgas',
         'nama_mahasiswa',
         'nim',
         'judul_ta',
     ];
+
+    public function sgas()
+    {
+        return $this->belongsTo(Sgas::class, 'id_sgas', 'id');
+    }
 }

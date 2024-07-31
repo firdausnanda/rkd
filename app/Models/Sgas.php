@@ -15,6 +15,7 @@ class Sgas extends Model
         'semester',
         'validasi',
         'validasi_pa',
+        'validasi_ta',
         'no_plot',
         'homebase_dosen',
         'jabatan_fungsional',

@@ -15,6 +15,7 @@ class SgasPengajaran extends Model
         'id_prodi',
         'semester',
         'kelas',
+        'jumlah_pertemuan',
         't_sks',
         'p_sks',
         'k_sks',
