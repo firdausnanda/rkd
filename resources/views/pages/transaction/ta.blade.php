@@ -9,7 +9,7 @@
                 <div class="widget-content widget-content-area br-6">
 
                     <div class="">
-                        <h4 style="font-weight: bold;">Data Tugas Akhir</h4>
+                        <h4 style="font-weight: bold;">Data Penguji Tugas Akhir</h4>
                     </div>
 
                     {{-- Filter --}}

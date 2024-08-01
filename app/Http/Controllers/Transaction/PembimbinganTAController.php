@@ -185,14 +185,14 @@ class PembimbinganTAController extends Controller
             $pdf->Cell(45);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(135, 7, 'Bahwa dalam rangka melaksanakan aktivitas Tridharma Perguruan Tinggi yaitu pembimbingan Tugas Akhir/Skripsi bagi mahasiswa di ITSK RS dr. Soepraoen, maka perlu di keluarkan surat tugas.', 0, 'J', false, 10);
+            $pdf->MultiCellIndent(135, 7, 'Bahwa dalam rangka melaksanakan aktivitas Tridharma Perguruan Tinggi yaitu penguji Tugas Akhir/Skripsi bagi mahasiswa di ITSK RS dr. Soepraoen, maka perlu di keluarkan surat tugas.', 0, 'J', false, 10);
             $pdf->Ln(3);
 
             $pdf->Cell(1, 7, 'Dasar', 0, 0, 'L');
             $pdf->Cell(45);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(135, 7, 'Permohonan penerbitan surat tugas dosen pembimbingan Tugas Akhir/Skripsi mahasiswa TA ' . $sgas->tahun_akademik->tahun_akademik . ' ' . $fakultas . ' ITSK RS dr. Soepraoen Malang', 0, 'J', false, 10);
+            $pdf->MultiCellIndent(135, 7, 'Permohonan penerbitan surat tugas dosen penguji Tugas Akhir/Skripsi mahasiswa TA ' . $sgas->tahun_akademik->tahun_akademik . ' ' . $fakultas . ' ITSK RS dr. Soepraoen Malang', 0, 'J', false, 10);
 
             $title = "DITUGASKAN";
             $pdf->SetFont('Arial', 'B', 11, 5);
@@ -260,7 +260,7 @@ class PembimbinganTAController extends Controller
             $pdf->Cell(45);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(135, 7, '1.   Seterimanya Surat ini disamping tugas jabatan dan tanggung jawab sehari-hari ditunjuk sebagai dosen pembimbing Tugas Akhir/Skripsi mahasiswa Semester ' . $v->semester . ' TA. ' . $sgas->tahun_akademik->tahun_akademik . ' Prodi ' . $sgas->dosen->prodi->nama_prodi . ';', 0, 'J', false, 0);
+            $pdf->MultiCellIndent(135, 7, '1.   Seterimanya Surat ini disamping tugas jabatan dan tanggung jawab sehari-hari ditunjuk sebagai dosen penguji Tugas Akhir/Skripsi mahasiswa Semester ' . $v->semester . ' TA. ' . $sgas->tahun_akademik->tahun_akademik . ' Prodi ' . $sgas->dosen->prodi->nama_prodi . ';', 0, 'J', false, 0);
             $pdf->Ln(3);
             $pdf->Cell(52);
             $pdf->MultiCellIndent(135, 7, '2.   Lapor kepada Dekan ' . $fakultas . ' RS dr. Soepraoen atas pelaksanaan surat tugas ini;', 0, 'J', false, 0);
@@ -340,14 +340,14 @@ class PembimbinganTAController extends Controller
             $pdf->Cell(45);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(135, 7, 'Bahwa dalam rangka melaksanakan aktivitas Tridharma Perguruan Tinggi yaitu pembimbingan Tugas Akhir/Skripsi bagi mahasiswa di ITSK RS dr. Soepraoen, maka perlu di keluarkan surat tugas.', 0, 'J', false, 10);
+            $pdf->MultiCellIndent(135, 7, 'Bahwa dalam rangka melaksanakan aktivitas Tridharma Perguruan Tinggi yaitu penguji Tugas Akhir/Skripsi bagi mahasiswa di ITSK RS dr. Soepraoen, maka perlu di keluarkan surat tugas.', 0, 'J', false, 10);
             $pdf->Ln(3);
 
             $pdf->Cell(1, 7, 'Dasar', 0, 0, 'L');
             $pdf->Cell(45);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(135, 7, 'Permohonan penerbitan surat tugas dosen pembimbingan Tugas Akhir/Skripsi mahasiswa TA ' . $sgas->tahun_akademik->tahun_akademik . ' ' . $fakultas . ' ITSK RS dr. Soepraoen Malang', 0, 'J', false, 10);
+            $pdf->MultiCellIndent(135, 7, 'Permohonan penerbitan surat tugas dosen penguji Tugas Akhir/Skripsi mahasiswa TA ' . $sgas->tahun_akademik->tahun_akademik . ' ' . $fakultas . ' ITSK RS dr. Soepraoen Malang', 0, 'J', false, 10);
 
             $title = "DITUGASKAN";
             $pdf->SetFont('Arial', 'B', 11, 5);
@@ -415,7 +415,7 @@ class PembimbinganTAController extends Controller
             $pdf->Cell(45);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(135, 7, '1.   Seterimanya Surat ini disamping tugas jabatan dan tanggung jawab sehari-hari ditunjuk sebagai dosen pembimbing Tugas Akhir/Skripsi mahasiswa Semester ' . $v->semester . ' TA. ' . $sgas->tahun_akademik->tahun_akademik . ' Prodi ' . $sgas->dosen->prodi->nama_prodi . ';', 0, 'J', false, 0);
+            $pdf->MultiCellIndent(135, 7, '1.   Seterimanya Surat ini disamping tugas jabatan dan tanggung jawab sehari-hari ditunjuk sebagai dosen penguji Tugas Akhir/Skripsi mahasiswa Semester ' . $v->semester . ' TA. ' . $sgas->tahun_akademik->tahun_akademik . ' Prodi ' . $sgas->dosen->prodi->nama_prodi . ';', 0, 'J', false, 0);
             $pdf->Ln(3);
             $pdf->Cell(52);
             $pdf->MultiCellIndent(135, 7, '2.   Lapor kepada Dekan ' . $fakultas . ' RS dr. Soepraoen atas pelaksanaan surat tugas ini;', 0, 'J', false, 0);

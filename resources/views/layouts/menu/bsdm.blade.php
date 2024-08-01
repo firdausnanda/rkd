@@ -165,7 +165,7 @@
                             <line x1="10" y1="1" x2="10" y2="4"></line>
                             <line x1="14" y1="1" x2="14" y2="4"></line>
                         </svg>
-                        <span style="font-size: 10px">Bimbingan Tugas Akhir</span>
+                        <span style="font-size: 10px">Penguji Tugas Akhir</span>
                     </div>
                 </a>
             </li>
