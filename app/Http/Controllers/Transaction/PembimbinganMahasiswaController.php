@@ -271,7 +271,7 @@ class PembimbinganMahasiswaController extends Controller
             $pdf->Cell(98, 7, 'Dikeluarkan di Malang,', 0, 1, 'C');
             $pdf->SetFont('Arial', 'U', 11, 5);
             $pdf->Cell(97);
-            $pdf->Cell(98, 5, 'Pada Tanggal ' . Carbon::now()->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('j F Y'), 0, 1, 'C');
+            $pdf->Cell(98, 5, 'Pada Tanggal ' . Carbon::parse($tahun)->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('j F Y'), 0, 1, 'C');
             $pdf->SetFont('Arial', '', 11, 5);
             $pdf->Cell(97);
             $pdf->Cell(98, 5, 'Dekan ' . $fakultas, 0, 1, 'C');
@@ -423,7 +423,7 @@ class PembimbinganMahasiswaController extends Controller
             $pdf->Cell(98, 7, 'Dikeluarkan di Malang,', 0, 1, 'C');
             $pdf->SetFont('Arial', 'U', 11, 5);
             $pdf->Cell(97);
-            $pdf->Cell(98, 5, 'Pada Tanggal ' . Carbon::now()->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('j F Y'), 0, 1, 'C');
+            $pdf->Cell(98, 5, 'Pada Tanggal ' . Carbon::parse($tahun)->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('j F Y'), 0, 1, 'C');
             $pdf->SetFont('Arial', '', 11, 5);
             $pdf->Cell(97);
             $pdf->Cell(98, 5, 'Dekan ' . $fakultas, 0, 1, 'C');

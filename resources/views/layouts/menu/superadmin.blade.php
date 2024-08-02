@@ -172,9 +172,9 @@
             </li>
 
             <li class="menu">
-                <a href="{{ route('superadmin.tugas-akhir.index') }}"
-                    data-active="{{ request()->routeIs('superadmin.tugas-akhir.*') ? 'true' : '' }}"
-                    aria-expanded="{{ request()->routeIs('superadmin.tugas-akhir.*') ? 'true' : 'false' }}"
+                <a href="{{ route('superadmin.pkl.index') }}"
+                    data-active="{{ request()->routeIs('superadmin.pkl.*') ? 'true' : '' }}"
+                    aria-expanded="{{ request()->routeIs('superadmin.pkl.*') ? 'true' : 'false' }}"
                     class="dropdown-toggle" style="text-decoration: none;">
                     <div class="">
                         <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor"

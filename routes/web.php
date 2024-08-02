@@ -10,8 +10,8 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\Transaction\PembimbinganMahasiswaController;
 use App\Http\Controllers\Transaction\PembimbinganTAController;
 use App\Http\Controllers\Transaction\PengajaranController;
+use App\Http\Controllers\Transaction\PKLController;
 use App\Http\Controllers\Transaction\ValidasiController;
-use App\Models\PembimbinganTugasAkhir;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -113,6 +113,16 @@ Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => [
 		Route::post('/sgas', [PembimbinganTAController::class, 'sgas'])->name('sgas');
 		Route::get('/print', [PembimbinganTAController::class, 'print'])->name('print');
 		Route::get('/print-all', [PembimbinganTAController::class, 'print_all'])->name('print_ttd');
+	});
+	
+	// Pembimbingan PKL
+	Route::group(['prefix' => 'pkl', 'as' => 'pkl.'], function () {
+		Route::get('', [PKLController::class, 'index'])->name('index');
+		Route::post('', [PKLController::class, 'store'])->name('store');
+		Route::put('', [PKLController::class, 'update'])->name('update');
+		Route::delete('', [PKLController::class, 'delete'])->name('delete');
+		Route::post('/sgas', [PKLController::class, 'sgas'])->name('sgas');
+		Route::get('/print-all', [PKLController::class, 'print_all'])->name('print_ttd');
 	});
 
 	// Validasi
