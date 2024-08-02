@@ -114,7 +114,7 @@ Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => [
 		Route::get('/print', [PembimbinganTAController::class, 'print'])->name('print');
 		Route::get('/print-all', [PembimbinganTAController::class, 'print_all'])->name('print_ttd');
 	});
-	
+
 	// Pembimbingan PKL
 	Route::group(['prefix' => 'pkl', 'as' => 'pkl.'], function () {
 		Route::get('', [PKLController::class, 'index'])->name('index');
@@ -240,6 +240,27 @@ Route::group(['prefix' => 'prodi', 'as' => 'prodi.', 'middleware' => ['role:prod
 		Route::get('/print', [PembimbinganMahasiswaController::class, 'print'])->name('print');
 		Route::get('/print-all', [PembimbinganMahasiswaController::class, 'print_all'])->name('print_ttd');
 	});
+
+	// Pembimbingan Tugas Akhir
+	Route::group(['prefix' => 'tugas-akhir', 'as' => 'tugas-akhir.'], function () {
+		Route::get('', [PembimbinganTAController::class, 'index'])->name('index');
+		Route::post('', [PembimbinganTAController::class, 'store'])->name('store');
+		Route::put('', [PembimbinganTAController::class, 'update'])->name('update');
+		Route::delete('', [PembimbinganTAController::class, 'delete'])->name('delete');
+		Route::post('/sgas', [PembimbinganTAController::class, 'sgas'])->name('sgas');
+		Route::get('/print', [PembimbinganTAController::class, 'print'])->name('print');
+		Route::get('/print-all', [PembimbinganTAController::class, 'print_all'])->name('print_ttd');
+	});
+
+	// Pembimbingan PKL
+	Route::group(['prefix' => 'pkl', 'as' => 'pkl.'], function () {
+		Route::get('', [PKLController::class, 'index'])->name('index');
+		Route::post('', [PKLController::class, 'store'])->name('store');
+		Route::put('', [PKLController::class, 'update'])->name('update');
+		Route::delete('', [PKLController::class, 'delete'])->name('delete');
+		Route::post('/sgas', [PKLController::class, 'sgas'])->name('sgas');
+		Route::get('/print-all', [PKLController::class, 'print_all'])->name('print_ttd');
+	});
 });
 
 // MWI
@@ -260,6 +281,38 @@ Route::group(['prefix' => 'mwi', 'as' => 'mwi.', 'middleware' => ['role:mwi', 'a
 		Route::post('/sgas', [PengajaranController::class, 'sgas'])->name('sgas');
 		Route::get('/print', [PengajaranController::class, 'print'])->name('print');
 		Route::get('/print-ttd', [PengajaranController::class, 'print_ttd'])->name('print_ttd');
+	});
+
+	// Pembimbingan Mahasiswa
+	Route::group(['prefix' => 'pa', 'as' => 'pa.'], function () {
+		Route::get('', [PembimbinganMahasiswaController::class, 'index'])->name('index');
+		Route::post('', [PembimbinganMahasiswaController::class, 'store'])->name('store');
+		Route::put('', [PembimbinganMahasiswaController::class, 'update'])->name('update');
+		Route::delete('', [PembimbinganMahasiswaController::class, 'delete'])->name('delete');
+		Route::post('/sgas', [PembimbinganMahasiswaController::class, 'sgas'])->name('sgas');
+		Route::get('/print', [PembimbinganMahasiswaController::class, 'print'])->name('print');
+		Route::get('/print-all', [PembimbinganMahasiswaController::class, 'print_all'])->name('print_ttd');
+	});
+
+	// Pembimbingan Tugas Akhir
+	Route::group(['prefix' => 'tugas-akhir', 'as' => 'tugas-akhir.'], function () {
+		Route::get('', [PembimbinganTAController::class, 'index'])->name('index');
+		Route::post('', [PembimbinganTAController::class, 'store'])->name('store');
+		Route::put('', [PembimbinganTAController::class, 'update'])->name('update');
+		Route::delete('', [PembimbinganTAController::class, 'delete'])->name('delete');
+		Route::post('/sgas', [PembimbinganTAController::class, 'sgas'])->name('sgas');
+		Route::get('/print', [PembimbinganTAController::class, 'print'])->name('print');
+		Route::get('/print-all', [PembimbinganTAController::class, 'print_all'])->name('print_ttd');
+	});
+
+	// Pembimbingan PKL
+	Route::group(['prefix' => 'pkl', 'as' => 'pkl.'], function () {
+		Route::get('', [PKLController::class, 'index'])->name('index');
+		Route::post('', [PKLController::class, 'store'])->name('store');
+		Route::put('', [PKLController::class, 'update'])->name('update');
+		Route::delete('', [PKLController::class, 'delete'])->name('delete');
+		Route::post('/sgas', [PKLController::class, 'sgas'])->name('sgas');
+		Route::get('/print-all', [PKLController::class, 'print_all'])->name('print_ttd');
 	});
 });
 
@@ -325,7 +378,30 @@ Route::group(['prefix' => 'bsdm', 'as' => 'bsdm.', 'middleware' => ['role:bsdm',
 		Route::get('/print', [PembimbinganMahasiswaController::class, 'print'])->name('print');
 		Route::get('/print-all', [PembimbinganMahasiswaController::class, 'print_all'])->name('print_ttd');
 	});
-	
+
+	// Pembimbingan Tugas Akhir
+	Route::group(['prefix' => 'tugas-akhir', 'as' => 'tugas-akhir.'], function () {
+		Route::get('', [PembimbinganTAController::class, 'index'])->name('index');
+		Route::post('', [PembimbinganTAController::class, 'store'])->name('store');
+		Route::put('', [PembimbinganTAController::class, 'update'])->name('update');
+		Route::delete('', [PembimbinganTAController::class, 'delete'])->name('delete');
+		Route::post('/sgas', [PembimbinganTAController::class, 'sgas'])->name('sgas');
+		Route::get('/print', [PembimbinganTAController::class, 'print'])->name('print');
+		Route::get('/print-all', [PembimbinganTAController::class, 'print_all'])->name('print_ttd');
+	});
+
+	// Pembimbingan PKL
+	Route::group(['prefix' => 'pkl', 'as' => 'pkl.'], function () {
+		Route::get('', [PKLController::class, 'index'])->name('index');
+		Route::post('', [PKLController::class, 'store'])->name('store');
+		Route::put('', [PKLController::class, 'update'])->name('update');
+		Route::delete('', [PKLController::class, 'delete'])->name('delete');
+		Route::post('/sgas', [PKLController::class, 'sgas'])->name('sgas');
+		Route::get('/print-all', [PKLController::class, 'print_all'])->name('print_ttd');
+	});
+
+
+
 	// Validasi
 	Route::group(['prefix' => 'validasi', 'as' => 'validasi.'], function () {
 		Route::get('', [ValidasiController::class, 'index'])->name('index');
@@ -363,6 +439,27 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['role:user',
 		Route::post('/sgas', [PembimbinganMahasiswaController::class, 'sgas'])->name('sgas');
 		Route::get('/print', [PembimbinganMahasiswaController::class, 'print'])->name('print');
 		Route::get('/print-all', [PembimbinganMahasiswaController::class, 'print_all'])->name('print_ttd');
+	});
+
+	// Pembimbingan Tugas Akhir
+	Route::group(['prefix' => 'tugas-akhir', 'as' => 'tugas-akhir.'], function () {
+		Route::get('', [PembimbinganTAController::class, 'index'])->name('index');
+		Route::post('', [PembimbinganTAController::class, 'store'])->name('store');
+		Route::put('', [PembimbinganTAController::class, 'update'])->name('update');
+		Route::delete('', [PembimbinganTAController::class, 'delete'])->name('delete');
+		Route::post('/sgas', [PembimbinganTAController::class, 'sgas'])->name('sgas');
+		Route::get('/print', [PembimbinganTAController::class, 'print'])->name('print');
+		Route::get('/print-all', [PembimbinganTAController::class, 'print_all'])->name('print_ttd');
+	});
+
+	// Pembimbingan PKL
+	Route::group(['prefix' => 'pkl', 'as' => 'pkl.'], function () {
+		Route::get('', [PKLController::class, 'index'])->name('index');
+		Route::post('', [PKLController::class, 'store'])->name('store');
+		Route::put('', [PKLController::class, 'update'])->name('update');
+		Route::delete('', [PKLController::class, 'delete'])->name('delete');
+		Route::post('/sgas', [PKLController::class, 'sgas'])->name('sgas');
+		Route::get('/print-all', [PKLController::class, 'print_all'])->name('print_ttd');
 	});
 });
 

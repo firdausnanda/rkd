@@ -88,6 +88,25 @@
                 </a>
             </li>
 
+            <li class="menu">
+                <a href="{{ route('mwi.pkl.index') }}"
+                    data-active="{{ request()->routeIs('mwi.pkl.*') ? 'true' : '' }}"
+                    aria-expanded="{{ request()->routeIs('mwi.pkl.*') ? 'true' : 'false' }}"
+                    class="dropdown-toggle" style="text-decoration: none;">
+                    <div class="">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor"
+                            stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+                            class="css-i6dzq1">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path
+                                d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32">
+                            </path>
+                        </svg>
+                        <span style="font-size: 10px">Bimbingan PKL</span>
+                    </div>
+                </a>
+            </li>
+
         </ul>
 
     </nav>
