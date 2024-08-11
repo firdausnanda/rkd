@@ -672,12 +672,20 @@ class PengajaranController extends Controller
         $pdf->SetFont('Arial', 'B', 9);
         $pdf->Cell(10, 7,'No', 1, 0, 'C');
         $pdf->Cell(25, 7,'Kode MA', 1, 0, 'C');
-        $pdf->Cell(45, 7,'Matakuliah', 1, 0, 'C');
-        $pdf->Cell(25, 7,'Prodi', 1, 0, 'C');
+        $pdf->Cell(60, 7,'Matakuliah', 1, 0, 'C');
+        $pdf->Cell(30, 7,'Prodi', 1, 0, 'C');
         $pdf->Cell(15, 7,'Semester', 1, 0, 'C');
         $pdf->Cell(15, 7,'SKS', 1, 0, 'C');
-        $pdf->Cell(15, 7,'Kelas', 1, 0, 'C');
-        $pdf->Cell(20, 7,'Total Dosen', 1, 0, 'C');
+        // Rumus sebelum TA 2023 
+        if ($sgas->tahun_akademik->id > 5) {
+            $pdf->SetFont('Arial', 'B', 8);
+            $pdf->Cell(15, 7,'Jumlah TM', 1, 0, 'C');
+        }else{
+            // Rumus sebelum TA 2023 
+            $pdf->Cell(15, 7,'Kelas', 1, 0, 'C');
+        }
+        $pdf->SetFont('Arial', 'B', 9);
+        // $pdf->Cell(20, 7,'Total Dosen', 1, 0, 'C');
         $pdf->Cell(20, 7,'Total', 1, 0, 'C');
 
         $pdf->SetFont('Arial', '', 8);
@@ -696,7 +704,7 @@ class PengajaranController extends Controller
             $totalall = $totalall + round($total, 2);
             $pdf->ln();
 
-            $pdf->SetWidths(Array(10,25,45,25,15,15,15,20,20));
+            $pdf->SetWidths(Array(10,25,60,30,15,15,15,20));
             $pdf->SetLineHeight(5);
             $pdf->SetAligns(Array('C','L','L','L','C','C', 'C', 'C', 'C'));
             $pdf->Row(Array(
@@ -707,7 +715,6 @@ class PengajaranController extends Controller
                 $v->semester,
                 $v->matakuliah->sks,
                 $v->kelas,
-                $v->total_dosen,
                 number_format($total, 2, '.', ''),
             ));
         }

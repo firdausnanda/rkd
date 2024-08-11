@@ -100,8 +100,7 @@
                                         <th>MATAKULIAH</th>
                                         <th>PRODI</th>
                                         <th>SEMESTER</th>
-                                        <th>JUMLAH KELAS</th>
-                                        <th>JUMLAH DOSEN</th>
+                                        <th id="kelas">JUMLAH PERTEMUAN</th>
                                         <th>SKS</th>
                                         <th>TOTAL</th>
                                         <th class="no-content"></th>
@@ -111,7 +110,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th colspan="8" style="text-align:right">Total:</th>
+                                        <th colspan="7" style="text-align:right">Total:</th>
                                         <th></th>
                                     </tr>
                                 </tfoot>
@@ -366,6 +365,7 @@
                 ordering: false,
                 processing: true,
                 lengthChange: false,
+                bDestroy: false,
                 ajax: {
                     url: `/${$('#role').text()}/pengajaran`,
                     type: "GET",
@@ -443,29 +443,24 @@
                         data: 'kelas',
                         render: function(data, type, row, meta) {
                             let datas = ''
+
                             if (row.jumlah_pertemuan > 0) {
-                                datas = `${data}<br><span style='font-size:10px'>(${row.jumlah_pertemuan} Jumlah Pertemuan)</span>`
-                            }else{
+                                datas = `${row.jumlah_pertemuan}`
+                            } else {
                                 datas = data
                             }
-                            
+
                             return datas
                         }
                     },
                     {
                         targets: 6,
-                        width: '10%',
-                        className: 'text-center align-middle fs-14',
-                        data: 'total_dosen'
-                    },
-                    {
-                        targets: 7,
                         width: '5%',
                         className: 'text-center align-middle fs-14',
                         data: 'matakuliah.sks'
                     },
                     {
-                        targets: 8,
+                        targets: 7,
                         width: '5%',
                         className: 'text-center align-middle fs-14',
                         data: 'total',
@@ -473,14 +468,14 @@
                             let total = 0
                             if (row.sgas.id_tahun_akademik > 5) {
                                 total = row.jumlah_pertemuan / 14 * row.matakuliah.sks
-                            }else{
+                            } else {
                                 total = row.matakuliah.sks * row.kelas / row.total_dosen
                             }
                             return total.toFixed(2)
                         }
                     },
                     {
-                        targets: 9,
+                        targets: 8,
                         width: '10%',
                         className: 'text-center align-middle',
                         render: function(data, type, row, meta) {
@@ -500,6 +495,30 @@
                         }
                     }
                 ],
+                rowCallback: function(row, data) {
+                    console.log(row);
+
+                    if (data.sgas.id_tahun_akademik > 5) {
+                        $('#kelas').text('JUMLAS PERTEMUAN')
+                    } else {
+                        $('#kelas').text('JUMLAS KELAS')
+                    }
+                },
+                drawCallback: function(settings) {
+                    var api = this.api();
+                    var data = api.rows({
+                        page: 'current'
+                    }).data();
+
+                    if (data[0] == undefined) {
+                        $('#kelas').text('JUMLAS PERTEMUAN')
+                    } else if (data[0].sgas.id_tahun_akademik > 5) {
+                        $('#kelas').text('JUMLAS PERTEMUAN')
+                    } else {
+                        $('#kelas').text('JUMLAS KELAS')
+                    }
+
+                },
                 initComplete: function() {
                     $('#table-pengajaran').DataTable().buttons().container().appendTo(
                         '#table-pengajaran_wrapper .col-md-6:eq(0)');
@@ -516,14 +535,14 @@
 
                     // Total over this page
                     var total = api
-                        .column(8)
+                        .column(7)
                         .cache('search')
                         .reduce(function(a, b) {
                             return intVal(a) + intVal(b);
                         }, 0);
                     // console.log(total);
                     // Update footer
-                    $(api.column(8).footer()).html(total.toFixed(2));
+                    $(api.column(7).footer()).html(total.toFixed(2));
                 }
             });
 
