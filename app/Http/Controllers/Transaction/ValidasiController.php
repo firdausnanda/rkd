@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\PembimbinganAkademik;
 use App\Models\PembimbinganPraktikLapangan;
 use App\Models\PembimbinganTugasAkhir;
+use App\Models\PengujiTugasAkhir;
 use App\Models\Sgas;
 use App\Models\SgasPengajaran;
 use App\Models\TahunAkademik;
@@ -58,6 +59,10 @@ class ValidasiController extends Controller
                         $pkl = PembimbinganPraktikLapangan::where('id_sgas', $request->id_sgas)->get();
                         return ResponseFormatter::success($pkl, 'Data berhasil diambil!');
                         break;
+                    case '5':
+                        $pkl = PengujiTugasAkhir::where('id_sgas', $request->id_sgas)->get();
+                        return ResponseFormatter::success($pkl, 'Data berhasil diambil!');
+                        break;
                 }
             }
 
@@ -75,16 +80,19 @@ class ValidasiController extends Controller
             // Cek Kegiatan
             switch ($request->kegiatan) {
                 case 1:
-                    $sgas = $sgas->where('validasi', $request->status);
+                    $sgas = $sgas->where('validasi', $request->status)->where('jenis_kegiatan', SgasPengajaran::class);
                     break;
                 case 2:
-                    $sgas = $sgas->where('validasi_pa', $request->status);
+                    $sgas = $sgas->where('validasi_pa', $request->status)->where('jenis_kegiatan', PembimbinganAkademik::class);
                     break;
                 case 3:
-                    $sgas = $sgas->where('validasi_ta', $request->status);
+                    $sgas = $sgas->where('validasi_ta', $request->status)->where('jenis_kegiatan', PembimbinganTugasAkhir::class);
                     break;
                 case 4:
-                    $sgas = $sgas->where('validasi_pkl', $request->status);
+                    $sgas = $sgas->where('validasi_pkl', $request->status)->where('jenis_kegiatan', PembimbinganPraktikLapangan::class);
+                    break;
+                case 5:
+                    $sgas = $sgas->where('validasi_penguji_ta', $request->status)->where('jenis_kegiatan', PengujiTugasAkhir::class);
                     break;
             }
 
@@ -153,6 +161,20 @@ class ValidasiController extends Controller
 
                     $sgas->update([
                         'validasi_pkl' => $validasi
+                    ]);
+
+                    break;
+
+                case '5':
+
+                    if ($sgas->validasi_penguji_ta == 1) {
+                        $validasi = 0;
+                    } else {
+                        $validasi = 1;
+                    }
+
+                    $sgas->update([
+                        'validasi_penguji_ta' => $validasi
                     ]);
 
                     break;
@@ -229,6 +251,22 @@ class ValidasiController extends Controller
                         $query = Sgas::find($d['id']);
                         $query->update([
                             'validasi_pkl' => $validasi
+                        ]);
+                    }
+
+                    break;
+
+                case '5':
+                    if ($request->validasi == 1) {
+                        $validasi = 0;
+                    } else {
+                        $validasi = 1;
+                    }
+
+                    foreach ($request->dataDosen as $d) {
+                        $query = Sgas::find($d['id']);
+                        $query->update([
+                            'validasi_penguji_ta' => $validasi
                         ]);
                     }
 
