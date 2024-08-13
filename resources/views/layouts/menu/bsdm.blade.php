@@ -190,6 +190,25 @@
             </li>
 
             <li class="menu">
+                <a href="{{ route('bsdm.penguji-ta.index') }}"
+                    data-active="{{ request()->routeIs('bsdm.penguji-ta.*') ? 'true' : '' }}"
+                    aria-expanded="{{ request()->routeIs('bsdm.penguji-ta.*') ? 'true' : 'false' }}"
+                    class="dropdown-toggle" style="text-decoration: none;">
+                    <div class="">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor"
+                            stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+                            class="css-i6dzq1">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                            <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                            <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                        </svg>
+                        <span style="font-size: 8px">Penguji Tugas Akhir</span>
+                    </div>
+                </a>
+            </li>
+
+            <li class="menu">
                 <a href="{{ route('bsdm.validasi.index') }}"
                     data-active="{{ request()->routeIs('bsdm.validasi.*') ? 'true' : '' }}"
                     aria-expanded="{{ request()->routeIs('bsdm.validasi.*') ? 'true' : '' }}" class="dropdown-toggle"

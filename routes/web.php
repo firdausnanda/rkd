@@ -273,6 +273,17 @@ Route::group(['prefix' => 'prodi', 'as' => 'prodi.', 'middleware' => ['role:prod
 		Route::post('/sgas', [PKLController::class, 'sgas'])->name('sgas');
 		Route::get('/print-all', [PKLController::class, 'print_all'])->name('print_ttd');
 	});
+
+	// Penguji Tugas Akhir
+	Route::group(['prefix' => 'penguji-ta', 'as' => 'penguji-ta.'], function () {
+		Route::get('', [PengujiTAController::class, 'index'])->name('index');
+		Route::post('', [PengujiTAController::class, 'store'])->name('store');
+		Route::put('', [PengujiTAController::class, 'update'])->name('update');
+		Route::delete('', [PengujiTAController::class, 'delete'])->name('delete');
+		Route::post('/sgas', [PengujiTAController::class, 'sgas'])->name('sgas');
+		Route::get('/print', [PengujiTAController::class, 'print'])->name('print');
+		Route::get('/print-all', [PengujiTAController::class, 'print_all'])->name('print_ttd');
+	});
 });
 
 // MWI
@@ -325,6 +336,17 @@ Route::group(['prefix' => 'mwi', 'as' => 'mwi.', 'middleware' => ['role:mwi', 'a
 		Route::delete('', [PKLController::class, 'delete'])->name('delete');
 		Route::post('/sgas', [PKLController::class, 'sgas'])->name('sgas');
 		Route::get('/print-all', [PKLController::class, 'print_all'])->name('print_ttd');
+	});
+
+	// Penguji Tugas Akhir
+	Route::group(['prefix' => 'penguji-ta', 'as' => 'penguji-ta.'], function () {
+		Route::get('', [PengujiTAController::class, 'index'])->name('index');
+		Route::post('', [PengujiTAController::class, 'store'])->name('store');
+		Route::put('', [PengujiTAController::class, 'update'])->name('update');
+		Route::delete('', [PengujiTAController::class, 'delete'])->name('delete');
+		Route::post('/sgas', [PengujiTAController::class, 'sgas'])->name('sgas');
+		Route::get('/print', [PengujiTAController::class, 'print'])->name('print');
+		Route::get('/print-all', [PengujiTAController::class, 'print_all'])->name('print_ttd');
 	});
 });
 
@@ -412,7 +434,16 @@ Route::group(['prefix' => 'bsdm', 'as' => 'bsdm.', 'middleware' => ['role:bsdm',
 		Route::get('/print-all', [PKLController::class, 'print_all'])->name('print_ttd');
 	});
 
-
+	// Penguji Tugas Akhir
+	Route::group(['prefix' => 'penguji-ta', 'as' => 'penguji-ta.'], function () {
+		Route::get('', [PengujiTAController::class, 'index'])->name('index');
+		Route::post('', [PengujiTAController::class, 'store'])->name('store');
+		Route::put('', [PengujiTAController::class, 'update'])->name('update');
+		Route::delete('', [PengujiTAController::class, 'delete'])->name('delete');
+		Route::post('/sgas', [PengujiTAController::class, 'sgas'])->name('sgas');
+		Route::get('/print', [PengujiTAController::class, 'print'])->name('print');
+		Route::get('/print-all', [PengujiTAController::class, 'print_all'])->name('print_ttd');
+	});
 
 	// Validasi
 	Route::group(['prefix' => 'validasi', 'as' => 'validasi.'], function () {
@@ -472,6 +503,17 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['role:user',
 		Route::delete('', [PKLController::class, 'delete'])->name('delete');
 		Route::post('/sgas', [PKLController::class, 'sgas'])->name('sgas');
 		Route::get('/print-all', [PKLController::class, 'print_all'])->name('print_ttd');
+	});
+
+	// Penguji Tugas Akhir
+	Route::group(['prefix' => 'penguji-ta', 'as' => 'penguji-ta.'], function () {
+		Route::get('', [PengujiTAController::class, 'index'])->name('index');
+		Route::post('', [PengujiTAController::class, 'store'])->name('store');
+		Route::put('', [PengujiTAController::class, 'update'])->name('update');
+		Route::delete('', [PengujiTAController::class, 'delete'])->name('delete');
+		Route::post('/sgas', [PengujiTAController::class, 'sgas'])->name('sgas');
+		Route::get('/print', [PengujiTAController::class, 'print'])->name('print');
+		Route::get('/print-all', [PengujiTAController::class, 'print_all'])->name('print_ttd');
 	});
 });
 
