@@ -10,6 +10,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\Transaction\PembimbinganMahasiswaController;
 use App\Http\Controllers\Transaction\PembimbinganTAController;
 use App\Http\Controllers\Transaction\PengajaranController;
+use App\Http\Controllers\Transaction\PengujiTAController;
 use App\Http\Controllers\Transaction\PKLController;
 use App\Http\Controllers\Transaction\ValidasiController;
 use Illuminate\Support\Facades\Artisan;
@@ -123,6 +124,17 @@ Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => [
 		Route::delete('', [PKLController::class, 'delete'])->name('delete');
 		Route::post('/sgas', [PKLController::class, 'sgas'])->name('sgas');
 		Route::get('/print-all', [PKLController::class, 'print_all'])->name('print_ttd');
+	});
+
+	// Penguji Tugas Akhir
+	Route::group(['prefix' => 'penguji-ta', 'as' => 'penguji-ta.'], function () {
+		Route::get('', [PengujiTAController::class, 'index'])->name('index');
+		Route::post('', [PengujiTAController::class, 'store'])->name('store');
+		Route::put('', [PengujiTAController::class, 'update'])->name('update');
+		Route::delete('', [PengujiTAController::class, 'delete'])->name('delete');
+		Route::post('/sgas', [PengujiTAController::class, 'sgas'])->name('sgas');
+		Route::get('/print', [PengujiTAController::class, 'print'])->name('print');
+		Route::get('/print-all', [PengujiTAController::class, 'print_all'])->name('print_ttd');
 	});
 
 	// Validasi

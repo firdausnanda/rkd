@@ -83,7 +83,7 @@
                             <line x1="10" y1="1" x2="10" y2="4"></line>
                             <line x1="14" y1="1" x2="14" y2="4"></line>
                         </svg>
-                        <span style="font-size: 10px">Penguji Tugas Akhir</span>
+                        <span style="font-size: 8px">Pembimbingan Tugas Akhir</span>
                     </div>
                 </a>
             </li>
@@ -91,8 +91,8 @@
             <li class="menu">
                 <a href="{{ route('user.pkl.index') }}"
                     data-active="{{ request()->routeIs('user.pkl.*') ? 'true' : '' }}"
-                    aria-expanded="{{ request()->routeIs('user.pkl.*') ? 'true' : 'false' }}"
-                    class="dropdown-toggle" style="text-decoration: none;">
+                    aria-expanded="{{ request()->routeIs('user.pkl.*') ? 'true' : 'false' }}" class="dropdown-toggle"
+                    style="text-decoration: none;">
                     <div class="">
                         <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor"
                             stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"

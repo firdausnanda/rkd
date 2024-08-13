@@ -8,17 +8,18 @@ use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Models\Dosen;
 use App\Models\Matakuliah;
-use App\Models\PembimbinganAkademik;
+use App\Models\PengujiTugasAkhir;
 use App\Models\Sgas;
 use App\Models\TahunAkademik;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-class PembimbinganMahasiswaController extends Controller
+class PengujiTAController extends Controller
 {
     public function index(Request $request)
     {
@@ -33,16 +34,16 @@ class PembimbinganMahasiswaController extends Controller
         $ta = TahunAkademik::orderBy('tahun_akademik', 'desc')->get();
 
         if ($request->ajax()) {
-            $akademik = PembimbinganAkademik::whereHas('sgas', function (Builder $query) use ($request) {
+            $akademik = PengujiTugasAkhir::whereHas('sgas', function (Builder $query) use ($request) {
                 $query->where('id_dosen', $request->dosen)
                     ->where('id_tahun_akademik', $request->ta)
-                    ->where('jenis_kegiatan', PembimbinganAkademik::class)
+                    ->where('jenis_kegiatan', PengujiTugasAkhir::class)
                     ->where('semester', $request->semester);
             })->get();
             return ResponseFormatter::success($akademik, 'Data berhasil diambil!');
         }
 
-        return view('pages.transaction.pa', compact('dosen', 'ta', 'matakuliah'));
+        return view('pages.transaction.penguji_ta', compact('dosen', 'ta', 'matakuliah'));
     }
 
     public function sgas(Request $request)
@@ -61,7 +62,7 @@ class PembimbinganMahasiswaController extends Controller
             $ceksgas = Sgas::where('id_dosen', $request->dosen)
                 ->where('id_tahun_akademik', $request->ta)
                 ->where('semester', $request->semester)
-                ->where('jenis_kegiatan', PembimbinganAkademik::class)
+                ->where('jenis_kegiatan', PengujiTugasAkhir::class)
                 ->first();
 
             if ($ceksgas == null || $ceksgas == '') {
@@ -73,7 +74,7 @@ class PembimbinganMahasiswaController extends Controller
                     'no_plot' => $no->count() + 1,
                     'homebase_dosen' => $cekdosen->id_prodi,
                     'jabatan_fungsional' => $cekdosen->jabatan_fungsional,
-                    'jenis_kegiatan' => PembimbinganAkademik::class,
+                    'jenis_kegiatan' => PengujiTugasAkhir::class,
                     'jabatan_struktural' => $cekdosen->jabatan_struktural
                 ]);
             }
@@ -82,7 +83,7 @@ class PembimbinganMahasiswaController extends Controller
                 ->where('id_dosen', $request->dosen)
                 ->where('id_tahun_akademik', $request->ta)
                 ->where('semester', $request->semester)
-                ->where('jenis_kegiatan', PembimbinganAkademik::class)
+                ->where('jenis_kegiatan', PengujiTugasAkhir::class)
                 ->first();
 
             // Tahun Akademik
@@ -99,7 +100,7 @@ class PembimbinganMahasiswaController extends Controller
         $validator = Validator::make($request->all(), [
             'nama_mahasiswa' => 'required',
             'nim' => 'required',
-            'semester' => 'required',
+            'judul_ta' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -108,16 +109,17 @@ class PembimbinganMahasiswaController extends Controller
 
         try {
 
-            $pengajaran = PembimbinganAkademik::create([
+            $pengajaran = PengujiTugasAkhir::create([
                 'id_sgas' => $request->sgas,
                 'nama_mahasiswa' => $request->nama_mahasiswa,
                 'nim' => $request->nim,
-                'semester' => $request->semester
+                'judul_ta' => $request->judul_ta
             ]);
 
             return ResponseFormatter::success($pengajaran, 'Data Berhasil disimpan');
         } catch (\Throwable $th) {
-            return ResponseFormatter::error($th, 'Server Error!');
+            Log::error($th->getMessage());
+            return ResponseFormatter::error($th->getMessage(), 'Server Error!');
         }
     }
 
@@ -127,7 +129,7 @@ class PembimbinganMahasiswaController extends Controller
         $validator = Validator::make($request->all(), [
             'nama_mahasiswa' => 'required',
             'nim' => 'required',
-            'semester' => 'required',
+            'judul_ta' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -136,10 +138,10 @@ class PembimbinganMahasiswaController extends Controller
 
         try {
 
-            $pengajaran = PembimbinganAkademik::where('id', $request->pa)->update([
+            $pengajaran = PengujiTugasAkhir::where('id', $request->pa)->update([
                 'nama_mahasiswa' => $request->nama_mahasiswa,
                 'nim' => $request->nim,
-                'semester' => $request->semester
+                'judul_ta' => $request->judul_ta
             ]);
 
             return ResponseFormatter::success($pengajaran, 'Data Berhasil diupdate');
@@ -151,7 +153,7 @@ class PembimbinganMahasiswaController extends Controller
     public function delete(Request $request)
     {
         try {
-            $pengajaran = PembimbinganAkademik::where('id', $request->id)->delete();
+            $pengajaran = PengujiTugasAkhir::where('id', $request->id)->delete();
             return ResponseFormatter::success($pengajaran, 'Data Berhasil Dihapus!');
         } catch (\Exception $e) {
             return ResponseFormatter::error($e, 'Server Error!');
@@ -172,7 +174,7 @@ class PembimbinganMahasiswaController extends Controller
         $dekan = $sgas->dosen && $sgas->dosen->prodi ? $sgas->dosen->prodi->fakultas->dekan : '';
         $nidn_dekan = $sgas->dosen && $sgas->dosen->prodi ? $sgas->dosen->prodi->fakultas->nidn_dekan : '';
 
-        $pengajaran = PembimbinganAkademik::whereHas('sgas',  function (Builder $query) use ($id) {
+        $pengajaran = PengujiTugasAkhir::whereHas('sgas',  function (Builder $query) use ($id) {
             $query->where('id', $id);
         })->get();
 
@@ -198,14 +200,14 @@ class PembimbinganMahasiswaController extends Controller
             $pdf->Cell(45);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(135, 7, 'Bahwa dalam rangka melaksanakan aktivitas Tridharma Perguruan Tinggi yaitu pembimbingan akademik bagi mahasiswa di ITSK RS dr. Soepraoen, maka perlu di keluarkan surat tugas Pembimbing Akademik', 0, 'J', false, 10);
+            $pdf->MultiCellIndent(135, 7, 'Bahwa dalam rangka melaksanakan aktivitas Tridharma Perguruan Tinggi yaitu penguji Tugas Akhir/Skripsi bagi mahasiswa di ITSK RS dr. Soepraoen, maka perlu di keluarkan surat tugas.', 0, 'J', false, 10);
             $pdf->Ln(3);
 
             $pdf->Cell(1, 7, 'Dasar', 0, 0, 'L');
             $pdf->Cell(45);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(135, 7, 'Permohonan penerbitan surat tugas dosen pembimbing akademik mahasiswa TA ' . $sgas->tahun_akademik->tahun_akademik . ' ' . $fakultas . ' ITSK RS dr. Soepraoen Malang', 0, 'J', false, 10);
+            $pdf->MultiCellIndent(135, 7, 'Permohonan penerbitan surat tugas dosen penguji Tugas Akhir/Skripsi mahasiswa TA ' . $sgas->tahun_akademik->tahun_akademik . ' ' . $fakultas . ' ITSK RS dr. Soepraoen Malang', 0, 'J', false, 10);
 
             $title = "DITUGASKAN";
             $pdf->SetFont('Arial', 'B', 11, 5);
@@ -219,7 +221,7 @@ class PembimbinganMahasiswaController extends Controller
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
 
             $pdf->Cell(3);
-            $pdf->Cell(1, 7, 'Nama Dosen Pembimbing', 0, 0, 'L');
+            $pdf->Cell(1, 7, 'Nama Dosen Penguji', 0, 0, 'L');
             $pdf->Cell(60);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
@@ -259,18 +261,21 @@ class PembimbinganMahasiswaController extends Controller
             $pdf->Ln(0);
 
             $pdf->Cell(50);
-            $pdf->Cell(1, 7, 'Semester', 0, 0, 'L');
+            $pdf->Cell(1, 7, 'Judul', 0, 0, 'L');
             $pdf->Cell(60);
-            $pdf->Cell(1, 7, ':', 0, 0, 'L');
-            $pdf->Cell(5);
-            $pdf->MultiCellIndent(75, 7, $v->semester, 0, 'J', false, 0);
+            $pdf->Cell(1, 7, ':', 0, 1, 'L');
+
+            $pdf->SetFont('Arial', 'i', 11, 5);
+            $pdf->Cell(50);
+            $pdf->MultiCellIndent(142, 7, '"' . $v->judul_ta . '"', 0, 'J', false, 0);
             $pdf->Ln(3);
 
+            $pdf->SetFont('Arial', '', 11, 5);
             $pdf->Cell(1, 7, 'Untuk', 0, 0, 'L');
             $pdf->Cell(45);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(135, 7, '1.   Seterimanya Surat ini disamping tugas jabatan dan tanggung jawab sehari-hari ditunjuk sebagai dosen pembimbing Akademik mahasiswa Semester ' . $v->semester . ' TA. ' . $sgas->tahun_akademik->tahun_akademik . ' Prodi ' . $sgas->dosen->prodi->nama_prodi . ';', 0, 'J', false, 0);
+            $pdf->MultiCellIndent(135, 7, '1.   Seterimanya Surat ini disamping tugas jabatan dan tanggung jawab sehari-hari ditunjuk sebagai dosen penguji Tugas Akhir/Skripsi mahasiswa Semester ' . $v->semester . ' TA. ' . $sgas->tahun_akademik->tahun_akademik . ' Prodi ' . $sgas->dosen->prodi->nama_prodi . ';', 0, 'J', false, 0);
             $pdf->Ln(3);
             $pdf->Cell(52);
             $pdf->MultiCellIndent(135, 7, '2.   Lapor kepada Dekan ' . $fakultas . ' RS dr. Soepraoen atas pelaksanaan surat tugas ini;', 0, 'J', false, 0);
@@ -324,7 +329,7 @@ class PembimbinganMahasiswaController extends Controller
         $dekan = $sgas->dosen && $sgas->dosen->prodi ? $sgas->dosen->prodi->fakultas->dekan : '';
         $nidn_dekan = $sgas->dosen && $sgas->dosen->prodi ? $sgas->dosen->prodi->fakultas->nidn_dekan : '';
 
-        $pengajaran = PembimbinganAkademik::whereHas('sgas',  function (Builder $query) use ($id) {
+        $pengajaran = PengujiTugasAkhir::whereHas('sgas',  function (Builder $query) use ($id) {
             $query->where('id', $id);
         })->get();
 
@@ -350,14 +355,14 @@ class PembimbinganMahasiswaController extends Controller
             $pdf->Cell(45);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(135, 7, 'Bahwa dalam rangka melaksanakan aktivitas Tridharma Perguruan Tinggi yaitu pembimbingan akademik bagi mahasiswa di ITSK RS dr. Soepraoen, maka perlu di keluarkan surat tugas Pembimbing Akademik', 0, 'J', false, 10);
+            $pdf->MultiCellIndent(135, 7, 'Bahwa dalam rangka melaksanakan aktivitas Tridharma Perguruan Tinggi yaitu penguji Tugas Akhir/Skripsi bagi mahasiswa di ITSK RS dr. Soepraoen, maka perlu di keluarkan surat tugas.', 0, 'J', false, 10);
             $pdf->Ln(3);
 
             $pdf->Cell(1, 7, 'Dasar', 0, 0, 'L');
             $pdf->Cell(45);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(135, 7, 'Permohonan penerbitan surat tugas dosen pembimbing akademik mahasiswa TA ' . $sgas->tahun_akademik->tahun_akademik . ' ' . $fakultas . ' ITSK RS dr. Soepraoen Malang', 0, 'J', false, 10);
+            $pdf->MultiCellIndent(135, 7, 'Permohonan penerbitan surat tugas dosen penguji Tugas Akhir/Skripsi mahasiswa TA ' . $sgas->tahun_akademik->tahun_akademik . ' ' . $fakultas . ' ITSK RS dr. Soepraoen Malang', 0, 'J', false, 10);
 
             $title = "DITUGASKAN";
             $pdf->SetFont('Arial', 'B', 11, 5);
@@ -371,7 +376,7 @@ class PembimbinganMahasiswaController extends Controller
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
 
             $pdf->Cell(3);
-            $pdf->Cell(1, 7, 'Nama Dosen Pembimbing', 0, 0, 'L');
+            $pdf->Cell(1, 7, 'Nama Dosen Penguji', 0, 0, 'L');
             $pdf->Cell(60);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
@@ -411,18 +416,21 @@ class PembimbinganMahasiswaController extends Controller
             $pdf->Ln(0);
 
             $pdf->Cell(50);
-            $pdf->Cell(1, 7, 'Semester', 0, 0, 'L');
+            $pdf->Cell(1, 7, 'Judul', 0, 0, 'L');
             $pdf->Cell(60);
-            $pdf->Cell(1, 7, ':', 0, 0, 'L');
-            $pdf->Cell(5);
-            $pdf->MultiCellIndent(75, 7, $v->semester, 0, 'J', false, 0);
+            $pdf->Cell(1, 7, ':', 0, 1, 'L');
+
+            $pdf->SetFont('Arial', 'i', 11, 5);
+            $pdf->Cell(50);
+            $pdf->MultiCellIndent(142, 7, '"' . $v->judul_ta . '"', 0, 'J', false, 0);
             $pdf->Ln(3);
 
+            $pdf->SetFont('Arial', '', 11, 5);
             $pdf->Cell(1, 7, 'Untuk', 0, 0, 'L');
             $pdf->Cell(45);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(135, 7, '1.   Seterimanya Surat ini disamping tugas jabatan dan tanggung jawab sehari-hari ditunjuk sebagai dosen pembimbing Akademik mahasiswa Semester ' . $v->semester . ' TA. ' . $sgas->tahun_akademik->tahun_akademik . ' Prodi ' . $sgas->dosen->prodi->nama_prodi . ';', 0, 'J', false, 0);
+            $pdf->MultiCellIndent(135, 7, '1.   Seterimanya Surat ini disamping tugas jabatan dan tanggung jawab sehari-hari ditunjuk sebagai dosen penguji Tugas Akhir/Skripsi mahasiswa Semester ' . $v->semester . ' TA. ' . $sgas->tahun_akademik->tahun_akademik . ' Prodi ' . $sgas->dosen->prodi->nama_prodi . ';', 0, 'J', false, 0);
             $pdf->Ln(3);
             $pdf->Cell(52);
             $pdf->MultiCellIndent(135, 7, '2.   Lapor kepada Dekan ' . $fakultas . ' RS dr. Soepraoen atas pelaksanaan surat tugas ini;', 0, 'J', false, 0);

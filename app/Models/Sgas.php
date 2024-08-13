@@ -17,10 +17,12 @@ class Sgas extends Model
         'validasi_pa',
         'validasi_ta',
         'validasi_pkl',
+        'validasi_penguji_ta',
         'no_plot',
         'homebase_dosen',
         'jabatan_fungsional',
         'jabatan_struktural',
+        'jenis_kegiatan',
     ];
 
     protected $table = 'sgas';

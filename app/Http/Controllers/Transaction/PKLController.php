@@ -37,6 +37,7 @@ class PKLController extends Controller
             $akademik = PembimbinganPraktikLapangan::whereHas('sgas', function (Builder $query) use ($request) {
                 $query->where('id_dosen', $request->dosen)
                     ->where('id_tahun_akademik', $request->ta)
+                    ->where('jenis_kegiatan', PembimbinganPraktikLapangan::class)
                     ->where('semester', $request->semester);
             })->get();
             return ResponseFormatter::success($akademik, 'Data berhasil diambil!');
@@ -49,13 +50,21 @@ class PKLController extends Controller
     {
         try {
             // Get Nomor Plot
-            $no = Sgas::select('no_plot')->where('id_tahun_akademik', $request->ta)->where('semester', $request->semester)->get();
+            $no = Sgas::select('no_plot')
+                ->where('id_tahun_akademik', $request->ta)
+                ->where('semester', $request->semester)
+                ->get();
 
             // CekDosen
             $cekdosen = Dosen::with('prodi')->where('id', $request->dosen)->first();
 
             // Check if Sgas exist
-            $ceksgas = Sgas::where('id_dosen', $request->dosen)->where('id_tahun_akademik', $request->ta)->where('semester', $request->semester)->first();
+            $ceksgas = Sgas::where('id_dosen', $request->dosen)
+                ->where('id_tahun_akademik', $request->ta)
+                ->where('semester', $request->semester)
+                ->where('jenis_kegiatan', PembimbinganPraktikLapangan::class)
+                ->first();
+
             if ($ceksgas == null || $ceksgas == '') {
                 Sgas::create([
                     'id_dosen' => $request->dosen,
@@ -65,11 +74,17 @@ class PKLController extends Controller
                     'no_plot' => $no->count() + 1,
                     'homebase_dosen' => $cekdosen->id_prodi,
                     'jabatan_fungsional' => $cekdosen->jabatan_fungsional,
+                    'jenis_kegiatan' => PembimbinganPraktikLapangan::class,
                     'jabatan_struktural' => $cekdosen->jabatan_struktural
                 ]);
             }
 
-            $sgas = Sgas::with('homebase', 'dosen')->where('id_dosen', $request->dosen)->where('id_tahun_akademik', $request->ta)->where('semester', $request->semester)->first();
+            $sgas = Sgas::with('homebase', 'dosen')
+                ->where('id_dosen', $request->dosen)
+                ->where('id_tahun_akademik', $request->ta)
+                ->where('semester', $request->semester)
+                ->where('jenis_kegiatan', PembimbinganPraktikLapangan::class)
+                ->first();
 
             // Tahun Akademik
             $ta = TahunAkademik::where('id', $request->ta)->first();
@@ -184,7 +199,7 @@ class PKLController extends Controller
         $pdf->Cell($w, 15, $title, 0, 0, 'C');
         $pdf->Ln(4);
         $tahun = $sgas->semester == 'ganjil' ? $sgas->tahun_akademik->semester_ganjil : $sgas->tahun_akademik->semester_genap;
-        $pdf->Cell(193, 15, 'Nomor : Sgas / ' . $sgas->no_plot . '.4 / ' . Bilangan::Roman((int)Carbon::parse($tahun)->format('m')) . ' / ' . Str::of($tahun)->substr(0, 4) . ' / ' . $aliasFakultas, 0, 0, 'C');
+        $pdf->Cell(193, 15, 'Nomor : Sgas / ' . $sgas->no_plot . ' / ' . Bilangan::Roman((int)Carbon::parse($tahun)->format('m')) . ' / ' . Str::of($tahun)->substr(0, 4) . ' / ' . $aliasFakultas, 0, 0, 'C');
         $pdf->Ln(12);
 
         $pdf->Cell(1, 7, 'Menimbang', 0, 0, 'L');
@@ -275,7 +290,7 @@ class PKLController extends Controller
         $pdf->Cell(98, 7, 'Lampiran Surat Tugas Pembimbing Praktek Kerja Lapangan', 0, 0, 'L');
         $pdf->Ln(5);
         $pdf->Cell(170);
-        $pdf->Cell(98, 7, 'Nomor : Sgas / ' . $sgas->no_plot . '.4 / ' . Bilangan::Roman((int)Carbon::parse($tahun)->format('m')) . ' / ' . Str::of($tahun)->substr(0, 4) . ' / ' . $aliasFakultas, 0, 0, 'L');
+        $pdf->Cell(98, 7, 'Nomor : Sgas / ' . $sgas->no_plot . ' / ' . Bilangan::Roman((int)Carbon::parse($tahun)->format('m')) . ' / ' . Str::of($tahun)->substr(0, 4) . ' / ' . $aliasFakultas, 0, 0, 'L');
         $pdf->Ln(5);
         $pdf->Cell(170);
         $pdf->Cell(98, 7, 'Tanggal : ' . Carbon::parse($tahun)->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('j F Y'), 0, 0, 'L');
@@ -354,7 +369,7 @@ class PKLController extends Controller
                 Carbon::parse($v->tgl_mulai_kegiatan)->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('j F Y') . ' - ' . Carbon::parse($v->tgl_selesai_kegiatan)->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('j F Y'),
             ));
         }
-        
+
         $pdf->ln(8);
 
         // Ttd

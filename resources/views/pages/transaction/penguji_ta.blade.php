@@ -199,8 +199,8 @@
     </div>
 
     {{-- Modal Print --}}
-    <div class="modal fade" id="print-ta" tabindex="-1" data-backdrop="static" data-keyboard="false"
-        role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+    <div class="modal fade" id="print-ta" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog"
+        aria-labelledby="modalTitleId" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -241,7 +241,7 @@
                 processing: true,
                 lengthChange: false,
                 ajax: {
-                    url: `/${$('#role').text()}/tugas-akhir`,
+                    url: `/${$('#role').text()}/penguji-ta`,
                     type: "GET",
                     data: function(d) {
                         d.dosen = $('#dosen-select').val()
@@ -346,7 +346,7 @@
                 } else {
                     $.ajax({
                         type: "POST",
-                        url: `/${$('#role').text()}/tugas-akhir/sgas`,
+                        url: `/${$('#role').text()}/penguji-ta/sgas`,
                         data: {
                             ta: $("#ta-select").val(),
                             semester: $("#semester-select").val(),
@@ -368,10 +368,10 @@
                                 .jabatan_struktural);
                             $('#nidn_dosen').val(response.data[0].nidn);
 
-                            response.data[1].validasi_ta == 0 ? $('#status').text('Pending') :
+                            response.data[1].validasi_penguji_ta == 0 ? $('#status').text('Pending') :
                                 $(
                                     '#status').text('Approved');
-                            response.data[1].validasi_ta == 0 ? $('#status').removeClass(
+                            response.data[1].validasi_penguji_ta == 0 ? $('#status').removeClass(
                                     'bg-success').addClass('bg-danger') : $('#status')
                                 .removeClass('bg-danger').addClass('bg-success');
 
@@ -400,7 +400,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: `/${$('#role').text()}/tugas-akhir`,
+                    url: `/${$('#role').text()}/penguji-ta`,
                     data: $(this).serialize(),
                     dataType: "JSON",
                     beforeSend: function() {
@@ -444,7 +444,7 @@
                 e.preventDefault();
 
                 $.ajax({
-                    url: `/${$('#role').text()}/tugas-akhir`,
+                    url: `/${$('#role').text()}/penguji-ta`,
                     type: "PUT",
                     data: $(this).serialize(),
                     dataType: "JSON",
@@ -480,7 +480,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "DELETE",
-                            url: `/${$('#role').text()}/tugas-akhir`,
+                            url: `/${$('#role').text()}/penguji-ta`,
                             data: {
                                 id: data.id
                             },
@@ -508,7 +508,7 @@
 
                 $.ajax({
                     type: "GET",
-                    url: `/${$('#role').text()}/tugas-akhir/print-all`,
+                    url: `/${$('#role').text()}/penguji-ta/print-all`,
                     data: {
                         id: $('#sgas').val()
                     },
@@ -544,7 +544,7 @@
 
                 $.ajax({
                     type: "GET",
-                    url: `/${$('#role').text()}/tugas-akhir/print`,
+                    url: `/${$('#role').text()}/penguji-ta/print`,
                     data: {
                         id: data.id,
                         id_sgas: data.id_sgas
