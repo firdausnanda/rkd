@@ -101,6 +101,7 @@ class PembimbinganTAController extends Controller
             'nama_mahasiswa' => 'required',
             'nim' => 'required',
             'judul_ta' => 'required',
+            'peran' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -113,6 +114,7 @@ class PembimbinganTAController extends Controller
                 'id_sgas' => $request->sgas,
                 'nama_mahasiswa' => $request->nama_mahasiswa,
                 'nim' => $request->nim,
+                'peran' => $request->peran,
                 'judul_ta' => $request->judul_ta
             ]);
 
@@ -130,6 +132,7 @@ class PembimbinganTAController extends Controller
             'nama_mahasiswa' => 'required',
             'nim' => 'required',
             'judul_ta' => 'required',
+            'peran' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -141,6 +144,7 @@ class PembimbinganTAController extends Controller
             $pengajaran = PembimbinganTugasAkhir::where('id', $request->pa)->update([
                 'nama_mahasiswa' => $request->nama_mahasiswa,
                 'nim' => $request->nim,
+                'peran' => $request->peran,
                 'judul_ta' => $request->judul_ta
             ]);
 
@@ -197,27 +201,28 @@ class PembimbinganTAController extends Controller
             $pdf->Ln(12);
 
             $pdf->Cell(1, 7, 'Menimbang', 0, 0, 'L');
-            $pdf->Cell(45);
+            $pdf->Cell(35);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(135, 7, 'Bahwa dalam rangka melaksanakan aktivitas Tridharma Perguruan Tinggi yaitu pembimbingan Tugas Akhir/Skripsi bagi mahasiswa di ITSK RS dr. Soepraoen, maka perlu di keluarkan surat tugas.', 0, 'J', false, 10);
+            $pdf->MultiCellIndent(147, 7, 'Bahwa dalam rangka melaksanakan aktivitas Tridharma Perguruan Tinggi yaitu pembimbingan Tugas Akhir/Skripsi bagi mahasiswa di ITSK RS dr. Soepraoen, maka perlu di keluarkan surat tugas.', 0, 'J', false, 10);
             $pdf->Ln(3);
 
             $pdf->Cell(1, 7, 'Dasar', 0, 0, 'L');
-            $pdf->Cell(45);
+            $pdf->Cell(35);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(135, 7, 'Permohonan penerbitan surat tugas dosen pembimbingan Tugas Akhir/Skripsi mahasiswa TA ' . $sgas->tahun_akademik->tahun_akademik . ' ' . $fakultas . ' ITSK RS dr. Soepraoen Malang', 0, 'J', false, 10);
+            $pdf->MultiCellIndent(147, 7, 'Permohonan penerbitan surat tugas dosen pembimbingan Tugas Akhir/Skripsi mahasiswa TA ' . $sgas->tahun_akademik->tahun_akademik . ' ' . $fakultas . ' ITSK RS dr. Soepraoen Malang', 0, 'J', false, 10);
 
             $title = "DITUGASKAN";
             $pdf->SetFont('Arial', 'B', 11, 5);
             $w = $pdf->GetStringWidth($title) + 6;
             $pdf->SetX((210 - $w) / 2);
-            $pdf->Cell($w, 15, $title, 0, 1, 'C');
+            $pdf->Cell($w, 15, $title, 0, 0, 'C');
+            $pdf->Ln(12);
 
             $pdf->SetFont('Arial', '', 11, 5);
             $pdf->Cell(1, 7, 'Kepada', 0, 0, 'L');
-            $pdf->Cell(45);
+            $pdf->Cell(35);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
 
             $pdf->Cell(3);
@@ -225,63 +230,71 @@ class PembimbinganTAController extends Controller
             $pdf->Cell(60);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(75, 7, $sgas->dosen->nama, 0, 'J', false, 0);
+            $pdf->MultiCellIndent(87, 7, $sgas->dosen->nama, 0, 'J', false, 0);
             $pdf->Ln(0);
 
-            $pdf->Cell(50);
+            $pdf->Cell(40);
             $pdf->Cell(1, 7, 'NIDN', 0, 0, 'L');
             $pdf->Cell(60);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(75, 7, $sgas->dosen->nidn, 0, 'J', false, 0);
+            $pdf->MultiCellIndent(87, 7, $sgas->dosen->nidn, 0, 'J', false, 0);
             $pdf->Ln(0);
 
-            $pdf->Cell(50);
+            $pdf->Cell(40);
             $pdf->Cell(1, 7, 'Program Studi', 0, 0, 'L');
             $pdf->Cell(60);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(75, 7, $sgas->dosen->prodi->nama_prodi, 0, 'J', false, 0);
+            $pdf->MultiCellIndent(87, 7, $sgas->dosen->prodi->nama_prodi, 0, 'J', false, 0);
             $pdf->Ln(0);
 
-            $pdf->Cell(50);
+            $pdf->Cell(40);
+            $pdf->Cell(1, 7, 'Peran', 0, 0, 'L');
+            $pdf->Cell(60);
+            $pdf->Cell(1, 7, ':', 0, 0, 'L');
+            $pdf->Cell(5);
+            $pdf->MultiCellIndent(87, 7, $v->peran ?? '-', 0, 'J', false, 0);
+            $pdf->Ln(0);
+
+            $pdf->Cell(40);
             $pdf->Cell(1, 7, 'Nama Mahasiswa', 0, 0, 'L');
             $pdf->Cell(60);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(75, 7, $v->nama_mahasiswa, 0, 'J', false, 0);
+            $pdf->MultiCellIndent(87, 7, $v->nama_mahasiswa, 0, 'J', false, 0);
             $pdf->Ln(0);
 
-            $pdf->Cell(50);
+            $pdf->Cell(40);
             $pdf->Cell(1, 7, 'NIM', 0, 0, 'L');
             $pdf->Cell(60);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(75, 7, $v->nim, 0, 'J', false, 0);
+            $pdf->MultiCellIndent(87, 7, $v->nim, 0, 'J', false, 0);
             $pdf->Ln(0);
 
-            $pdf->Cell(50);
+            $pdf->Cell(40);
             $pdf->Cell(1, 7, 'Judul', 0, 0, 'L');
             $pdf->Cell(60);
             $pdf->Cell(1, 7, ':', 0, 1, 'L');
 
             $pdf->SetFont('Arial', 'i', 11, 5);
-            $pdf->Cell(50);
-            $pdf->MultiCellIndent(142, 7, '"' . $v->judul_ta . '"', 0, 'J', false, 0);
+            $pdf->Cell(40);
+            $pdf->MultiCellIndent(149, 7, '"' . $v->judul_ta . '"', 0, 'J', false, 0);
             $pdf->Ln(3);
 
             $pdf->SetFont('Arial', '', 11, 5);
             $pdf->Cell(1, 7, 'Untuk', 0, 0, 'L');
-            $pdf->Cell(45);
+            $pdf->Cell(35);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(135, 7, '1.   Seterimanya Surat ini disamping tugas jabatan dan tanggung jawab sehari-hari ditunjuk sebagai dosen pembimbing Tugas Akhir/Skripsi mahasiswa Semester ' . $v->semester . ' TA. ' . $sgas->tahun_akademik->tahun_akademik . ' Prodi ' . $sgas->dosen->prodi->nama_prodi . ';', 0, 'J', false, 0);
+            $pdf->MultiCellIndent(147, 7, '1.   Seterimanya Surat ini disamping tugas jabatan dan tanggung jawab sehari-hari ditunjuk sebagai dosen pembimbing Tugas Akhir/Skripsi mahasiswa Semester ' . $v->semester . ' TA. ' . $sgas->tahun_akademik->tahun_akademik . ' Prodi ' . $sgas->dosen->prodi->nama_prodi . ';', 0, 'J', false, 0);
             $pdf->Ln(3);
-            $pdf->Cell(52);
-            $pdf->MultiCellIndent(135, 7, '2.   Lapor kepada Dekan ' . $fakultas . ' RS dr. Soepraoen atas pelaksanaan surat tugas ini;', 0, 'J', false, 0);
+            $pdf->Cell(42);
+            $pdf->MultiCellIndent(147, 7, '2.   Lapor kepada Dekan ' . $fakultas . ' RS dr. Soepraoen atas pelaksanaan surat tugas ini;', 0, 'J', false, 0);
             $pdf->Ln(3);
-            $pdf->Cell(52);
-            $pdf->MultiCellIndent(135, 7, '3.   Melaksanakan tugas ini dengan seksama dan penuh rasa tanggung jawab.', 0, 'J', false, 0);
+            $pdf->Cell(42);
+            $pdf->MultiCellIndent(147, 7, '3.   Melaksanakan tugas ini dengan seksama dan penuh rasa tanggung jawab.', 0, 'J', false, 0);
             $pdf->Ln(0);
 
             // Ttd
@@ -352,27 +365,28 @@ class PembimbinganTAController extends Controller
             $pdf->Ln(12);
 
             $pdf->Cell(1, 7, 'Menimbang', 0, 0, 'L');
-            $pdf->Cell(45);
+            $pdf->Cell(35);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(135, 7, 'Bahwa dalam rangka melaksanakan aktivitas Tridharma Perguruan Tinggi yaitu pembimbingan Tugas Akhir/Skripsi bagi mahasiswa di ITSK RS dr. Soepraoen, maka perlu di keluarkan surat tugas.', 0, 'J', false, 10);
+            $pdf->MultiCellIndent(147, 7, 'Bahwa dalam rangka melaksanakan aktivitas Tridharma Perguruan Tinggi yaitu pembimbingan Tugas Akhir/Skripsi bagi mahasiswa di ITSK RS dr. Soepraoen, maka perlu di keluarkan surat tugas.', 0, 'J', false, 10);
             $pdf->Ln(3);
 
             $pdf->Cell(1, 7, 'Dasar', 0, 0, 'L');
-            $pdf->Cell(45);
+            $pdf->Cell(35);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(135, 7, 'Permohonan penerbitan surat tugas dosen pembimbingan Tugas Akhir/Skripsi mahasiswa TA ' . $sgas->tahun_akademik->tahun_akademik . ' ' . $fakultas . ' ITSK RS dr. Soepraoen Malang', 0, 'J', false, 10);
+            $pdf->MultiCellIndent(147, 7, 'Permohonan penerbitan surat tugas dosen pembimbingan Tugas Akhir/Skripsi mahasiswa TA ' . $sgas->tahun_akademik->tahun_akademik . ' ' . $fakultas . ' ITSK RS dr. Soepraoen Malang', 0, 'J', false, 10);
 
             $title = "DITUGASKAN";
             $pdf->SetFont('Arial', 'B', 11, 5);
             $w = $pdf->GetStringWidth($title) + 6;
             $pdf->SetX((210 - $w) / 2);
-            $pdf->Cell($w, 15, $title, 0, 1, 'C');
+            $pdf->Cell($w, 15, $title, 0, 0, 'C');
+            $pdf->Ln(12);
 
             $pdf->SetFont('Arial', '', 11, 5);
             $pdf->Cell(1, 7, 'Kepada', 0, 0, 'L');
-            $pdf->Cell(45);
+            $pdf->Cell(35);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
 
             $pdf->Cell(3);
@@ -380,63 +394,71 @@ class PembimbinganTAController extends Controller
             $pdf->Cell(60);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(75, 7, $sgas->dosen->nama, 0, 'J', false, 0);
+            $pdf->MultiCellIndent(87, 7, $sgas->dosen->nama, 0, 'J', false, 0);
             $pdf->Ln(0);
 
-            $pdf->Cell(50);
+            $pdf->Cell(40);
             $pdf->Cell(1, 7, 'NIDN', 0, 0, 'L');
             $pdf->Cell(60);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(75, 7, $sgas->dosen->nidn, 0, 'J', false, 0);
+            $pdf->MultiCellIndent(87, 7, $sgas->dosen->nidn, 0, 'J', false, 0);
             $pdf->Ln(0);
 
-            $pdf->Cell(50);
+            $pdf->Cell(40);
             $pdf->Cell(1, 7, 'Program Studi', 0, 0, 'L');
             $pdf->Cell(60);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(75, 7, $sgas->dosen->prodi->nama_prodi, 0, 'J', false, 0);
+            $pdf->MultiCellIndent(87, 7, $sgas->dosen->prodi->nama_prodi, 0, 'J', false, 0);
             $pdf->Ln(0);
 
-            $pdf->Cell(50);
+            $pdf->Cell(40);
+            $pdf->Cell(1, 7, 'Peran', 0, 0, 'L');
+            $pdf->Cell(60);
+            $pdf->Cell(1, 7, ':', 0, 0, 'L');
+            $pdf->Cell(5);
+            $pdf->MultiCellIndent(87, 7, $v->peran ?? '-', 0, 'J', false, 0);
+            $pdf->Ln(0);
+
+            $pdf->Cell(40);
             $pdf->Cell(1, 7, 'Nama Mahasiswa', 0, 0, 'L');
             $pdf->Cell(60);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(75, 7, $v->nama_mahasiswa, 0, 'J', false, 0);
+            $pdf->MultiCellIndent(87, 7, $v->nama_mahasiswa, 0, 'J', false, 0);
             $pdf->Ln(0);
 
-            $pdf->Cell(50);
+            $pdf->Cell(40);
             $pdf->Cell(1, 7, 'NIM', 0, 0, 'L');
             $pdf->Cell(60);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(75, 7, $v->nim, 0, 'J', false, 0);
+            $pdf->MultiCellIndent(87, 7, $v->nim, 0, 'J', false, 0);
             $pdf->Ln(0);
 
-            $pdf->Cell(50);
+            $pdf->Cell(40);
             $pdf->Cell(1, 7, 'Judul', 0, 0, 'L');
             $pdf->Cell(60);
             $pdf->Cell(1, 7, ':', 0, 1, 'L');
 
             $pdf->SetFont('Arial', 'i', 11, 5);
-            $pdf->Cell(50);
-            $pdf->MultiCellIndent(142, 7, '"' . $v->judul_ta . '"', 0, 'J', false, 0);
+            $pdf->Cell(40);
+            $pdf->MultiCellIndent(149, 7, '"' . $v->judul_ta . '"', 0, 'J', false, 0);
             $pdf->Ln(3);
 
             $pdf->SetFont('Arial', '', 11, 5);
             $pdf->Cell(1, 7, 'Untuk', 0, 0, 'L');
-            $pdf->Cell(45);
+            $pdf->Cell(35);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(135, 7, '1.   Seterimanya Surat ini disamping tugas jabatan dan tanggung jawab sehari-hari ditunjuk sebagai dosen pembimbingan Tugas Akhir/Skripsi mahasiswa Semester ' . $v->semester . ' TA. ' . $sgas->tahun_akademik->tahun_akademik . ' Prodi ' . $sgas->dosen->prodi->nama_prodi . ';', 0, 'J', false, 0);
+            $pdf->MultiCellIndent(147, 7, '1.   Seterimanya Surat ini disamping tugas jabatan dan tanggung jawab sehari-hari ditunjuk sebagai dosen pembimbing Tugas Akhir/Skripsi mahasiswa Semester ' . $v->semester . ' TA. ' . $sgas->tahun_akademik->tahun_akademik . ' Prodi ' . $sgas->dosen->prodi->nama_prodi . ';', 0, 'J', false, 0);
             $pdf->Ln(3);
-            $pdf->Cell(52);
-            $pdf->MultiCellIndent(135, 7, '2.   Lapor kepada Dekan ' . $fakultas . ' RS dr. Soepraoen atas pelaksanaan surat tugas ini;', 0, 'J', false, 0);
+            $pdf->Cell(42);
+            $pdf->MultiCellIndent(147, 7, '2.   Lapor kepada Dekan ' . $fakultas . ' RS dr. Soepraoen atas pelaksanaan surat tugas ini;', 0, 'J', false, 0);
             $pdf->Ln(3);
-            $pdf->Cell(52);
-            $pdf->MultiCellIndent(135, 7, '3.   Melaksanakan tugas ini dengan seksama dan penuh rasa tanggung jawab.', 0, 'J', false, 0);
+            $pdf->Cell(42);
+            $pdf->MultiCellIndent(147, 7, '3.   Melaksanakan tugas ini dengan seksama dan penuh rasa tanggung jawab.', 0, 'J', false, 0);
             $pdf->Ln(0);
 
             // Ttd

@@ -16,6 +16,7 @@ class PengujiTugasAkhir extends Model
         'nama_mahasiswa',
         'nim',
         'judul_ta',
+        'peran',
     ];
 
     public function sgas()

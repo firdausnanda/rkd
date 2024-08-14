@@ -145,6 +145,16 @@
                             </span>
                         </div>
                         <div class="form-group mb-4">
+                            <label for="peran">Peran</label>
+                            <select name="peran" class="form-control">
+                                <option value="Pembimbing 1">Pembimbing 1</option>
+                                <option value="Pembimbing 2">Pembimbing 2</option>
+                            </select>
+                            <span class="invalid-feedback">
+                                <strong id="peran_msg"></strong>
+                            </span>
+                        </div>
+                        <div class="form-group mb-4">
                             <label for="judul_ta">Judul Tugas Akhir</label>
                             <textarea class="form-control" name="judul_ta" rows="7"></textarea>
                             <span class="invalid-feedback">
@@ -180,6 +190,16 @@
                         <div class="form-group mb-4">
                             <label for="nama_mahasiswa">Nama Mahasiswa</label>
                             <input type="text" class="form-control" id="nama_mahasiswa" name="nama_mahasiswa">
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="peran">Peran</label>
+                            <select name="peran" class="form-control" id="peran">
+                                <option value="Pembimbing 1">Pembimbing 1</option>
+                                <option value="Pembimbing 2">Pembimbing 2</option>
+                            </select>
+                            <span class="invalid-feedback">
+                                <strong id="peran_msg"></strong>
+                            </span>
                         </div>
                         <div class="form-group mb-4">
                             <label for="judul_ta">Judul Tugas Akhir</label>
@@ -436,6 +456,7 @@
                 $('#pa').val(data.id)
                 $('#nama_mahasiswa').val(data.nama_mahasiswa)
                 $('#ta_e').val(data.judul_ta)
+                $('#peran').val(data.peran).change()
                 $('#edit-mahasiswa').modal('show')
             });
 

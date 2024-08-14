@@ -496,12 +496,11 @@
                     }
                 ],
                 rowCallback: function(row, data) {
-                    console.log(row);
 
                     if (data.sgas.id_tahun_akademik > 5) {
-                        $('#kelas').text('JUMLAS PERTEMUAN')
+                        $('#kelas').text('JUMLAH PERTEMUAN')
                     } else {
-                        $('#kelas').text('JUMLAS KELAS')
+                        $('#kelas').text('JUMLAH KELAS')
                     }
                 },
                 drawCallback: function(settings) {
@@ -511,11 +510,11 @@
                     }).data();
 
                     if (data[0] == undefined) {
-                        $('#kelas').text('JUMLAS PERTEMUAN')
+                        $('#kelas').text('JUMLAH PERTEMUAN')
                     } else if (data[0].sgas.id_tahun_akademik > 5) {
-                        $('#kelas').text('JUMLAS PERTEMUAN')
+                        $('#kelas').text('JUMLAH PERTEMUAN')
                     } else {
-                        $('#kelas').text('JUMLAS KELAS')
+                        $('#kelas').text('JUMLAH KELAS')
                     }
 
                 },
