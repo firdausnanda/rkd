@@ -163,7 +163,7 @@ class PengajaranController extends Controller
 
             if ($cek_sgas->tahun_akademik->id > 5) {
                 // jumlah pertemuan / jumlah rencana pertemuan 1 semester * sks matakuliah
-                $total = $request->jumlah_pertemuan / 14 * $cek_sks_matakuliah->sks;
+                $total = $request->jumlah_pertemuan / 16 * $cek_sks_matakuliah->sks;
             } else {
                 // Rumus sebelum TA 2023 
                 $total = $total_sks * $request->kelas / $totalDosen;
@@ -215,7 +215,7 @@ class PengajaranController extends Controller
 
             if ($cek_sgas->tahun_akademik->id > 5) {
                 // jumlah pertemuan / jumlah rencana pertemuan 1 semester * sks matakuliah
-                $total = $request->jumlah_pertemuan / 14 * $cek_sks_matakuliah->sks;
+                $total = $request->jumlah_pertemuan / 16 * $cek_sks_matakuliah->sks;
             } else {
                 // Rumus sebelum TA 2023 
                 $total = $total_sks * $request->kelas / $totalDosen;
@@ -709,7 +709,7 @@ class PengajaranController extends Controller
 
             if ($sgas->tahun_akademik->id > 5) {
                 // jumlah pertemuan / jumlah rencana pertemuan 1 semester * sks matakuliah
-                $total = $v->jumlah_pertemuan / 14 * $v->matakuliah->sks;
+                $total = $v->jumlah_pertemuan / 16 * $v->matakuliah->sks;
             } else {
                 // Rumus sebelum TA 2023 
                 $total = $v->matakuliah->sks * $v->kelas / $v->total_dosen;

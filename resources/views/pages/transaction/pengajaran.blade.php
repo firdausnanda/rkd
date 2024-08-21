@@ -467,7 +467,7 @@
                         render: function(data, type, row, meta) {
                             let total = 0
                             if (row.sgas.id_tahun_akademik > 5) {
-                                total = row.jumlah_pertemuan / 14 * row.matakuliah.sks
+                                total = row.jumlah_pertemuan / 16 * row.matakuliah.sks
                             } else {
                                 total = row.matakuliah.sks * row.kelas / row.total_dosen
                             }
