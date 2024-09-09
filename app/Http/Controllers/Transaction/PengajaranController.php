@@ -710,9 +710,11 @@ class PengajaranController extends Controller
             if ($sgas->tahun_akademik->id > 5) {
                 // jumlah pertemuan / jumlah rencana pertemuan 1 semester * sks matakuliah
                 $total = $v->jumlah_pertemuan / 16 * $v->matakuliah->sks;
+                $tm =  $v->jumlah_pertemuan;
             } else {
                 // Rumus sebelum TA 2023 
                 $total = $v->matakuliah->sks * $v->kelas / $v->total_dosen;
+                $tm =  $v->kelas;
             }
 
             $totalall = $totalall + round($total, 2);
@@ -728,7 +730,7 @@ class PengajaranController extends Controller
                 $v->prodi->nama_prodi,
                 $v->semester,
                 $v->matakuliah->sks,
-                $v->kelas,
+                $tm,
                 number_format($total, 2, '.', ''),
             ));
         }
