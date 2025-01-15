@@ -17,7 +17,7 @@
                             <thead>
                                 <tr align="center">
                                     <th>No</th>
-                                    <th>NIP/NIDN/NIDK/NUPTK</th>
+                                    <th>NUPTK</th>
                                     <th>NAMA</th>
                                     <th>PRODI</th>
                                     <th>JABATAN FUNGSIONAL</th>
