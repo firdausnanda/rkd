@@ -356,7 +356,7 @@ class PengajaranController extends Controller
         $pdf->Cell(98, 7, $dekan, 0, 0, 'C');
         $pdf->ln(5);
         $pdf->Cell(97);
-        $pdf->Cell(98, 7, 'NIDN. ' . $nidn_dekan, 0, 0, 'C');
+        $pdf->Cell(98, 7, 'NUPTK. ' . $nidn_dekan, 0, 0, 'C');
         $pdf->ln(10);
 
         $pdf->SetFont('Arial', '', 10);
@@ -611,7 +611,7 @@ class PengajaranController extends Controller
         $pdf->Cell(98, 7, $dekan, 0, 0, 'C');
         $pdf->ln(5);
         $pdf->Cell(97);
-        $pdf->Cell(98, 7, 'NIDN. ' . $nidn_dekan, 0, 0, 'C');
+        $pdf->Cell(98, 7, 'NUPTK. ' . $nidn_dekan, 0, 0, 'C');
         $pdf->ln(10);
 
         $pdf->SetFont('Arial', '', 10);
