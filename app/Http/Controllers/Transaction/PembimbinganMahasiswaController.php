@@ -171,7 +171,6 @@ class PembimbinganMahasiswaController extends Controller
         $fakultas = $sgas->dosen && $sgas->dosen->prodi ? $sgas->dosen->prodi->fakultas->nama_fakultas : '';
         $dekan = $sgas->dosen && $sgas->dosen->prodi ? $sgas->dosen->prodi->fakultas->dekan : '';
         $nidn_dekan = $sgas->dosen && $sgas->dosen->prodi ? $sgas->dosen->prodi->fakultas->nidn_dekan : '';
-
         $pengajaran = PembimbinganAkademik::whereHas('sgas',  function (Builder $query) use ($id) {
             $query->where('id', $id);
         })->get();
@@ -220,50 +219,50 @@ class PembimbinganMahasiswaController extends Controller
 
             $pdf->Cell(3);
             $pdf->Cell(1, 7, 'Nama Dosen Pembimbing', 0, 0, 'L');
-            $pdf->Cell(60);
+            $pdf->Cell(50);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(75, 7, $sgas->dosen->nama, 0, 'J', false, 0);
+            $pdf->MultiCellIndent(85, 7, $sgas->dosen->nama, 0, 'J', false, 0);
             $pdf->Ln(0);
 
             $pdf->Cell(50);
-            $pdf->Cell(1, 7, 'NIDN', 0, 0, 'L');
-            $pdf->Cell(60);
+            $pdf->Cell(1, 7, Str::upper($sgas->dosen->jenis_id), 0, 0, 'L');
+            $pdf->Cell(50);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(75, 7, $sgas->dosen->nidn, 0, 'J', false, 0);
+            $pdf->MultiCellIndent(85, 7, $sgas->dosen->nidn, 0, 'J', false, 0);
             $pdf->Ln(0);
 
             $pdf->Cell(50);
             $pdf->Cell(1, 7, 'Program Studi', 0, 0, 'L');
-            $pdf->Cell(60);
+            $pdf->Cell(50);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(75, 7, $sgas->dosen->prodi->nama_prodi, 0, 'J', false, 0);
+            $pdf->MultiCellIndent(85, 7, $sgas->dosen->prodi->nama_prodi, 0, 'J', false, 0);
             $pdf->Ln(0);
 
             $pdf->Cell(50);
             $pdf->Cell(1, 7, 'Nama Mahasiswa', 0, 0, 'L');
-            $pdf->Cell(60);
+            $pdf->Cell(50);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(75, 7, $v->nama_mahasiswa, 0, 'J', false, 0);
+            $pdf->MultiCellIndent(85, 7, $v->nama_mahasiswa, 0, 'J', false, 0);
             $pdf->Ln(0);
 
             $pdf->Cell(50);
             $pdf->Cell(1, 7, 'NIM', 0, 0, 'L');
-            $pdf->Cell(60);
+            $pdf->Cell(50);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(75, 7, $v->nim, 0, 'J', false, 0);
+            $pdf->MultiCellIndent(85, 7, $v->nim, 0, 'J', false, 0);
             $pdf->Ln(0);
 
             $pdf->Cell(50);
             $pdf->Cell(1, 7, 'Semester', 0, 0, 'L');
-            $pdf->Cell(60);
+            $pdf->Cell(50);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(75, 7, $v->semester, 0, 'J', false, 0);
+            $pdf->MultiCellIndent(85, 7, $v->semester, 0, 'J', false, 0);
             $pdf->Ln(3);
 
             $pdf->Cell(1, 7, 'Untuk', 0, 0, 'L');
@@ -303,7 +302,7 @@ class PembimbinganMahasiswaController extends Controller
             $pdf->Cell(98, 7, $dekan, 0, 0, 'C');
             $pdf->ln(5);
             $pdf->Cell(97);
-            $pdf->Cell(98, 7, 'NIDN. ' . $nidn_dekan, 0, 1, 'C');
+            $pdf->Cell(98, 7, 'NUPTK. ' . $nidn_dekan, 0, 1, 'C');
         }
 
 
@@ -372,50 +371,50 @@ class PembimbinganMahasiswaController extends Controller
 
             $pdf->Cell(3);
             $pdf->Cell(1, 7, 'Nama Dosen Pembimbing', 0, 0, 'L');
-            $pdf->Cell(60);
+            $pdf->Cell(50);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(75, 7, $sgas->dosen->nama, 0, 'J', false, 0);
+            $pdf->MultiCellIndent(85, 7, $sgas->dosen->nama, 0, 'J', false, 0);
             $pdf->Ln(0);
 
             $pdf->Cell(50);
-            $pdf->Cell(1, 7, 'NIDN', 0, 0, 'L');
-            $pdf->Cell(60);
+            $pdf->Cell(1, 7, Str::upper($sgas->dosen->jenis_id), 0, 0, 'L');
+            $pdf->Cell(50);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(75, 7, $sgas->dosen->nidn, 0, 'J', false, 0);
+            $pdf->MultiCellIndent(85, 7, $sgas->dosen->nidn, 0, 'J', false, 0);
             $pdf->Ln(0);
 
             $pdf->Cell(50);
             $pdf->Cell(1, 7, 'Program Studi', 0, 0, 'L');
-            $pdf->Cell(60);
+            $pdf->Cell(50);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(75, 7, $sgas->dosen->prodi->nama_prodi, 0, 'J', false, 0);
+            $pdf->MultiCellIndent(85, 7, $sgas->dosen->prodi->nama_prodi, 0, 'J', false, 0);
             $pdf->Ln(0);
 
             $pdf->Cell(50);
             $pdf->Cell(1, 7, 'Nama Mahasiswa', 0, 0, 'L');
-            $pdf->Cell(60);
+            $pdf->Cell(50);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(75, 7, $v->nama_mahasiswa, 0, 'J', false, 0);
+            $pdf->MultiCellIndent(85, 7, $v->nama_mahasiswa, 0, 'J', false, 0);
             $pdf->Ln(0);
 
             $pdf->Cell(50);
             $pdf->Cell(1, 7, 'NIM', 0, 0, 'L');
-            $pdf->Cell(60);
+            $pdf->Cell(50);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(75, 7, $v->nim, 0, 'J', false, 0);
+            $pdf->MultiCellIndent(85, 7, $v->nim, 0, 'J', false, 0);
             $pdf->Ln(0);
 
             $pdf->Cell(50);
             $pdf->Cell(1, 7, 'Semester', 0, 0, 'L');
-            $pdf->Cell(60);
+            $pdf->Cell(50);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
-            $pdf->MultiCellIndent(75, 7, $v->semester, 0, 'J', false, 0);
+            $pdf->MultiCellIndent(85, 7, $v->semester, 0, 'J', false, 0);
             $pdf->Ln(3);
 
             $pdf->Cell(1, 7, 'Untuk', 0, 0, 'L');
@@ -455,7 +454,7 @@ class PembimbinganMahasiswaController extends Controller
             $pdf->Cell(98, 7, $dekan, 0, 0, 'C');
             $pdf->ln(5);
             $pdf->Cell(97);
-            $pdf->Cell(98, 7, 'NIDN. ' . $nidn_dekan, 0, 1, 'C');
+            $pdf->Cell(98, 7, 'NUPTK. ' . $nidn_dekan, 0, 1, 'C');
         }
 
 

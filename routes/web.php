@@ -53,6 +53,7 @@ Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => [
 		Route::get('', [DosenController::class, 'index'])->name('index');
 		Route::post('', [DosenController::class, 'store'])->name('store');
 		Route::put('', [DosenController::class, 'update'])->name('update');
+		Route::delete('', [DosenController::class, 'delete'])->name('delete');
 		Route::put('/aktif', [DosenController::class, 'aktif'])->name('aktif');
 	});
 
@@ -165,6 +166,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['role:admi
 		Route::get('', [DosenController::class, 'index'])->name('index');
 		Route::post('', [DosenController::class, 'store'])->name('store');
 		Route::put('', [DosenController::class, 'update'])->name('update');
+		Route::delete('', [DosenController::class, 'delete'])->name('delete');
 		Route::put('/aktif', [DosenController::class, 'aktif'])->name('aktif');
 	});
 
@@ -351,7 +353,7 @@ Route::group(['prefix' => 'mwi', 'as' => 'mwi.', 'middleware' => ['role:mwi', 'a
 });
 
 // BSDM
-Route::group(['prefix' => 'bsdm', 'as' => 'bsdm.', 'middleware' => ['role:bsdm', 'auth']], function () {
+Route::group(['prefix' => 'bsdm', 'as' => 'bsdm.', 'middleware' => ['role:bsdm', 'auth']], function () {	
 
 	// Dashboard
 	Route::get('', [DashboardController::class, 'index'])->name('index');
@@ -361,6 +363,7 @@ Route::group(['prefix' => 'bsdm', 'as' => 'bsdm.', 'middleware' => ['role:bsdm',
 		Route::get('', [DosenController::class, 'index'])->name('index');
 		Route::post('', [DosenController::class, 'store'])->name('store');
 		Route::put('', [DosenController::class, 'update'])->name('update');
+		Route::delete('', [DosenController::class, 'delete'])->name('delete');
 		Route::put('/aktif', [DosenController::class, 'aktif'])->name('aktif');
 	});
 

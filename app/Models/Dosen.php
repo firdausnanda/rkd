@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Dosen extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'nidn',
@@ -18,6 +19,8 @@ class Dosen extends Model
         'status',
         'keterangan'
     ];
+
+    protected $dates = ['deleted_at'];
 
     protected $table = 'm_dosen';
 

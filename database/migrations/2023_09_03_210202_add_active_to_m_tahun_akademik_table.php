@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('m_tahun_akademik', function (Blueprint $table) {
-            //
+            $table->dropColumn('is_active');
         });
     }
 };

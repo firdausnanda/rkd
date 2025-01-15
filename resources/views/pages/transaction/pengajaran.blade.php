@@ -76,7 +76,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-6 col-md-4"><label>NIP/NIDN/NIDK</label></div>
+                                <div class="col-6 col-md-4"><label id="jenis_id_dosen">NUPTK</label></div>
                                 <div class="col-12 col-md-8">
                                     <input type="text" readonly class="form-control-plaintext bg-white" id="nidn_dosen">
                                 </div>
@@ -575,6 +575,7 @@
                             $('#jabatan_struktural_dosen').val(response.data[0]
                                 .jabatan_struktural);
                             $('#nidn_dosen').val(response.data[0].nidn);
+                            $('#jenis_id_dosen').text(response.data[0].jenis_id.toUpperCase());
 
                             response.data[1].validasi == 0 ? $('#status').text('Pending') : $(
                                 '#status').text('Approved');

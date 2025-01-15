@@ -17,7 +17,7 @@
                             <thead>
                                 <tr align="center">
                                     <th>No</th>
-                                    <th>NIP/NIDN/NIDK</th>
+                                    <th>NIP/NIDN/NIDK/NUPTK</th>
                                     <th>NAMA</th>
                                     <th>PRODI</th>
                                     <th>JABATAN FUNGSIONAL</th>
@@ -50,7 +50,15 @@
                 <form id="form-store">
                     <div class="modal-body">
                         <div class="form-group mb-4">
-                            <label for="nidn">NIP/NIDN/NIDK</label>
+                            <label for="jenis_id">Jenis ID</label>
+                            <select class="selectpicker form-control" data-live-search="true" name="jenis_id">
+                                <option value="nuptk">NUPTK</option>
+                                <option value="nidn">NIDN</option>
+                                <option value="nidk">NIDK</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="nidn">No ID</label>
                             <input type="text" class="form-control" name="nidn" required>
                         </div>
                         <div class="form-group mb-4">
@@ -115,7 +123,16 @@
                     <div class="modal-body">
                         <input type="hidden" class="form-control" id="id_dosen" name="id_dosen">
                         <div class="form-group mb-4">
-                            <label for="nidn">NIP/NIDN/NIDK</label>
+                            <label for="jenis_id">Jenis ID</label>
+                            <select class="selectpicker form-control" data-live-search="true" name="jenis_id"
+                                id="jenis_id">
+                                <option value="nuptk">NUPTK</option>
+                                <option value="nidn">NIDN</option>
+                                <option value="nidk">NIDK</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="nidn">No ID</label>
                             <input type="text" class="form-control" name="nidn" id="nidn" required>
                         </div>
                         <div class="form-group mb-4">
@@ -295,6 +312,7 @@
                                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                         <a class="dropdown-item btn-update" href="#">Update</a>
                                         <a class="dropdown-item btn-aktif" href="#">${aktif}</a>
+                                        <a class="dropdown-item btn-delete" href="#">Hapus</a>
                                         </div>
                                     </div>`
                         }
@@ -312,6 +330,7 @@
                 var data = table.row($(this).parents('tr')).data();
 
                 $('#id_dosen').val(data.id)
+                $('#jenis_id').val(data.jenis_id).change()
                 $('#nidn').val(data.nidn)
                 $('#nama').val(data.nama)
                 $('#prodi').val(data.id_prodi).change()
@@ -412,6 +431,44 @@
                         Swal.fire('Error!', 'Server Error', 'error')
                     }
                 });
+            });
+
+            // Delete
+            $('#table-dosen tbody').on('click', '.btn-delete', function() {
+                var data = table.row($(this).parents('tr')).data();
+
+                Swal.fire({
+                    title: 'Apakah anda yakin?',
+                    text: "Data akan dihapus!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, Lanjutkan!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: "DELETE",
+                            url: `/${$('#role').text()}/dosen`,
+                            data: {
+                                id: data.id
+                            },
+                            dataType: "JSON",
+                            beforeSend: function() {
+                                Swal.showLoading()
+                            },
+                            success: function(response) {
+                                Swal.hideLoading()
+                                table.ajax.reload()
+                                Swal.fire('Sukses!', 'Data dihapus', 'success')
+                            },
+                            error: function(response) {
+                                Swal.hideLoading()
+                                Swal.fire('Error!', 'Server Error', 'error')
+                            }
+                        });
+                    }
+                })
             });
         });
     </script>

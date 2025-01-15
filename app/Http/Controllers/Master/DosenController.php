@@ -27,6 +27,7 @@ class DosenController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nidn' => 'required|string|max:255',
+            'jenis_id' => 'required|string|max:255',
             'nama' => 'required|string|max:255',
             'prodi' => 'required',
             'jabfung' => 'required|string|max:255',
@@ -39,6 +40,7 @@ class DosenController extends Controller
 
         try {
             $dosen = Dosen::create([
+                'jenis_id' => $request->jenis_id,
                 'nidn' => $request->nidn,
                 'nama' => $request->nama,
                 'id_prodi' => $request->prodi,
@@ -69,6 +71,7 @@ class DosenController extends Controller
             $update = Dosen::where('id', $request->id_dosen)->update([
                 'nama' => $request->nama,
                 'nidn' => $request->nidn,
+                'jenis_id' => $request->jenis_id,
                 'id_prodi' => $request->prodi,
                 'jabatan_fungsional' => $request->jabfung,
                 'jabatan_struktural' => $request->jabatan_struktural,
@@ -78,6 +81,7 @@ class DosenController extends Controller
 
             $user = User::where('id_dosen', $request->id_dosen)->update([
                 'name' => $request->nama,
+                'email' => $request->nidn,
             ]);
 
             return ResponseFormatter::success($update, 'Data Berhasil Diupdate');
@@ -108,5 +112,11 @@ class DosenController extends Controller
       } catch (\Exception $e) {
         return ResponseFormatter::error($e, 'Server Error!');
       }
+    }
+
+    public function delete(Request $request)
+    {
+        $delete = Dosen::where('id', $request->id)->delete();
+        return ResponseFormatter::success($delete, 'Data Berhasil dihapus!');
     }
 }

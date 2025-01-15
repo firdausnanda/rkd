@@ -234,7 +234,7 @@ class PembimbinganTAController extends Controller
             $pdf->Ln(0);
 
             $pdf->Cell(40);
-            $pdf->Cell(1, 7, 'NIDN', 0, 0, 'L');
+            $pdf->Cell(1, 7, Str::upper($sgas->dosen->jenis_id), 0, 0, 'L');
             $pdf->Cell(60);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
@@ -321,7 +321,7 @@ class PembimbinganTAController extends Controller
             $pdf->Cell(98, 7, $dekan, 0, 0, 'C');
             $pdf->ln(5);
             $pdf->Cell(97);
-            $pdf->Cell(98, 7, 'NIDN. ' . $nidn_dekan, 0, 1, 'C');
+            $pdf->Cell(98, 7, 'NUPTK. ' . $nidn_dekan, 0, 1, 'C');
         }
 
 
@@ -398,7 +398,7 @@ class PembimbinganTAController extends Controller
             $pdf->Ln(0);
 
             $pdf->Cell(40);
-            $pdf->Cell(1, 7, 'NIDN', 0, 0, 'L');
+            $pdf->Cell(1, 7, Str::upper($sgas->dosen->jenis_id), 0, 0, 'L');
             $pdf->Cell(60);
             $pdf->Cell(1, 7, ':', 0, 0, 'L');
             $pdf->Cell(5);
@@ -485,7 +485,7 @@ class PembimbinganTAController extends Controller
             $pdf->Cell(98, 7, $dekan, 0, 0, 'C');
             $pdf->ln(5);
             $pdf->Cell(97);
-            $pdf->Cell(98, 7, 'NIDN. ' . $nidn_dekan, 0, 1, 'C');
+            $pdf->Cell(98, 7, 'NUPTK. ' . $nidn_dekan, 0, 1, 'C');
         }
 
 

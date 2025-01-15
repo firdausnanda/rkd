@@ -417,7 +417,7 @@ class PengajaranController extends Controller
         $pdf->MultiCellIndent(100, 7, $sgas->dosen->jabatan_struktural ?? '-', 0, 'J', false, 0);
         $pdf->Ln(0);
 
-        $pdf->Cell(1, 7, '6.    NIDN', 0, 0, 'L');
+        $pdf->Cell(1, 7, '6.    ' . Str::upper($sgas->dosen->jenis_id), 0, 0, 'L');
         $pdf->Cell(60);
         $pdf->Cell(1, 7, ':', 0, 0, 'L');
         $pdf->Cell(5);
@@ -486,7 +486,7 @@ class PengajaranController extends Controller
         $pdf->Cell(98, 7, $dekan, 0, 0, 'C');
         $pdf->ln(5);
         $pdf->Cell(97);
-        $pdf->Cell(98, 7, 'NIDN. ' . $nidn_dekan, 0, 0, 'C');
+        $pdf->Cell(98, 7, 'NUPTK. ' . $nidn_dekan, 0, 0, 'C');
         $pdf->ln(10);
 
         header('Access-Control-Allow-Origin: *');
@@ -651,7 +651,7 @@ class PengajaranController extends Controller
         $pdf->MultiCellIndent(100, 7, $sgas->dosen->nama, 0, 'J', false, 0);
         $pdf->Ln(0);
 
-        $pdf->Cell(1, 7, '3.    NIDN', 0, 0, 'L');
+        $pdf->Cell(1, 7, '3.    ' . Str::upper($sgas->dosen->jenis_id), 0, 0, 'L');
         $pdf->Cell(60);
         $pdf->Cell(1, 7, ':', 0, 0, 'L');
         $pdf->Cell(5);
@@ -769,7 +769,7 @@ class PengajaranController extends Controller
         $pdf->Cell(98, 7, $dekan, 0, 0, 'C');
         $pdf->ln(5);
         $pdf->Cell(97);
-        $pdf->Cell(98, 7, 'NIDN. ' . $nidn_dekan, 0, 0, 'C');
+        $pdf->Cell(98, 7, 'NUPTK. ' . $nidn_dekan, 0, 0, 'C');
         $pdf->ln(10);
 
         header('Access-Control-Allow-Origin: *');

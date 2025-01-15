@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('sgas', function (Blueprint $table) {
-            $table->boolean('validasi_ta')->default(0);
+        Schema::table('m_dosen', function (Blueprint $table) {
+            $table->string('jenis_id')->default('nuptk');
+            $table->dateTime('deleted_at')->nullable();
         });
     }
 
@@ -21,8 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('sgas', function (Blueprint $table) {
-            $table->dropColumn('validasi_ta');
+        Schema::table('m_dosen', function (Blueprint $table) {
+            $table->dropColumn('jenis_id');
+            $table->dropColumn('is_deleted');
         });
     }
 };
