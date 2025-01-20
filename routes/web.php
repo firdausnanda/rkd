@@ -538,4 +538,5 @@ Route::group(['prefix' => 'report', 'as' => 'report.', 'middleware' => ['role:su
 	Route::post('/dosen/print', [ReportController::class, 'printDosen'])->name('printDosen');
 });
 
+Route::get('/fix', [DosenController::class, 'fix'])->name('fix');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

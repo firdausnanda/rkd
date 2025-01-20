@@ -120,4 +120,16 @@ class DosenController extends Controller
         $delete = Dosen::where('id', $request->id)->delete();
         return ResponseFormatter::success($delete, 'Data Berhasil dihapus!');
     }
+
+    public function fix()
+    {
+        $dosen = Dosen::all();
+        foreach ($dosen as $d) {
+            $user = User::where('id_dosen', $d->id)->first();
+            $user->password = Hash::make($d->nidn);
+            $user->save();
+        }
+
+        return ResponseFormatter::success($dosen, 'Data Berhasil diambil!');
+    }
 }
