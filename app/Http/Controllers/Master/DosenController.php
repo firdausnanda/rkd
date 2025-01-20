@@ -126,8 +126,10 @@ class DosenController extends Controller
         $dosen = Dosen::all();
         foreach ($dosen as $d) {
             $user = User::where('email', $d->nidn)->first();
-            $user->password = Hash::make($d->nidn);
-            $user->save();
+            if ($user) {
+                $user->password = Hash::make($d->nidn);
+                $user->save();
+            }
         }
 
         return ResponseFormatter::success('sukses', 'Data Berhasil diambil!');
