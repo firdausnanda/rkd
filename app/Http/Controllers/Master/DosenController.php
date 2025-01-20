@@ -82,6 +82,7 @@ class DosenController extends Controller
             $user = User::where('id_dosen', $request->id_dosen)->update([
                 'name' => $request->nama,
                 'email' => $request->nidn,
+                'password' => Hash::make($request->nidn)
             ]);
 
             return ResponseFormatter::success($update, 'Data Berhasil Diupdate');
