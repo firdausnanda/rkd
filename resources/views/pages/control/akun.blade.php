@@ -89,6 +89,15 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div id="fakultas_store" class="form-group mb-4 d-none">
+                            <label for="fakultas">Fakultas</label><br>
+                            <select class="selectpicker form-control" data-live-search="true" id="fakultas_s"
+                                name="fakultas">
+                                @foreach ($fakultas as $p)
+                                    <option value="{{ $p->id }}">{{ $p->nama_fakultas }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <input type="submit" class="btn btn-primary" value="Save">
@@ -105,7 +114,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Edit Data Dosen</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Edit Data User</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
                 </div>
                 <form id="form-update">
@@ -134,6 +143,15 @@
                                 name="prodi">
                                 @foreach ($prodi as $p)
                                     <option value="{{ $p->kode_prodi }}">{{ $p->nama_prodi }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div id="fakultas_edit" class="form-group mb-4 d-none">
+                            <label for="fakultas">Fakultas</label><br>
+                            <select class="selectpicker form-control" data-live-search="true" id="fakultas"
+                                name="fakultas">
+                                @foreach ($fakultas as $p)
+                                    <option value="{{ $p->id }}">{{ $p->nama_fakultas }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -305,7 +323,10 @@
                 $('#email').val(data.email)
                 $('#EditDataAkun #role').val(data.roles[0].name).change()
                 if (data.kode_prodi != '' || data.kode_prodi != null) {
-                    $('#prodi').val(data.prodi)
+                    $('#prodi').val(data.kode_prodi).change()
+                }
+                if (data.id_fakultas != '' || data.id_fakultas != null) {
+                    $('#fakultas').val(data.id_fakultas).change()
                 }
                 $('#EditDataAkun').modal('show')
             });
@@ -362,8 +383,13 @@
                 e.preventDefault();
                 if ($('#EditDataAkun #role').val() == 'prodi') {
                     $('#prodi_edit').addClass('d-block').removeClass('d-none')
-                } else {
+                    $('#fakultas_edit').addClass('d-none').removeClass('d-block')
+                } else if($('#EditDataAkun #role').val() == 'admin') {
+                    $('#fakultas_edit').addClass('d-block')
                     $('#prodi_edit').addClass('d-none').removeClass('d-block')
+                } else { 
+                    $('#prodi_edit').addClass('d-none').removeClass('d-block')
+                    $('#fakultas_edit').addClass('d-none').removeClass('d-block')
                 }
             });
 
@@ -372,8 +398,13 @@
                 e.preventDefault();
                 if ($('#TambahDataAkun #role_s').val() == 'prodi') {
                     $('#prodi_store').addClass('d-block')
+                    $('#fakultas_store').addClass('d-none').removeClass('d-block')
+                } else if ($('#TambahDataAkun #role_s').val() == 'admin') {
+                    $('#fakultas_store').addClass('d-block')
+                    $('#prodi_store').addClass('d-none').removeClass('d-block')
                 } else {
                     $('#prodi_store').addClass('d-none').removeClass('d-block')
+                    $('#fakultas_store').addClass('d-none').removeClass('d-block')
                 }
             });
 
