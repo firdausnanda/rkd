@@ -312,9 +312,11 @@ class PengujiTAController extends Controller
             $x = $pdf->GetX();
             $y = $pdf->GetY();
             if ($aliasFakultas == 'FST') {
-                $pdf->Image('./img/ttd11.png', $x, $y - 25, 90);
+                $pdf->Image('./img/FST.png', $x, $y - 25, 90);
             } elseif ($aliasFakultas == 'FIK') {
-                $pdf->Image('./img/ttd9.png', $x, $y - 30, 90);
+                $pdf->Image('./img/FIK.png', $x, $y - 30, 90);
+            } elseif ($aliasFakultas == 'FKG') {
+                $pdf->Image('./img/FKG.png', $x, $y - 30, 90);
             }
             $pdf->ln(1);
             $pdf->Cell(97);
@@ -476,9 +478,11 @@ class PengujiTAController extends Controller
             $x = $pdf->GetX();
             $y = $pdf->GetY();
             if ($aliasFakultas == 'FST') {
-                $pdf->Image('./img/ttd11.png', $x, $y - 25, 90);
+                $pdf->Image('./img/FST.png', $x, $y - 25, 90);
             } elseif ($aliasFakultas == 'FIK') {
-                $pdf->Image('./img/ttd9.png', $x, $y - 30, 90);
+                $pdf->Image('./img/FIK.png', $x, $y - 30, 90);
+            } elseif ($aliasFakultas == 'FKG') {
+                $pdf->Image('./img/FKG.png', $x, $y - 30, 90);
             }
             $pdf->ln(1);
             $pdf->Cell(97);
