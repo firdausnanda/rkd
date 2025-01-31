@@ -9,16 +9,17 @@
                 <div class="widget-content widget-content-area br-6">
 
                     <div class="">
-                        <h4 style="font-weight: bold;">Data Program Studi</h4>
+                        <h4 style="font-weight: bold;">Data Fakultas</h4>
                     </div>
 
                     <div class="table-responsive mb-4 mt-4">
-                        <table id="table-prodi" class="table" style="width:100%">
+                        <table id="table-fakultas" class="table" style="width:100%">
                             <thead>
                                 <tr align="center">
                                     <th>No</th>
-                                    <th>KODE PRODI</th>
-                                    <th>NAMA PRODI</th>
+                                    <th>NAMA FAKULTAS</th>
+                                    <th>ALIAS</th>
+                                    <th>NAMA DEKAN</th>
                                     <th class="no-content"></th>
                                 </tr>
                             </thead>
@@ -34,30 +35,30 @@
     </div>
 
     {{-- Modal Tambah Data --}}
-    <div class="modal fade fadeinUp" id="tambah-prodi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade fadeinUp" id="tambah-fakultas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Tambah Data Prodi</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Tambah Data Fakultas</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
                 </div>
                 <form id="form-store">
                     <div class="modal-body">
                         <div class="form-group mb-4">
-                            <label for="kode">Kode Prodi</label>
-                            <input type="text" class="form-control" name="kode" required>
+                            <label for="nama">Nama Fakultas</label>
+                            <input type="text" class="form-control" name="nama" required>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="nama">Nama Prodi</label>
-                            <input type="text" class="form-control" name="nama">
+                            <label for="alias">Alias</label>
+                            <input type="text" class="form-control" name="alias">
                         </div>
                         <div class="form-group mb-4">
-                            <label for="fakultas">Fakultas</label>
-                            <select class="selectpicker form-control" data-live-search="true" name="fakultas">
-                                <option value="">-</option>
-                                @foreach ($fakultas as $f)
-                                    <option value="{{ $f->id }}">{{ $f->nama_fakultas }}</option>
+                            <label for="nama_dekan">Nama Dekan</label>
+                            <select name="nama_dekan" class="selectpicker d-block me-0 w-100" data-live-search="true" id="dosen-select">
+                                <option value="-" selected disabled>-</option>
+                                @foreach ($dosen as $d)
+                                    <option value="{{ $d->id }}">{{ $d->nama }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -72,37 +73,37 @@
     </div>
 
     {{-- Modal Edit Data --}}
-    <div class="modal fade fadeinUp" id="edit-prodi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade fadeinUp" id="edit-fakultas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Edit Data Prodi</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Edit Data Fakultas</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
                 </div>
                 <form id="form-update">
                     <div class="modal-body">
-                        <input type="hidden" class="form-control" id="id_prodi" name="id_prodi">
+                        <input type="hidden" class="form-control" id="id_fakultas" name="id_fakultas">
                         <div class="form-group mb-4">
-                            <label for="kode">Kode Prodi</label>
-                            <input type="text" class="form-control" name="kode" id="kode" required>
+                            <label for="nama">Nama Fakultas</label>
+                            <input type="text" class="form-control" name="nama" id="nama" required>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="nama">Nama Prodi</label>
-                            <input type="text" class="form-control" name="nama" id="nama">
+                            <label for="alias">Alias</label>
+                            <input type="text" class="form-control" name="alias" id="alias">
                         </div>
                         <div class="form-group mb-4">
-                            <label for="fakultas">Fakultas</label>
-                            <select class="selectpicker form-control" data-live-search="true" name="fakultas">
-                                <option value="">-</option>
-                                @foreach ($fakultas as $f)
-                                    <option value="{{ $f->id }}">{{ $f->nama_fakultas }}</option>
+                            <label for="nama_dekan">Nama Dekan</label>
+                            <select name="nama_dekan" class="selectpicker d-block me-0 w-100" data-live-search="true" id="nama_dekan">
+                                <option value="">Pilih Dekan</option>
+                                @foreach($dosen as $d)
+                                    <option value="{{ $d->nidn }}">{{ $d->nama }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="submit" class="btn btn-primary" value="Edit">
+                        <input type="submit" class="btn btn-primary" value="Update">
                         <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
                     </div>
                 </form>
@@ -116,7 +117,7 @@
         $(document).ready(function() {
 
             // Init Datatable
-            var table = $('#table-prodi').DataTable({
+            var table = $('#table-fakultas').DataTable({
                 oLanguage: {
                     "oPaginate": {
                         "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>',
@@ -131,14 +132,14 @@
                 processing: true,
                 lengthChange: false,
                 ajax: {
-                    url: `/${$('#role').text()}/prodi`,
+                    url: `/${$('#role').text()}/fakultas`,
                     type: "GET"
                 },
                 buttons: [{
                     text: '<i class="fa-solid fa-plus mr-2"></i> Tambah Data',
                     className: 'btn btn-primary btn-tambah me-2',
                     action: function(e, dt, node, config) {
-                        $('#tambah-prodi').modal('show');
+                        $('#tambah-fakultas').modal('show');
                     }
                 }],
                 columnDefs: [{
@@ -153,19 +154,29 @@
                         targets: 1,
                         width: '10%',
                         className: 'text-center align-middle',
-                        data: 'kode_prodi'
+                        data: 'nama_fakultas'
                     },
                     {
                         targets: 2,
                         width: '20%',
                         className: 'text-center align-middle fs-14',
-                        data: 'nama_prodi',
-                        render: function(data, type, row, meta) {
-                            return `${data} <br> <span class="text-info">${row.fakultas.nama_fakultas}</span>`;
-                        }
+                        data: 'alias'
                     },
                     {
                         targets: 3,
+                        width: '20%',
+                        className: 'text-center align-middle fs-14',
+                        data: 'dekan',
+                        render: function(data, type, row, meta) {
+                            if (data) {
+                                return `${data} <br><span class="text-info">${row.nidn_dekan}</span>`;
+                            } else {
+                                return '-';
+                            }
+                        }
+                    },
+                    {
+                        targets: 4,
                         width: '15%',
                         className: 'text-center align-middle',
                         render: function(data, type, row, meta) {
@@ -183,25 +194,25 @@
                     }
                 ],
                 initComplete: function() {
-                    $('#table-prodi').DataTable().buttons().container().appendTo(
-                        '#table-prodi_wrapper .col-md-6:eq(0)');
+                    $('#table-fakultas').DataTable().buttons().container().appendTo(
+                        '#table-fakultas_wrapper .col-md-6:eq(0)');
                     $('.btn-tambah').removeClass("btn-secondary");
                 }
             });
 
             // Update
-            $('#table-prodi tbody').on('click', '.btn-update', function() {
+            $('#table-fakultas tbody').on('click', '.btn-update', function() {
                 var data = table.row($(this).parents('tr')).data();
-
-                $('#id_prodi').val(data.id)
-                $('#kode').val(data.kode_prodi)
-                $('#nama').val(data.nama_prodi)
-                $('#fakultas').val(data.id_fakultas).trigger('change');
-                $('#edit-prodi').modal('show')
+                console.log(data);
+                $('#id_fakultas').val(data.id)
+                $('#nama').val(data.nama_fakultas)
+                $('#alias').val(data.alias)
+                $('#nama_dekan').val(data.nidn_dekan).change();
+                $('#edit-fakultas').modal('show')
             });
 
             // Hapus
-            $('#table-prodi tbody').on('click', '.btn-hapus', function() {
+            $('#table-fakultas tbody').on('click', '.btn-hapus', function() {
                 var data = table.row($(this).parents('tr')).data();
 
                 Swal.fire({
@@ -216,7 +227,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "DELETE",
-                            url: `/${$('#role').text()}/prodi`,
+                            url: `/${$('#role').text()}/fakultas`,
                             data: {
                                 id: data.id
                             },
@@ -244,7 +255,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: `/${$('#role').text()}/prodi`,
+                    url: `/${$('#role').text()}/fakultas`,
                     data: $(this).serialize(),
                     dataType: "JSON",
                     beforeSend: function() {
@@ -252,7 +263,7 @@
                     },
                     success: function(response) {
                         Swal.hideLoading()
-                        $('#tambah-prodi').modal('hide')
+                        $('#tambah-fakultas').modal('hide')
                         table.ajax.reload()
                         $('#form-store')[0].reset()
                         Swal.fire('Sukses!', 'Data diupdate', 'success')
@@ -270,7 +281,7 @@
                 e.preventDefault();
 
                 $.ajax({
-                    url: `/${$('#role').text()}/prodi`,
+                    url: `/${$('#role').text()}/fakultas`,
                     type: "PUT",
                     data: $(this).serialize(),
                     dataType: "JSON",
@@ -279,7 +290,7 @@
                     },
                     success: function(response) {
                         Swal.hideLoading()
-                        $('#edit-prodi').modal('hide')
+                        $('#edit-fakultas').modal('hide')
                         table.ajax.reload()
                         $('#form-update')[0].reset()
                         Swal.fire('Sukses!', 'Data diupdate', 'success')

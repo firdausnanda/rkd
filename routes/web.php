@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Control\AkunController;
 use App\Http\Controllers\Master\DosenController;
+use App\Http\Controllers\Master\FakultasController;
 use App\Http\Controllers\Master\MatakuliahController;
 use App\Http\Controllers\Master\ProdiController;
 use App\Http\Controllers\Master\TahunAkademikController;
@@ -71,6 +72,14 @@ Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => [
 		Route::post('', [ProdiController::class, 'store'])->name('store');
 		Route::put('', [ProdiController::class, 'update'])->name('update');
 		Route::delete('', [ProdiController::class, 'delete'])->name('delete');
+	});
+
+	// Fakultas
+	Route::group(['prefix' => 'fakultas', 'as' => 'fakultas.'], function () {
+		Route::get('', [FakultasController::class, 'index'])->name('index');
+		Route::post('', [FakultasController::class, 'store'])->name('store');
+		Route::put('', [FakultasController::class, 'update'])->name('update');
+		Route::delete('', [FakultasController::class, 'destroy'])->name('delete');
 	});
 
 	// Tahun Akademik
@@ -353,7 +362,7 @@ Route::group(['prefix' => 'mwi', 'as' => 'mwi.', 'middleware' => ['role:mwi', 'a
 });
 
 // BSDM
-Route::group(['prefix' => 'bsdm', 'as' => 'bsdm.', 'middleware' => ['role:bsdm', 'auth']], function () {	
+Route::group(['prefix' => 'bsdm', 'as' => 'bsdm.', 'middleware' => ['role:bsdm', 'auth']], function () {
 
 	// Dashboard
 	Route::get('', [DashboardController::class, 'index'])->name('index');
@@ -373,6 +382,14 @@ Route::group(['prefix' => 'bsdm', 'as' => 'bsdm.', 'middleware' => ['role:bsdm',
 		Route::post('', [MatakuliahController::class, 'store'])->name('store');
 		Route::put('', [MatakuliahController::class, 'update'])->name('update');
 		Route::delete('', [MatakuliahController::class, 'delete'])->name('delete');
+	});
+
+	// Fakultas
+	Route::group(['prefix' => 'fakultas', 'as' => 'fakultas.'], function () {
+		Route::get('', [FakultasController::class, 'index'])->name('index');
+		Route::post('', [FakultasController::class, 'store'])->name('store');
+		Route::put('', [FakultasController::class, 'update'])->name('update');
+		Route::delete('', [FakultasController::class, 'destroy'])->name('delete');
 	});
 
 	// Prodi
