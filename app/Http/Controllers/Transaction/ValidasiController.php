@@ -77,6 +77,10 @@ class ValidasiController extends Controller
                 });
             }
 
+            $sgas->whereHas('dosen', function (Builder $q) {
+                $q->whereNull('deleted_at');
+            });
+
             // Cek Kegiatan
             switch ($request->kegiatan) {
                 case 1:
