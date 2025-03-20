@@ -429,8 +429,9 @@
                         Swal.hideLoading()
                         $('#tambah-mahasiswa').modal('hide')
                         table.ajax.reload()
-                        $('#form-store')[0].reset()
-                        Swal.fire('Sukses!', 'Data diupdate', 'success')
+                        $('*[name="nim"]').val('')
+                        $('*[name="nama_mahasiswa"]').val('')
+                        Swal.fire('Sukses!', 'Data berhasil ditambahkan', 'success')
                     },
                     error: function(response) {
                         Swal.hideLoading()
